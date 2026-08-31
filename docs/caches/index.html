@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Warms a connection the deferred script would otherwise make cold. -->
+<link rel="preconnect" href="https://analytics.hmcollector.com" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.hmcollector.com">
+<!-- Umami, self-hosted and cookieless. -->
+<script defer src="https://analytics.hmcollector.com/script.js" data-website-id="5566adc1-038a-4f04-a799-3883d1bad385"></script>
+<title>Clear developer caches on macOS — DDCC</title>
+<meta name="description" content="Find Xcode derived data, node_modules, Docker layers and inactive toolchain versions, with each row naming the tool that made it and what deleting it costs.">
+<link rel="canonical" href="https://devdrivecacheclean.com/caches/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DevDriveCacheClean">
+<meta property="og:title" content="Clear developer caches on macOS — DDCC">
+<meta property="og:description" content="Find Xcode derived data, node_modules, Docker layers and inactive toolchain versions, with each row naming the tool that made it and what deleting it costs.">
+<meta property="og:url" content="https://devdrivecacheclean.com/caches/">
+<meta property="og:image" content="https://devdrivecacheclean.com/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DevDriveCacheClean: every cleaner shows you a number, this one shows you everything.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/icon-256.png">
+<link rel="preload" href="../assets/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://devdrivecacheclean.com/","name":"DDCC","position":1},{"@type":"ListItem","item":"https://devdrivecacheclean.com/caches/","name":"Developer caches","position":2}]}
+</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="../assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
+    <nav>
+      <a href="../caches/" style="--i:0" aria-current="page">Caches</a>
+      <a href="../uninstall/" style="--i:1">Uninstall</a>
+      <a href="../large-files/" style="--i:2">Files</a>
+      <a href="../the-honest-number/" style="--i:3">The Number</a>
+      <a href="../user-guide/" style="--i:4">User Guide</a>
+      <a href="../faq/" style="--i:5">FAQ</a>
+      <a href="../download/" style="--i:6" data-umami-event="download-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <nav class="eyebrow crumbs" aria-label="Breadcrumb"><a href="../">DDCC</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Developer caches</span></nav>
+    <div class="hero-grid">
+      <div>
+        <h1>Your Mac is holding gigabytes of things it can <em>rebuild or fetch again.</em></h1>
+        <p class="lede">Xcode's derived data. Every <code>node_modules</code> in every project you touched this year. Docker layers, Go build output, Rust targets, Homebrew's downloads, pip wheels, and the Node versions you installed once and rarely used again. DDCC finds them, names the tool that made each one, and tells you whether getting it back means seconds, a slow rebuild, or another download.</p>
+        <div class="actions">
+          <a class="btn" href="../download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">48.72<sup>+</sup><span class="unit">GB</span></div>
+        <ul>
+          <li>3,945 items · 23.4s</li>
+          <li>10 folders could not be read</li>
+          <li>2 sizes partial</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <figure class="plate plate--wide">
+    <div class="plate-head">
+      <span class="fignum">FIG. 01</span>
+      <span class="figcap">One developer machine, sorted largest first</span>
+    </div>
+    <div class="plate-frame plate-frame--left">
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="../assets/screenshots/caches-results.webp 1280w, ../assets/screenshots/caches-results@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="../assets/screenshots/caches-results@2x.png" width="2560" height="1400" fetchpriority="high" decoding="async"
+             alt="DDCC listing developer caches largest first, each row naming the tool that created it, with a status line reading 48.72 GB plus.">
+        </picture>
+      </div>
+      <div class="anno anno--l" style="--y:3%"><b>Costly items stay locked</b>Anything expensive to get back is opt-in, per scan, with the cost stated before you unlock it.</div>
+      <div class="anno anno--l" style="--y:33%"><b>Every row says what made it</b>Node.js, App Deep Clean, Build Output. The category is specific.</div>
+      <div class="anno anno--l" style="--y:88%"><b>The total is a floor</b>Ten folders in this scan could not be read, which is what the plus is for.</div>
+    </div>
+  </figure>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Old toolchain versions can add up <em>quietly.</em></h2>
+    <p class="section-lede">Version managers keep old installs around. Nine Node versions were installed on this machine over four years; one of them is running. The other eight are 2.77 GB of interpreter, plus every global package each of them collected. DDCC offers the inactive versions and keeps anything still referenced.</p>
+
+    <table class="spec">
+      <thead><tr><th>Version</th><th>Status</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td>v24.13.0</td><td class="amber">Retained: 20 live processes</td><td>—</td></tr>
+        <tr><td>v22.22.2</td><td class="amber">Retained: named by an alias chain</td><td>—</td></tr>
+        <tr><td>v22.12.0</td><td>Offered</td><td>1.5 GB</td></tr>
+        <tr><td>v20.13.1</td><td>Offered</td><td>188 MB</td></tr>
+        <tr><td>v18.16.0 … v21.6.0</td><td>Offered</td><td>1.08 GB</td></tr>
+      </tbody>
+    </table>
+
+    <div class="two-col">
+      <div class="claim">
+        <h3>The newest version is kept</h3>
+        <p><code>default</code> usually means "latest installed" rather than a version number, and the current version is the safest baseline.</p>
+      </div>
+      <div class="claim">
+        <h3>Alias chains are followed</h3>
+        <p><code>default → lts/* → lts/krypton → v22.22.2</code> is a real chain. Whatever it lands on is kept, and a self-referencing alias cannot loop.</p>
+      </div>
+      <div class="claim">
+        <h3>Anything running is kept</h3>
+        <p>The same rule the uninstaller applies to a live app. It is what saved the current version twice over on the machine above.</p>
+      </div>
+      <div class="claim">
+        <h3>Versions sort numerically</h3>
+        <p>Text sorting puts <code>v20.9.0</code> above <code>v20.13.1</code>. Numeric sorting keeps the active version from being mistaken for an older one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Costly categories start <em>locked.</em></h2>
+    <p class="section-lede">A build cache costs you one slow rebuild. A Simulator runtime costs a six-gigabyte download. DDCC groups results by recovery cost, so expensive categories stay locked until you review the sheet and unlock them for the current scan.</p>
+
+    <figure class="plate plate--wide">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">Unlocking Tier 2 with the cost shown per category</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/webp" srcset="../assets/screenshots/caches-enable-costly.webp 1280w, ../assets/screenshots/caches-enable-costly@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="../assets/screenshots/caches-enable-costly@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+               alt="A sheet headed Enable 6 costly categories, listing App Caches, App Deep Clean, Go, Homebrew, IDE and Editor and Package Caches with item counts and sizes.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:38%"><b>Priced per category</b>The sheet lists what you are unlocking, item by item, with sizes.</div>
+        <div class="anno anno--r" style="--y:56%"><b>This scan only</b>Unlocking applies to the current scan. The next scan starts locked again.</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Twenty-two categories, and it says which is <em>which.</em></h2>
+    <p class="section-lede">Every result carries the tool that produced it and a tier saying how cautious to be. That pairing matters because size alone does not tell you how expensive recovery will be.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="k">TIER 1 / SAFE</span>
+        <h3>Rebuilt on demand</h3>
+        <p>Build output, derived data, compiler caches. Gone in seconds, back the next time you build.</p>
+        <div class="metric">Selected by default <span>· nothing to unlock</span></div>
+      </div>
+      <div class="pillar">
+        <span class="k">TIER 2 / COSTLY</span>
+        <h3>Comes back, slowly</h3>
+        <p>Package caches, Homebrew downloads, Docker layers. Free to lose, expensive in time and bandwidth.</p>
+        <div class="metric">Opt in per scan <span>· priced first</span></div>
+      </div>
+      <div class="pillar">
+        <span class="k">TIER 3 / DESTRUCTIVE</span>
+        <h3>Does not come back</h3>
+        <p>Anything holding state you cannot regenerate. Locked, opted in one item at a time, and the only tier that makes you type the word before anything moves.</p>
+        <div class="metric">Never automatic <span>· never bundled</span></div>
+      </div>
+    </div>
+    <div class="actions" style="margin-top:52px">
+      <a class="btn" href="../download/" data-umami-event="download-cta">Download for macOS</a>
+      <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+      <a class="btn btn-ghost" href="../how-it-decides/">How the tiers are decided →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:16px"><img src="../assets/img/icon-256.png" alt="" width="26" height="26" loading="lazy" decoding="async"><span style="color:var(--ink)">DDCC</span></div>
+        <p style="max-width:26em;color:var(--ink-60);font-size:15px">DevDriveCacheClean is free, and always will be. You never need to pay to use it. If you'd like to support development, that's appreciated, but never required.</p>
+      </div>
+      <div>
+        <h2>THE APP</h2>
+        <ul><li><a href="../download/" data-umami-event="download-cta">Download</a></li><li><a href="../caches/">Caches</a></li><li><a href="../uninstall/">Uninstall</a></li><li><a href="../large-files/">Large files</a></li></ul>
+      </div>
+      <div>
+        <h2>WHY DDCC</h2>
+        <ul><li><a href="../the-honest-number/">The honest number</a></li><li><a href="../how-it-decides/">How it decides</a></li><li><a href="../user-guide/">User Guide</a></li><li><a href="../faq/">FAQ</a></li><li><a href="../support/">Support the project</a></li></ul>
+      </div>
+      <div>
+        <h2>SYSTEM REQUIREMENTS</h2>
+        <ul class="foot-spec">
+          <li>macOS 15 or later</li>
+          <li>Apple silicon and Intel</li>
+          <li>Under 10 MB installed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Jonathan Rowe</span>
+      <div class="colophon-legal">
+        <a href="../licence/">Licence</a>
+        <a href="../terms/">Terms</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../security/">Security</a>
+        <a href="../contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Prefetch on hover. Never prerender: it executes the page, recording a
+     pageview for a document nobody opened. -->
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/assets/*" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
+
+</body>
+</html>

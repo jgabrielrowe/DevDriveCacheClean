@@ -1,0 +1,115 @@
+{
+  "pages": [
+    {
+      "slug": "",
+      "file": "index.html",
+      "title": "DDCC — a Mac cleaner that shows its working",
+      "description": "Free macOS disk cleanup that reports what it found, what it could not read, what each removal costs, and what DDCC's safety guard left in place.",
+      "kind": "marketing",
+      "crumb": "Disk cleanup for macOS"
+    },
+    {
+      "slug": "caches/",
+      "file": "caches.html",
+      "title": "Clear developer caches on macOS — DDCC",
+      "description": "Find Xcode derived data, node_modules, Docker layers and inactive toolchain versions, with each row naming the tool that made it and what deleting it costs.",
+      "kind": "marketing",
+      "crumb": "Developer caches"
+    },
+    {
+      "slug": "uninstall/",
+      "file": "uninstall.html",
+      "title": "Uninstall a Mac app completely — DDCC",
+      "description": "Dragging an app to the Trash leaves containers, preferences, caches and launch agents behind. DDCC finds them, proves ownership, and removes them together.",
+      "kind": "marketing",
+      "crumb": "Uninstall"
+    },
+    {
+      "slug": "large-files/",
+      "file": "large-files.html",
+      "title": "Find large, forgotten files on your Mac — DDCC",
+      "description": "List big, long-unmodified files and bundles by size and age, review each one yourself, and move selected items to the Trash.",
+      "kind": "marketing",
+      "crumb": "Large & forgotten files"
+    },
+    {
+      "slug": "the-honest-number/",
+      "file": "the-honest-number.html",
+      "title": "Why Mac cleaners disagree about free space — DDCC",
+      "description": "Three tools give three answers because they count differently. DDCC adds up files it can name, counts a shared byte once, and states what it could not read.",
+      "kind": "marketing",
+      "crumb": "The honest number"
+    },
+    {
+      "slug": "how-it-decides/",
+      "file": "how-it-decides.html",
+      "title": "How DDCC decides what is safe to remove",
+      "description": "Tiers measure recovery cost, paths are attributed by declared evidence, and destructive actions are Trash-first and confirmed.",
+      "kind": "marketing",
+      "crumb": "How it decides"
+    },
+    {
+      "slug": "faq/",
+      "file": "faq.html",
+      "title": "DDCC — frequently asked questions",
+      "description": "Is it free, does it connect to the internet, why is its number smaller than other cleaners', and could it delete something you needed.",
+      "kind": "marketing",
+      "crumb": "Questions"
+    },
+    {
+      "slug": "download/",
+      "file": "download.html",
+      "title": "Download DDCC — Free Mac Cleaner for macOS 15+",
+      "description": "Free for Apple silicon and Intel on macOS 15 or later. No account, no trial, no paid tier, and four ways to verify the app does what it says.",
+      "kind": "marketing",
+      "crumb": "Download"
+    },
+    {
+      "slug": "support/",
+      "file": "support.html",
+      "title": "Support the DDCC Project — Free Forever",
+      "description": "DDCC is free and always will be. The most useful ways to help cost nothing; Ko-fi is there if you would like to chip in.",
+      "kind": "marketing",
+      "crumb": "Support the project"
+    },
+    {
+      "slug": "terms/",
+      "file": "terms.html",
+      "title": "Terms of Use — DevDriveCacheClean (DDCC)",
+      "description": "The terms covering devdrivecacheclean.com. The software itself is governed by the Sustainable Use License, which is reproduced in full on the licence page.",
+      "kind": "marketing",
+      "crumb": "Terms of use"
+    },
+    {
+      "slug": "privacy/",
+      "file": "privacy.html",
+      "title": "Privacy Policy — DevDriveCacheClean (DDCC)",
+      "description": "This site sets no cookies, writes nothing to your device and loads nothing from a third party. Visits are counted by a self-hosted, cookieless analytics server.",
+      "kind": "marketing",
+      "crumb": "Privacy"
+    },
+    {
+      "slug": "security/",
+      "file": "security.html",
+      "title": "Security & Vulnerability Reporting — DDCC",
+      "description": "How to report a vulnerability in DDCC privately, what is in scope, and what the app does that is worth attention in a security audit.",
+      "kind": "marketing",
+      "crumb": "Security"
+    },
+    {
+      "slug": "contact/",
+      "file": "contact.html",
+      "title": "Contact DDCC — Support, Bugs & Security",
+      "description": "The support address for DevDriveCacheClean: where bug reports, security findings and licensing questions go. No form, nothing you send is public.",
+      "kind": "marketing",
+      "crumb": "Contact"
+    },
+    {
+      "slug": "404.html",
+      "file": "404.html",
+      "title": "Page not found — DevDriveCacheClean (DDCC)",
+      "description": "That page does not exist. Here is the way back to the front page.",
+      "kind": "marketing"
+    }
+  ]
+}

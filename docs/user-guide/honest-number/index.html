@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Warms a connection the deferred script would otherwise make cold. -->
+<link rel="preconnect" href="https://analytics.hmcollector.com" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.hmcollector.com">
+<!-- Umami, self-hosted and cookieless. -->
+<script defer src="https://analytics.hmcollector.com/script.js" data-website-id="5566adc1-038a-4f04-a799-3883d1bad385"></script>
+<title>How DDCC reports totals — DDCC User Guide</title>
+<meta name="description" content="DDCC reports scan totals conservatively.">
+<link rel="canonical" href="https://devdrivecacheclean.com/user-guide/honest-number/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DevDriveCacheClean">
+<meta property="og:title" content="How DDCC reports totals — DDCC User Guide">
+<meta property="og:description" content="DDCC reports scan totals conservatively.">
+<meta property="og:url" content="https://devdrivecacheclean.com/user-guide/honest-number/">
+<meta property="og:image" content="https://devdrivecacheclean.com/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DevDriveCacheClean: every cleaner shows you a number, this one shows you everything.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/img/icon-256.png">
+<link rel="preload" href="../../assets/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="text/plain" href="../../llms.txt" title="llms.txt">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://devdrivecacheclean.com/","name":"DDCC","position":1},{"@type":"ListItem","item":"https://devdrivecacheclean.com/user-guide/","name":"User Guide","position":2},{"@type":"ListItem","item":"https://devdrivecacheclean.com/user-guide/honest-number/","name":"How DDCC reports totals","position":3}]}
+</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../../" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="../../assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
+    <nav>
+      <a href="../../caches/" style="--i:0">Caches</a>
+      <a href="../../uninstall/" style="--i:1">Uninstall</a>
+      <a href="../../large-files/" style="--i:2">Files</a>
+      <a href="../../the-honest-number/" style="--i:3">The Number</a>
+      <a href="../../user-guide/" style="--i:4" aria-current="page">User Guide</a>
+      <a href="../../faq/" style="--i:5">FAQ</a>
+      <a href="../../download/" style="--i:6" data-umami-event="download-cta">Download</a>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+
+  <aside class="index">
+    <p class="rail-label">TOPICS</p>
+    <ol>
+      <li><a href="../what-ddcc-does/"><span class="num">01</span><span>What DDCC does</span></a></li>
+      <li><a href="../first-scan/"><span class="num">02</span><span>Your first scan</span></a></li>
+      <li><a href="../reading-results/"><span class="num">03</span><span>Reading scan results</span></a></li>
+      <li><a href="../honest-number/"><span class="num">04</span><span>How DDCC reports totals</span></a></li>
+      <li><a href="../choosing-what-to-remove/"><span class="num">05</span><span>Choosing what to remove</span></a></li>
+      <li><a href="../unlocking-tiers/"><span class="num">06</span><span>Unlocking costly and destructive items</span></a></li>
+      <li><a href="../deleting-cache-results/"><span class="num">07</span><span>Deleting cache results</span></a></li>
+      <li><a href="../trash-not-delete/"><span class="num">08</span><span>Moving files to the Trash</span></a></li>
+      <li><a href="../files-view/"><span class="num">09</span><span>The Files view</span></a></li>
+      <li><a href="../uninstall-view/"><span class="num">10</span><span>The Uninstall view</span></a></li>
+      <li><a href="../full-disk-access/"><span class="num">11</span><span>Full Disk Access</span></a></li>
+      <li><a href="../privacy/"><span class="num">12</span><span>Privacy</span></a></li>
+    </ol>
+    <p class="rail-label">REFERENCE</p>
+    <ol>
+      <li><a href="../reference-tiers/"><span class="num">R1</span><span>The three tiers</span></a></li>
+      <li><a href="../reference-removability/"><span class="num">R2</span><span>What DDCC can and cannot remove</span></a></li>
+      <li><a href="../reference-categories/"><span class="num">R3</span><span>Categories</span></a></li>
+      <li><a href="../reference-files/"><span class="num">R4</span><span>The Files view controls</span></a></li>
+    </ol>
+  </aside>
+
+  <article>
+    <nav class="crumb" aria-label="Breadcrumb"><span class="sec">§ 04</span><a href="../../">DDCC</a><span class="sep" aria-hidden="true">/</span><a href="../../user-guide/">User Guide</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">How DDCC reports totals</span></nav>
+    <h1>How DDCC reports totals</h1>
+    <p class="standfirst">DDCC reports scan totals conservatively.</p>
+    <p>Each Caches result comes from a known pattern and includes a category, tier, and size. The category tells you what kind of item it is. The tier tells you how cautious to be before selecting it.</p>
+    <p>When DDCC cannot read everything inside an item, it marks the size with a <code>+</code>. That means the displayed number is a lower bound; the real size may be larger.</p>
+    <p>DDCC does not claim to account for every byte on the disk. Caches reports known cache and support-data paths. Files reports large, long-unmodified files outside those paths. A folder full of small files outside both views may not appear.</p>
+    <p>The Files view reports files and bundles, not rolled-up folder totals. A directory can therefore consume real space without appearing as one row.</p>
+    <p>If a scan is stopped or a folder cannot be read, treat the total as incomplete.</p>
+    <div class="pagenav">
+      <a href="../reading-results/"><span>PREVIOUS</span><b>03 · Reading scan results</b></a>
+      <a class="next" href="../choosing-what-to-remove/"><span>NEXT</span><b>05 · Choosing what to remove</b></a>
+    </div>
+
+  </article>
+
+  <aside class="contents">
+    <div class="meta">
+      Also in the app<br>Help › DDCC Help
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:16px"><img src="../../assets/img/icon-256.png" alt="" width="26" height="26" loading="lazy" decoding="async"><span style="color:var(--ink)">DDCC</span></div>
+        <p style="max-width:26em;color:var(--ink-60);font-size:15px">DevDriveCacheClean is free, and always will be. You never need to pay to use it. If you'd like to support development, that's appreciated, but never required.</p>
+      </div>
+      <div>
+        <h2>THE APP</h2>
+        <ul><li><a href="../../download/" data-umami-event="download-cta">Download</a></li><li><a href="../../caches/">Caches</a></li><li><a href="../../uninstall/">Uninstall</a></li><li><a href="../../large-files/">Large files</a></li></ul>
+      </div>
+      <div>
+        <h2>WHY DDCC</h2>
+        <ul><li><a href="../../the-honest-number/">The honest number</a></li><li><a href="../../how-it-decides/">How it decides</a></li><li><a href="../../user-guide/">User Guide</a></li><li><a href="../../faq/">FAQ</a></li><li><a href="../../support/">Support the project</a></li></ul>
+      </div>
+      <div>
+        <h2>SYSTEM REQUIREMENTS</h2>
+        <ul class="foot-spec">
+          <li>macOS 15 or later</li>
+          <li>Apple silicon and Intel</li>
+          <li>Under 10 MB installed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Jonathan Rowe</span>
+      <div class="colophon-legal">
+        <a href="../../licence/">Licence</a>
+        <a href="../../terms/">Terms</a>
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../security/">Security</a>
+        <a href="../../contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Prefetch on hover. Never prerender: it executes the page, recording a
+     pageview for a document nobody opened. -->
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/assets/*" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+# Build products.
+#
+# .build and .swiftpm are SwiftPM's; the rest are what Scripts/ assembles on the
+# way to a release -- the app bundle, the archive it is submitted for
+# notarization in, the help book it carries, and the disk image. All are
+# reproducible from a clean checkout, and the disk image in particular is a
+# signed artifact that belongs on a release page rather than in a repository.
+.build/
+.swiftpm/
+DDCC.app/
+DDCC.app.zip
+DDCC.help/
+DDCC.dmg
+
+# docs/ is deliberately absent from this file. It is the generator's output, but
+# Pages serves the site straight from it, so it is committed on purpose --
+# `swift run SiteBuilder --check` is what keeps it honest against Sources/SiteGen
+# and Site/.
+
+# Signing and notarization material.
+#
+# signing.local.sh names this machine's keychain identity, so it differs per
+# checkout by design. The rest are patterns rather than paths: an exported
+# certificate or an App Store Connect key has no business in a public
+# repository, and both arrive with default names from a download folder where
+# it would be easy to drop one in the tree without noticing.
+Scripts/signing.local.sh
+*.p12
+*.p8
+*.cer
+*.certSigningRequest
+*.provisionprofile
+
+# Xcode's per-user state. SwiftPM needs none of it; opening the package in Xcode
+# writes it anyway.
+*.xcuserstate
+xcuserdata/
+
+# The font subsetter under Scripts/ is a maintainer tool that needs fonttools.
+# Nothing in the build depends on it, so its interpreter's leavings and any
+# environment created to run it stay out.
+__pycache__/
+*.pyc
+.venv/
+
+# Written by Finder into any directory it is asked to display, including every
+# directory of screenshot masters and site assets in this repository.
+.DS_Store

@@ -1,0 +1,105 @@
+{{softwareApplication}}
+<!--/head-->
+<main>
+<div class="wrap">
+  <div class="hero">
+    {{crumb}}
+    <div class="hero-grid">
+      <div>
+        <h1>Free, and there is <em>nothing to unlock.</em></h1>
+        <p class="lede">The scan and removal features are included in the free app. There is no account, trial, or paid tier. Apple silicon and Intel, macOS 15 or later.</p>
+        <div class="callout" style="margin-top:28px">
+          <b>Use at your own risk</b>
+          DDCC deletes files you select. It puts them in the Trash by default, so most removals can be undone — but permanent deletion is available, and some caches cannot be regenerated.
+          <p style="margin-top:10px">The software is provided “as is”, without warranty of any kind, express or implied. To the fullest extent permitted by law, the licensor accepts no liability for any loss or damage arising from its use, including lost data and the cost of restoring it. By downloading or using DDCC you accept the <a href="{{repo}}/blob/main/LICENSE.md">Sustainable Use License</a>, including its No&nbsp;Liability section.</p>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="{{repo}}/releases" data-umami-event="release-download">Get the latest release</a>
+          <a class="btn btn-ghost" href="{{repo}}" data-umami-event="read-source">Read the source →</a>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">0<span class="unit">connections</span></div>
+        <ul>
+          <li>No account, ever</li>
+          <li>No telemetry, ever</li>
+          <li>4.7 MB download, 8.6 MB installed</li>
+          <li>Source-available under SUL-1.0</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Four steps, and the fourth is <em>optional.</em></h2>
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">01</span>
+        <h3>Download and open the disk image</h3>
+        <p>Drag DDCC into your Applications folder, the way you would any other Mac app.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">02</span>
+        <h3>Open it</h3>
+        <p>The first run shows an empty window and a Scan button. Nothing has been examined yet and nothing is selected.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">03</span>
+        <h3>Scan, then review the rows</h3>
+        <p>Every row names the tool that made it and the tier it sits in. Costly categories start locked until you review them.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">04</span>
+        <h3>Grant Full Disk Access, if you want the full picture</h3>
+        <p>Without it, macOS hides parts of your disk from every app. DDCC works either way and marks affected totals as undercounts.</p>
+      </div>
+    </div>
+
+    <figure class="plate" style="margin-top:76px">
+      <div class="plate-head">
+        <span class="fignum">FIG. 01</span>
+        <span class="figcap">The first run before a scan starts</span>
+      </div>
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="{{root}}assets/screenshots/caches-empty.webp 1280w, {{root}}assets/screenshots/caches-empty@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="{{root}}assets/screenshots/caches-empty@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+             alt="DDCC on first launch, showing Ready to Scan with a single Scan button and an empty results list.">
+        </picture>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>How to check it is <em>what it says.</em></h2>
+    <p class="section-lede">A cleaner asks for a lot of trust. Here is how to spend less of it.</p>
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">VERIFY</span>
+        <h3>Read the network claim yourself</h3>
+        <p>Clone the repository and grep the source for <code>URLSession</code>, <code>NWConnection</code> and <code>Process</code>. The README names the single subprocess it launches and why.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">VERIFY</span>
+        <h3>Watch it with Little Snitch</h3>
+        <p>Or Activity Monitor, or <code>lsof</code>. Run a full scan, a sweep and a removal. The app should stay quiet on the network.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">VERIFY</span>
+        <h3>Start with the Trash</h3>
+        <p>Leave permanent deletion alone for your first few runs. Everything DDCC moves can be put back from the Finder.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">VERIFY</span>
+        <h3>Check the totals against the disk</h3>
+        <p>Empty the Trash and compare free space before and after. DDCC's figure should be at or below what you actually got back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>

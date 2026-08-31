@@ -1,0 +1,1950 @@
+---
+title: DevDriveCacheClean (DDCC)
+alternate_names: [DDCC, DevDriveCacheClean]
+type: llms-full.txt (comprehensive site export)
+source_domain: devdrivecacheclean.com
+canonical_index: https://devdrivecacheclean.com/llms.txt
+page_count: 32
+license_of_software: Sustainable Use License 1.0 (source-available, NOT OSI-approved open source)
+price: Free (USD 0), no paid tier, no trial
+platform: macOS 15+, Apple silicon and Intel
+maker: Jonathan Rowe
+repository: https://github.com/jgabrielrowe/drive-clean
+---
+
+DevDriveCacheClean (DDCC) is a free macOS disk-cleanup application for developers. It is made by Jonathan Rowe, distributed as a single free download with no paid tier. It requires macOS 15 or later on Apple silicon or Intel, has no account and makes no network connections. It is source-available under the Sustainable Use License 1.0, which is not an OSI-approved open-source licence.
+
+# DevDriveCacheClean (DDCC)
+
+> Free macOS disk cleanup for developers that reports what it found, what it could not read, what each removal costs, and what its safety guard left in place.
+
+DDCC never asks the volume how much space is free. Every figure it reports is a sum of files it can name and print a path for, which is why its total is usually smaller than other cleaners' and why every byte in it can be checked individually. Purgeable space, local snapshots and cloud placeholders are not counted, because macOS already treats them as available. Content reachable by a hard link from outside an item is not counted either, because removing the item would not free it.
+
+Paths are attributed to an application only when something on the machine declares the relationship — a sandbox container, a signed entitlement, a Homebrew zap stanza, an installer receipt. Resemblance between a folder name and an app name is never treated as evidence.
+
+Free to use, with no account, no telemetry and no network connection. Source-available under the Sustainable Use License.
+
+## The app (4 pages)
+
+- [Download](https://devdrivecacheclean.com/download/): Free for Apple silicon and Intel on macOS 15 or later. No account, no trial, no paid tier, and four ways to verify the app does what it says.
+- [Developer caches](https://devdrivecacheclean.com/caches/): Find Xcode derived data, node_modules, Docker layers and inactive toolchain versions, with each row naming the tool that made it and what deleting it costs.
+- [Uninstall](https://devdrivecacheclean.com/uninstall/): Dragging an app to the Trash leaves containers, preferences, caches and launch agents behind. DDCC finds them, proves ownership, and removes them together.
+- [Large & forgotten files](https://devdrivecacheclean.com/large-files/): List big, long-unmodified files and bundles by size and age, review each one yourself, and move selected items to the Trash.
+
+## Why DDCC (5 pages)
+
+- [The honest number](https://devdrivecacheclean.com/the-honest-number/): Three tools give three answers because they count differently. DDCC adds up files it can name, counts a shared byte once, and states what it could not read.
+- [How it decides](https://devdrivecacheclean.com/how-it-decides/): Tiers measure recovery cost, paths are attributed by declared evidence, and destructive actions are Trash-first and confirmed.
+- [User Guide](https://devdrivecacheclean.com/user-guide/): Every page of DDCC's built-in Help, published in full: how a scan works, how totals are reported, and reference tables for categories, tiers, and refusals.
+- [Questions](https://devdrivecacheclean.com/faq/): Is it free, does it connect to the internet, why is its number smaller than other cleaners', and could it delete something you needed.
+- [Support the project](https://devdrivecacheclean.com/support/): DDCC is free and always will be. The most useful ways to help cost nothing; Ko-fi is there if you would like to chip in.
+
+## Legal (5 pages)
+
+- [Licence](https://devdrivecacheclean.com/licence/): Source-available under the Sustainable Use License: personal and internal business use are royalty-free; commercial redistribution needs an arrangement.
+- [Terms of use](https://devdrivecacheclean.com/terms/): The terms covering devdrivecacheclean.com. The software itself is governed by the Sustainable Use License, which is reproduced in full on the licence page.
+- [Privacy](https://devdrivecacheclean.com/privacy/): This site sets no cookies, writes nothing to your device and loads nothing from a third party. Visits are counted by a self-hosted, cookieless analytics server.
+- [Security](https://devdrivecacheclean.com/security/): How to report a vulnerability in DDCC privately, what is in scope, and what the app does that is worth attention in a security audit.
+- [Contact](https://devdrivecacheclean.com/contact/): The support address for DevDriveCacheClean: where bug reports, security findings and licensing questions go. No form, nothing you send is public.
+
+## User Guide (17 pages)
+
+- [User Guide](https://devdrivecacheclean.com/user-guide/): Every page of DDCC's built-in Help, published in full: how a scan works, how totals are reported, and reference tables for categories, tiers, and refusals.
+- [Choosing what to remove](https://devdrivecacheclean.com/user-guide/choosing-what-to-remove/): Use the Caches toolbar to scan, filter, sort, select, and delete results.
+- [Deleting cache results](https://devdrivecacheclean.com/user-guide/deleting-cache-results/): Press Delete after selecting Caches results. DDCC opens a confirmation sheet before removing anything.
+- [The Files view](https://devdrivecacheclean.com/user-guide/files-view/): Use Files to find large items outside the cache categories: old exports, disk images, archives, virtual machines, and app bundles.
+- [Your first scan](https://devdrivecacheclean.com/user-guide/first-scan/): Press Scan. DDCC searches your home directory by default; the folder menu beside the button changes where it looks.
+- [Full Disk Access](https://devdrivecacheclean.com/user-guide/full-disk-access/): DDCC can scan without Full Disk Access. If macOS blocks a folder, DDCC marks affected sizes with + or shows a message that some folders could not be read.
+- [How DDCC reports totals](https://devdrivecacheclean.com/user-guide/honest-number/): DDCC reports scan totals conservatively.
+- [Privacy](https://devdrivecacheclean.com/user-guide/privacy/): DDCC runs locally on your Mac.
+- [Reading scan results](https://devdrivecacheclean.com/user-guide/reading-results/): The Caches list shows one row for each path DDCC found.
+- [Categories](https://devdrivecacheclean.com/user-guide/reference-categories/): What each Caches category contains, and what usually recreates it.
+- [The Files view controls](https://devdrivecacheclean.com/user-guide/reference-files/): The Files view searches for large, long-unmodified files outside the cache categories. It only moves selected items to the Trash.
+- [What DDCC can and cannot remove](https://devdrivecacheclean.com/user-guide/reference-removability/): Some paths are visible because they use disk space, but DDCC cannot remove them with your current permissions.
+- [The three tiers](https://devdrivecacheclean.com/user-guide/reference-tiers/): Tiers describe the risk of removing an item. They also control how DDCC lets you select it.
+- [Moving files to the Trash](https://devdrivecacheclean.com/user-guide/trash-not-delete/): The Files view only moves items to the Trash. It does not offer permanent deletion.
+- [The Uninstall view](https://devdrivecacheclean.com/user-guide/uninstall-view/): Use Uninstall to see what an app left behind — installed, or already gone — and remove it. Press Sweep to build the list.
+- [Unlocking costly and destructive items](https://devdrivecacheclean.com/user-guide/unlocking-tiers/): DDCC sorts Caches results into three tiers. The tier tells you how cautious to be and controls how the row can be selected.
+- [What DDCC does](https://devdrivecacheclean.com/user-guide/what-ddcc-does/): DDCC has three main views.
+
+---
+
+# Disk cleanup for macOS
+
+Source: https://devdrivecacheclean.com/
+
+Disk cleanup for macOS
+
+# Every cleaner shows you a number.
+This one shows you *everything.*
+
+DDCC shows the paths it found, what created them, and what deleting each one costs. It also shows unreadable folders, partial sizes, and paths DDCC's safety guard left in place. The number is the start of the review, not the whole answer.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+Zero, in every currency
+
+- every feature, no tier, no trial
+
+- no account, no telemetry, no network
+
+- the source is available to read
+
+Figure — Caches — one machine, after a full scan: DDCC listing developer caches, each row naming the tool that created it, with a status line reading 48.72 GB plus, 10 folders could not be read.
+
+**Tier 2 stays locked**
+Costly items are opt-in, per scan, with the cost stated first.
+
+**The total is a floor**
+Ten folders in this scan could not be read. The count differs per machine.
+
+**Every row is attributed**
+The tool that made it, and what deleting it costs you.
+
+## The total comes with *the accounting.*
+
+Different cleaners can report different numbers for the same disk. Much of the gap comes from purgeable space, which macOS already counts as available and reclaims on its own. DDCC reports the space it can remove directly and labels the gaps it could not measure.
+
+### Purgeable space is excluded
+
+macOS already counts it as available and reclaims it on its own. Adding it to the total would bill you for space you never lost.
+
+### Every path names its source
+
+A Homebrew zap stanza, a package receipt, a container identifier. Attribution is by declaration, never by matching a name and hoping.
+
+### What it could not read is stated
+
+Unreadable folders and sizes it could only measure in part are reported beside the total. That is what the plus on the figure means.
+
+### Refusals appear with their reason
+
+Paths inside an allowed folder that DDCC's safety guard rejected are listed, instead of quietly vanishing from the total.
+
+Deleting a build cache costs one slow rebuild. Deleting a Simulator runtime costs a six-gigabyte download. DDCC keeps those costs visible before you select anything.
+
+## Three focused views, with *clear limits.*
+
+01 / CACHES
+
+### Developer & System Caches
+
+Xcode, node_modules, Docker, Go, Rust, Python, Homebrew, and inactive toolchain versions. And what macOS and your apps leave behind: system and app caches, browser data, iOS backups, and logs.
+
+11.65 GB Node.js · 84 items
+
+02 / UNINSTALL
+
+### App footprints
+
+Every installed app, and every app already gone, with the evidence that attributed each path to it. Shared data is retained until the last claimant leaves.
+
+46.15 GB reclaimable · 2.24 GB retained
+
+03 / FILES
+
+### Large & forgotten
+
+Big, long-unmodified files and bundles outside the cache rules. You review each one, and this view can only move things to the Trash.
+
+6.75 GB 27 items · 14.4s
+
+## The interesting part is the *retained* column.
+
+Removing an app is only part of the job. Shared containers can belong to several apps at once, so DDCC separates bytes it can remove now from bytes claimed by another installed app.
+
+Figure — Uninstall: Affinity Photo 2, including retained shared data: The uninstall pane for Affinity Photo 2, showing 2.96 GB reclaimable, 1.84 GB retained by two sibling apps, and a section headed Outside DevDriveCacheClean's Reach.
+
+**Every path, sourced**
+The application itself, a Homebrew cask, the Preferences shelf. Each line names its source.
+
+**Retained, and by whom**1.84 GB kept because Designer and Publisher still claim it.
+
+**Outside its reach**
+Paths this app owns that DDCC is not allowed to remove are still listed.
+
+Evidence — What it proves — Confidence
+
+Sandbox container — The app's own directory, by bundle identifier — Declared
+
+Homebrew zap stanza — Paths the cask author says belong to it — Declared
+
+Package receipt — Files the installer recorded writing — Declared
+
+Application group — A container shared between named apps — Declared
+
+Broken pointer — A manifest naming a program that no longer exists — Provable
+
+Similar name — Nothing. DDCC does not use this. — Not used
+
+## Old is a guess, and *it says so.*
+
+Big files and bundles that no cache rule covers, each with its path and how long since it changed. Age is the only signal available here and it is a weak one, so DDCC hands you the list rather than a recommendation.
+
+Figure — Files — large, long-unmodified, and outside every cache rule: The Files view listing large files with their paths and ages, three selected, and a Move Selected to Trash control.
+
+**Nothing starts selected**
+A file can be old and still matter, so every row waits for you.
+
+**Trash only, by design**
+These were chosen by size and age, not by a cleanup rule, so permanent deletion is not offered.
+
+## Removal starts with *the cost.*
+
+Confirmation sheets explain what each removal costs before anything moves. Only Tier 3 asks for more: selecting one of those items requires typing DELETE before the button will work.
+
+Figure — Confirmation grouped by blast radius, with the Trash as the default: A confirmation sheet reading Delete 3 items, this will free 4.48 GB, listing each path under a Safe heading with a checkbox for permanently delete.
+
+## Free to use, and *staying that way.*
+
+There is no paid tier, no trial and no licence key. The licence covers your own use and a company's own internal use, royalty-free and permanently — only redistributing DDCC commercially needs a separate arrangement. If you want to support the work, that is appreciated and never expected.
+
+Download for macOS
+Support the project →
+
+Zero, in every currency
+
+- no account, no sign-in, no expiry
+
+- no network connections or trackers
+
+- no upsell prompts, no bundled extras
+
+---
+
+# Download
+
+Source: https://devdrivecacheclean.com/download/
+
+# Free, and there is *nothing to unlock.*
+
+The scan and removal features are included in the free app. There is no account, trial, or paid tier. Apple silicon and Intel, macOS 15 or later.
+
+**Use at your own risk**
+DDCC deletes files you select. It puts them in the Trash by default, so most removals can be undone — but permanent deletion is available, and some caches cannot be regenerated.
+
+The software is provided “as is”, without warranty of any kind, express or implied. To the fullest extent permitted by law, the licensor accepts no liability for any loss or damage arising from its use, including lost data and the cost of restoring it. By downloading or using DDCC you accept the Sustainable Use License, including its No Liability section.
+
+Get the latest release
+Read the source →
+
+0 connections
+
+- No account, ever
+
+- No telemetry, ever
+
+- 4.7 MB download, 8.6 MB installed
+
+- Source-available under SUL-1.0
+
+## Four steps, and the fourth is *optional.*
+
+01
+
+### Download and open the disk image
+
+Drag DDCC into your Applications folder, the way you would any other Mac app.
+
+02
+
+### Open it
+
+The first run shows an empty window and a Scan button. Nothing has been examined yet and nothing is selected.
+
+03
+
+### Scan, then review the rows
+
+Every row names the tool that made it and the tier it sits in. Costly categories start locked until you review them.
+
+04
+
+### Grant Full Disk Access, if you want the full picture
+
+Without it, macOS hides parts of your disk from every app. DDCC works either way and marks affected totals as undercounts.
+
+Figure — The first run before a scan starts: DDCC on first launch, showing Ready to Scan with a single Scan button and an empty results list.
+
+## How to check it is *what it says.*
+
+A cleaner asks for a lot of trust. Here is how to spend less of it.
+
+VERIFY
+
+### Read the network claim yourself
+
+Clone the repository and grep the source for `URLSession`, `NWConnection` and `Process`. The README names the single subprocess it launches and why.
+
+VERIFY
+
+### Watch it with Little Snitch
+
+Or Activity Monitor, or `lsof`. Run a full scan, a sweep and a removal. The app should stay quiet on the network.
+
+VERIFY
+
+### Start with the Trash
+
+Leave permanent deletion alone for your first few runs. Everything DDCC moves can be put back from the Finder.
+
+VERIFY
+
+### Check the totals against the disk
+
+Empty the Trash and compare free space before and after. DDCC's figure should be at or below what you actually got back.
+
+---
+
+# Developer caches
+
+Source: https://devdrivecacheclean.com/caches/
+
+# Your Mac is holding gigabytes of things it can *rebuild or fetch again.*
+
+Xcode's derived data. Every `node_modules` in every project you touched this year. Docker layers, Go build output, Rust targets, Homebrew's downloads, pip wheels, and the Node versions you installed once and rarely used again. DDCC finds them, names the tool that made each one, and tells you whether getting it back means seconds, a slow rebuild, or another download.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+48.72+ GB
+
+- 3,945 items · 23.4s
+
+- 10 folders could not be read
+
+- 2 sizes partial
+
+Figure — One developer machine, sorted largest first: DDCC listing developer caches largest first, each row naming the tool that created it, with a status line reading 48.72 GB plus.
+
+**Costly items stay locked**
+Anything expensive to get back is opt-in, per scan, with the cost stated before you unlock it.
+
+**Every row says what made it**
+Node.js, App Deep Clean, Build Output. The category is specific.
+
+**The total is a floor**
+Ten folders in this scan could not be read, which is what the plus is for.
+
+## Old toolchain versions can add up *quietly.*
+
+Version managers keep old installs around. Nine Node versions were installed on this machine over four years; one of them is running. The other eight are 2.77 GB of interpreter, plus every global package each of them collected. DDCC offers the inactive versions and keeps anything still referenced.
+
+Version — Status — Size
+
+v24.13.0 — Retained: 20 live processes — —
+
+v22.22.2 — Retained: named by an alias chain — —
+
+v22.12.0 — Offered — 1.5 GB
+
+v20.13.1 — Offered — 188 MB
+
+v18.16.0 … v21.6.0 — Offered — 1.08 GB
+
+### The newest version is kept
+
+`default` usually means "latest installed" rather than a version number, and the current version is the safest baseline.
+
+### Alias chains are followed
+
+`default → lts/* → lts/krypton → v22.22.2` is a real chain. Whatever it lands on is kept, and a self-referencing alias cannot loop.
+
+### Anything running is kept
+
+The same rule the uninstaller applies to a live app. It is what saved the current version twice over on the machine above.
+
+### Versions sort numerically
+
+Text sorting puts `v20.9.0` above `v20.13.1`. Numeric sorting keeps the active version from being mistaken for an older one.
+
+## Costly categories start *locked.*
+
+A build cache costs you one slow rebuild. A Simulator runtime costs a six-gigabyte download. DDCC groups results by recovery cost, so expensive categories stay locked until you review the sheet and unlock them for the current scan.
+
+Figure — Unlocking Tier 2 with the cost shown per category: A sheet headed Enable 6 costly categories, listing App Caches, App Deep Clean, Go, Homebrew, IDE and Editor and Package Caches with item counts and sizes.
+
+**Priced per category**
+The sheet lists what you are unlocking, item by item, with sizes.
+
+**This scan only**
+Unlocking applies to the current scan. The next scan starts locked again.
+
+## Twenty-two categories, and it says which is *which.*
+
+Every result carries the tool that produced it and a tier saying how cautious to be. That pairing matters because size alone does not tell you how expensive recovery will be.
+
+TIER 1 / SAFE
+
+### Rebuilt on demand
+
+Build output, derived data, compiler caches. Gone in seconds, back the next time you build.
+
+Selected by default · nothing to unlock
+
+TIER 2 / COSTLY
+
+### Comes back, slowly
+
+Package caches, Homebrew downloads, Docker layers. Free to lose, expensive in time and bandwidth.
+
+Opt in per scan · priced first
+
+TIER 3 / DESTRUCTIVE
+
+### Does not come back
+
+Anything holding state you cannot regenerate. Locked, opted in one item at a time, and the only tier that makes you type the word before anything moves.
+
+Never automatic · never bundled
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+How the tiers are decided →
+
+---
+
+# Uninstall
+
+Source: https://devdrivecacheclean.com/uninstall/
+
+# Dragging an app to the Trash removes *the app.*
+
+The app bundle is only one part of an app's footprint. Containers, preferences, caches, login items, and launch agents can remain after the bundle is gone. DDCC finds those paths, shows the evidence tying them to the app, and removes the selected footprint together.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+46.15 GB
+
+- 67 apps listed
+
+- 2.24 GB retained, not offered
+
+- 10 dead artifacts found
+
+Figure — One app's footprint, with the evidence for every path: Affinity Photo 2 selected in DDCC: 2.96 GB reclaimable, 1.84 GB retained by two sibling apps, and a section headed Outside DevDriveCacheClean's Reach.
+
+**Where it came from**
+A Homebrew cask, the Preferences shelf, a shared group container. Each row names its source.
+
+**Retained, and by whom**1.84 GB left alone because Designer and Publisher still claim it.
+
+**Outside its reach**
+Paths this app owns that DDCC may not remove are still listed.
+
+## The hard part isn't finding files. It's knowing *whose they are.*
+
+A folder name can look related to an app without belonging to it. DDCC attributes a path when something on your Mac declares the relationship, and it says which declaration on every row.
+
+What it reads — Who wrote it — What it proves
+
+Sandbox container — macOS — The directory this bundle identifier owns
+
+Group entitlement — The app, signed — A container it shares with named siblings
+
+Homebrew zap stanza — The cask author — Paths the packager says to remove
+
+Installer receipt — The installer — Files actually written at install time
+
+Native messaging manifest — The browser — The executable a browser extension launches
+
+A folder with a similar name — Nobody — Not used
+
+The row needs evidence before DDCC treats it as part of an app footprint.
+
+## Shared data changes *the reclaimable total.*
+
+Affinity Photo, Designer and Publisher share 1.84 GB. Counting it toward each app would overstate the total; removing it with the first app could affect the other two. DDCC lists shared bytes, attributes them to every claimant, and holds them back until the last claimant is gone.
+
+OFFERED
+
+2.96GB
+
+Reclaimable now. Nothing else on this Mac claims any of it.
+
+HELD BACK
+
+1.84GB
+
+Real, and this app's, but Designer and Publisher claim it too. Excluded from the total above.
+
+OUTSIDE ITS REACH
+
+1path
+
+Owned by the app, outside the folders DDCC may remove from. Never measured, still shown.
+
+## Apps installed for everyone need *macOS to say yes.*
+
+Word, Excel and anything else that arrived as an installer package belongs to the system rather than to your user account. DDCC asks Finder to move it, and macOS asks you to authorize the move.
+
+Figure — Removing Microsoft Word with Finder authorization: macOS asking for Touch ID or a password: Finder wants to move Microsoft Word to the Trash, over the DDCC uninstall list.
+
+**Finder does the move**
+DDCC asks Finder, macOS prompts you, and Finder moves the app.
+
+CONSEQUENCE
+
+### Trash only, and it says so first
+
+An app removed this way goes to the Trash. The confirmation explains why permanent deletion is unavailable for that move.
+
+CONSEQUENCE
+
+### One extra prompt, once
+
+The first time, macOS also asks whether DDCC may control Finder. That's the system asking, not the app.
+
+## It also finds what's left of apps *you already deleted.*
+
+A launch agent can name a program that no longer exists. DDCC follows that pointer, shows the missing target, and lists the artifact in its own section.
+
+Figure — Dead artifacts, and the running apps DDCC declines to measure: A DEAD ARTIFACTS section listing launch agents and manifests that point at files which no longer exist, below running apps marked as unmeasurable.
+
+**Running apps are skipped**
+A live app rewrites the files being counted, so DDCC reports that status.
+
+**Each one names its target**
+The path it points at, and the fact that nothing is there any more.
+
+## Removal uses the Trash *by default.*
+
+### Move to Trash is the default
+
+Space is freed when you empty the Trash, and anything DDCC moved can be put back from the Finder like any other file.
+
+### Permanent deletion is opt-in
+
+A separate control, a separate confirmation, and the list of exactly what goes — grouped by how much it costs you to be wrong.
+
+### Apple's own apps are refused
+
+Anything in Apple's namespace is declined outright, even if you ask for it by name.
+
+### Nothing leaves your Mac
+
+No account, no telemetry, no network connection. The only program it launches is Finder, and only to perform a move you asked for.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+---
+
+# Large & forgotten files
+
+Source: https://devdrivecacheclean.com/large-files/
+
+# The large files that need *your review.*
+
+Caches and app leftovers have rules behind them. Large files are different: the disk image you mounted once, the 700 MB of test fixtures in a project you abandoned, the download you meant to open in 2021. DDCC lists them by size and by how long they have sat untouched, then leaves the decision to you.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+6.75 GB
+
+- 27 items · 14.4s
+
+- Trash only
+
+- You review every row
+
+Figure — Files that are large, long-unmodified, and outside every cache category: The Files view listing large files with their paths and ages, three selected, and a Move Selected to Trash control.
+
+**Path and age, per row**
+Where it is and how long since it changed, so you can decide whether you still want it.
+
+**Selection is yours**
+Rows start unselected because the file may still matter.
+
+## "Unmodified" is not *"unused."*
+
+DDCC sorts by modification date because that is the date macOS records reliably. A reference PDF you open every month but never edit can look four years old here. The row labels that caveat before you move anything.
+
+CONSTRAINT
+
+### Trash only, by design
+
+This view only moves files to the Trash. Permanent deletion is unavailable because these files were selected by size and age, not by a cleanup rule.
+
+CONSTRAINT
+
+### Files and bundles, not folders
+
+A directory of ten thousand small files will not appear as one row. Real space can hide from this view, so the app reports only what it can list.
+
+CONSTRAINT
+
+### It skips what Caches already explains
+
+Items already covered by a cache pattern are excluded here, so the same bytes are not reported twice under two different names.
+
+CONSTRAINT
+
+### Your documents are protected
+
+Shallow, high-blast-radius folders are refused outright by DDCC's safety guard, whatever the filters say.
+
+This view is a review list, not an automatic cleanup rule.
+
+## Filter by size, by age, and by *where you point it.*
+
+Choose a search root: your home folder, a single project, or an external drive. Set a minimum size and a minimum age, and the list narrows to things worth a decision.
+
+Figure — One file selected, with the caveat printed beside it: A file selected in the Files view, showing size, age, full path, and a note that age uses the modification date rather than the last time the file was opened.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+Why the total is what it is →
+
+---
+
+# The honest number
+
+Source: https://devdrivecacheclean.com/the-honest-number/
+
+# Ask three cleaners how much you can free. You will get *three answers.*
+
+The gap is usually not a rounding error. It comes from the difference between what a tool can remove directly, what macOS already counts as available, and what the tool could not read. DDCC's number is often smaller, and it comes with the reasons attached.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+Caches
+
+48.72+ GB
+
+- the plus means at least
+
+- 10 folders could not be read
+
+- 2 sizes are partial
+
+Uninstall
+
+46.15 GB
+
+- 67 apps listed
+
+- 2.24 GB retained, not offered
+
+- 10 dead artifacts found
+
+Files
+
+6.75 GB
+
+- 27 items · 14.4s
+
+- Trash only, no permanent delete
+
+- you review every row
+
+## The total is a sum of files. It is never a question *put to the disk.*
+
+This is the whole method, and everything else on this page follows from it. DDCC does not ask macOS how much room is free, compare that figure before and after, or estimate anything. It walks paths, sizes files it can name, and adds them up. Search the source for the system calls that report free space and you will not find them, because a number arrived at that way cannot be broken back down into the things it is made of.
+
+THE RULE
+
+### Every byte has an address
+
+If a byte is in the total, there is a row you can select, a path you can copy, and a folder you can open in Finder. Nothing is counted that cannot be pointed at.
+
+No estimates · no extrapolation
+
+THE CONSEQUENCE
+
+### The number is auditable
+
+A total assembled from named files can be checked file by file, by you, with tools you already have. A total derived from free space can only be believed.
+
+Sum of rows · by construction
+
+THE COST
+
+### It reads smaller
+
+Whole categories that inflate other totals are unreachable this way. That is a deliberate trade, and set against tools with every incentive to impress you with a number, it is often the least impressive one you will see.
+
+Smaller · on purpose
+
+A cleaner that measures free space can claim anything the disk happens to do next. A cleaner that adds up files can only claim the files.
+
+## Purgeable space is already *available to macOS.*
+
+macOS keeps files it can delete under pressure and calls that storage purgeable. The system reclaims it when another app needs room. Counting purgeable space alongside removable files is one reason two tools can report very different totals; it is also a category DDCC cannot count even by accident, because purgeable space is a property of the volume and DDCC only ever adds up files.
+
+What gets counted — Is it really yours to reclaim? — DDCC
+
+Purgeable space — Already available to macOS — Not counted
+
+Local Time Machine snapshots — Managed by macOS, thinned automatically — Not counted
+
+Cloud placeholder files — Not on your disk in the first place — Not counted
+
+Content a hard link keeps alive elsewhere — No: deleting here frees nothing — Withheld, and stated
+
+Folders it could not read — Unknown size — Disclosed, not guessed
+
+Caches from a known pattern — Yes — Counted
+
+App leftovers with evidence — Yes — Counted
+
+The plus sign means the measured total is a floor. Some folders could not be read, so the honest answer is sometimes "at least this much."
+
+## Six ways to make a number *bigger.*
+
+None of these requires anyone to lie. Each is a defensible choice about what to count, and every one of them makes the headline figure grow. They are worth knowing by name, because once you can name them you can ask any tool, including this one, which it does.
+
+01
+
+### Count storage the system already manages
+
+Space the OS reclaims on its own when something needs it is not space a cleaner recovered. Counting it is the single largest source of disagreement between two totals on the same Mac.
+
+02
+
+### Count the same bytes once per name
+
+One file can have many names. Adding up directory entries instead of content is the easiest way to report a folder as several times its real size, and developer machines are full of folders built exactly that way.
+
+03
+
+### Count the same bytes once per claimant
+
+When several apps share one folder, charging its full size to each of them turns one payment into three promises. Only the last one to leave can actually collect.
+
+04
+
+### Count what returns before you notice
+
+A cache deleted at nine is often back by five past. The bytes were real and the recovery was real; the space was not kept. A total that does not distinguish these is measuring your patience, not your disk.
+
+05
+
+### Count things nobody would agree to delete
+
+Reach is cheap. Anything reachable can be added to a total on the assumption you will approve it in bulk, and a tool that never expects to be read closely has no reason to be selective.
+
+06
+
+### Count problems instead of bytes
+
+An issue count is the cheapest number on this list, because nothing has to be measured to produce one. It is not a size, it does not become free space, and it can be made as alarming as required.
+
+DDCC has no feature that claims to make your Mac faster. It removes files you chose and reports how many bytes that freed. That is the entire claim, and it is deliberately a small one.
+
+## It tells you when it *could not look.*
+
+Without Full Disk Access, parts of your disk are simply invisible to any app. Most cleaners quietly report a smaller number. DDCC says so on screen, marks every affected size with a plus, and offers to take you to the setting.
+
+Figure — The banner shown when Full Disk Access is missing: A banner reading Some folders can't be read: without Full Disk Access, sizes marked with plus are undercounts, with an Open Settings button.
+
+**Shown above the results**
+The app's own totals are undercounts, and it says so before the list.
+
+## A byte counts only if this is the *last name holding it.*
+
+A hard link is a second name for the same content. Delete one name and the bytes stay, because another name still holds them. This is not exotic on a developer's machine: package managers and toolchains build whole directory trees out of links into a shared store, precisely so the content is stored once.
+
+So DDCC asks a narrower question than "how much is in here". It asks how much removing this would *free*. Content the measured folder holds every link to is counted once, however many names point at it. Content with a name living outside is counted as **zero**, because deleting here leaves it exactly where it was. The amount left out is printed on the row, so a folder that looks large in Finder and small here explains the difference itself.
+
+INSIDE THE FOLDER
+
+### Counted once
+
+Three names, one file, one payment. Every link is yours, so removing the folder really does release the blocks — exactly once.
+
+Deduplicated · by inode, not by name
+
+LINKED OUT
+
+### Counted zero
+
+A name outside survives the delete and keeps the content alive. Those bytes are not this folder's to promise, so they are not in its number.
+
+Withheld · and named on the row
+
+THE SAME RULE
+
+### Last claimant wins
+
+The uninstaller already held shared folders back until the last app using them was gone. The size measurement now answers to that same rule instead of contradicting it.
+
+One rule · two engines
+
+## Every row names *what made it.*
+
+A total is only as good as its rows, and a row is only as good as its reason for existing. DDCC will not attribute a folder to an app because the names look similar. It attributes when something on your Mac *declares* the relationship: a package's own uninstall manifest, an installer receipt, a signed entitlement. When nothing declares it, the folder is reported as unattributed rather than guessed at.
+
+Source of evidence — What it is — Where it comes from
+
+Package uninstall manifests — 4,639 of 7,695 packages declare the paths they leave behind; 2,993 name an Application Support path — A 20 MB file already on your disk
+
+Installer receipts — What an installer recorded that it wrote, path by path — `/var/db/receipts`
+
+Signed entitlements — The app groups and containers an app is actually entitled to — Read in-process from the signature
+
+Name resemblance — A folder whose name looks like an app's name — Not evidence; never used
+
+Two things follow from reading declarations rather than guessing, and both cost DDCC something. Declared paths are a **wish list, not an inventory**: a package can name folders it never created, so a path being declared is not proof it exists. And no declaration reaches everything: on the machine these figures were measured, sweeping without evidence left 312 leftover-looking entries totalling 220 MB, every one of them merely *unattributed* and not one of them proven dead.
+
+## Four places where totals need *context.*
+
+01
+
+### Shared bytes are counted once
+
+Three sibling apps sharing 1.84 GB do not become 5.5 GB of promises. The shared portion is held back until the last claimant is gone.
+
+02
+
+### Running apps get no number at all
+
+A live app keeps rewriting the files being measured. DDCC reports that instead of publishing a figure it knows is unstable.
+
+03
+
+### Refusals stay visible
+
+Paths DDCC's safety guard declined are listed with the reason, so you can see why they were left out of the removable total.
+
+04
+
+### A stopped scan says so
+
+Cancel halfway and the results stay on screen marked incomplete.
+
+Figure — A running app: an explanation where a number would be: Chrome selected in DDCC with the note: nothing was measured for Chrome, because a running app rewrites the state this sweep would read.
+
+**Why, and what to do**
+It explains the limit and offers Quit, instead of showing a number it cannot stand behind.
+
+## Where this number is *still approximate.*
+
+Every section above describes something DDCC gets right. This one describes what it does not, because a page arguing that totals should carry their limits is obliged to carry its own. None of these is a bug report waiting to be filed; they are known, and they are here so that a total you read is a total you can discount correctly.
+
+LIMIT
+
+### Cloned files still read high
+
+macOS can copy a file by sharing its blocks rather than duplicating them, and each copy reports its full size while the content is stored once. Nothing macOS publishes prices that sharing, so a folder full of clones reads larger than deleting it would free. Hard links are handled exactly; clones are not, and the difference is invisible from outside.
+
+LIMIT
+
+### Sharing is judged one item at a time
+
+Each item is measured on its own, so content linked between *two different rows* is counted by both. Selecting both and removing them frees it once. Within any single row the accounting is exact.
+
+LIMIT
+
+### Not every byte on the disk is in scope
+
+Caches reports known cache and support paths. Files reports large, long-unmodified items outside them. A folder of many small files in neither place may not appear at all; DDCC never claims to account for the whole disk, and the two views are not a partition of it.
+
+LIMIT
+
+### Age means last modified
+
+The Files view sorts by modification date, not by when you last opened something. A file you read every week can look untouched for a year. The caveat is printed beside the file, not buried here.
+
+These are the ones that are known. A tool whose limits list is empty has not looked for them.
+
+## Do not believe any of this. *Check it.*
+
+Everything above is a claim about arithmetic, and arithmetic is checkable. DDCC is built so that verifying it needs nothing but the Mac you already have and about a minute.
+
+CHECK ONE
+
+### Take a row to Finder
+
+Every row carries its full path. Open it, Get Info, and compare. Where the two disagree, this page has already told you which of the reasons applies.
+
+Reveal in Finder · on every row
+
+CHECK TWO
+
+### Undo the whole thing
+
+Removals go to the Trash by default, so the check survives being wrong. Put it back, and free space returns to exactly where it started.
+
+Trash first · deletion is opt-in
+
+CHECK THREE
+
+### Read the code that counted
+
+The rules on this page are a few hundred lines you can read in an afternoon, including the one that decides a hard link belongs to somebody else.
+
+Source available · free to use
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+How it decides what is safe →
+
+---
+
+# How it decides
+
+Source: https://devdrivecacheclean.com/how-it-decides/
+
+# You should not have to trust a program that *deletes your files.*
+
+DDCC is built to be checkable. Every path is attributed by something on your Mac that declares the relationship. Every removal is tiered by what it costs you to be wrong. Destructive actions are Trash-first, opt-in, and confirmed. The source is there to read.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+3 tiers
+
+- Tier 1 selected by default
+
+- Tier 2 unlocked per scan
+
+- Tier 3 needs the word typed
+
+## Tiers measure blast radius, not *size.*
+
+Size is only one part of the decision. The tier comes from the recovery cost if removing the item turns out to be a mistake. When an item could sit in two tiers, it goes in the more cautious one.
+
+Tier — What it means — How it behaves
+
+1 · Safe — Regenerated automatically, at no cost but time — Selected by default
+
+2 · Costly — Comes back, but costs a download or a long rebuild — Locked; unlocked per scan, priced first
+
+3 · Destructive — Holds state that does not come back — Locked; the only tier that requires typing DELETE
+
+Figure — The confirmation grouped by tier, with Trash as the default: A confirmation sheet reading Delete 3 items, this will free 4.48 GB, listing each path under a Safe heading, with an unchecked Permanently delete option.
+
+**Every path, listed**
+The actual items, grouped by how much it costs you to be wrong about them.
+
+**Permanent is unchecked**
+The Trash is the default and the reversible option is the easy one.
+
+## Attribution is *evidence, not resemblance.*
+
+Folder names can resemble app names without belonging to them. DDCC attributes a path when something declares the relationship, and the row says which declaration.
+
+Evidence — Who declares it — Confidence
+
+Sandbox container — macOS, by bundle identifier — Declared
+
+Application group — The app's signed entitlements — Declared
+
+Homebrew zap stanza — The cask author — Declared
+
+Installer receipt — The installer that wrote the files — Declared
+
+Broken dependency pointer — A manifest naming a file that is gone — Provable
+
+A similarly named folder — Nobody — Not used
+
+## What DDCC's safety guard *leaves alone.*
+
+REFUSED
+
+### Apple-owned paths
+
+Apple's namespace is declined by name before any other rule runs.
+
+REFUSED
+
+### Shallow, high-value folders
+
+Your home directory and its document folders are protected by depth rules that no filter setting can override.
+
+REFUSED
+
+### Paths outside allowed roots
+
+Paths an app genuinely owns but which sit outside the folders DDCC may remove from are listed and left alone.
+
+REFUSED
+
+### Root-owned files, without you
+
+Removing an app installed for everyone goes through Finder, so macOS asks you for Touch ID. DDCC uses that system prompt instead of holding privileges itself.
+
+Figure — The privileged step performed by macOS: macOS asking for Touch ID or a password because Finder wants to move Microsoft Word to the Trash.
+
+**Finder performs the move**
+Your authentication authorizes Finder, and DDCC keeps no elevated rights.
+
+No account. No telemetry. No network connection of any kind. The only program DDCC launches is Finder, and only to complete a removal you chose.
+
+Download for macOS
+Free · Apple silicon & Intel · macOS 15+
+
+---
+
+# User Guide
+
+Source: https://devdrivecacheclean.com/user-guide/
+
+# User Guide
+
+## Topics
+
+- 01What DDCC does
+
+- 02Your first scan
+
+- 03Reading scan results
+
+- 04How DDCC reports totals
+
+- 05Choosing what to remove
+
+- 06Unlocking costly and destructive items
+
+- 07Deleting cache results
+
+- 08Moving files to the Trash
+
+- 09The Files view
+
+- 10The Uninstall view
+
+- 11Full Disk Access
+
+- 12Privacy
+
+## Reference
+
+- R1The three tiers
+
+- R2What DDCC can and cannot remove
+
+- R3Categories
+
+- R4The Files view controls
+
+---
+
+# Questions
+
+Source: https://devdrivecacheclean.com/faq/
+
+# Frequently Asked Questions
+
+## Questions
+
+MONEY
+
+### Is it really free?
+
+Yes, permanently. No paid tier, no trial, no licence key, nothing held back. The scan and the removal are the same free program.
+
+PRIVACY
+
+### Does it connect to the internet?
+
+DDCC is built without account sign-in, telemetry or network features. The only program it launches is Finder, and only to finish a removal you chose. You can verify that by reading the source or by watching it with Little Snitch.
+
+PRIVACY
+
+### Does it install a launch agent or daemon?
+
+No. Nothing of DDCC's runs when the app is closed: no launch agent, no daemon, no login item, no background helper. Check it yourself before and after use — nothing of DDCC's appears in ~/Library/LaunchAgents or /Library/LaunchDaemons, and the app bundle contains no helper to install.
+
+TOTALS
+
+### Why do Mac cleaners disagree about free space?
+
+Because they count different things: whether to include purgeable space macOS already treats as available, whether bytes reachable under two names count once or twice, and whether a folder that could not be read counts as zero. DDCC counts files it can name, counts a shared byte once, and says what it could not read.
+
+TOTALS
+
+### Why is your number smaller than the others?
+
+Because it excludes space macOS already manages. Purgeable storage, local snapshots and cloud placeholders are not counted as removable DDCC findings.
+
+TOTALS
+
+### What does the plus sign mean?
+
+At least. Some folder could not be read, so the figure is a floor rather than a total. The app says how many and why.
+
+SAFETY
+
+### Could it delete something I needed?
+
+Removals go to the Trash by default and can be put back. Permanent deletion is a separate, opt-in checkbox. Only Tier 3, the destructive one, asks for more than that: selecting a Tier 3 item makes you type DELETE first, whether you are trashing it or not. Anything costly to regenerate stays locked until you unlock it.
+
+SAFETY
+
+### Does it guess which files belong to an app?
+
+A path is attributed when something declares the relationship: a container, an entitlement, a Homebrew stanza, or an installer receipt. Matching folder names to app names is not used.
+
+PERMISSIONS
+
+### Do I have to give it Full Disk Access?
+
+No. It works without, and tells you which totals are undercounts as a result. That is your call to make with the numbers in front of you.
+
+PERMISSIONS
+
+### Why did macOS ask for my password?
+
+You removed an app installed for everyone on the Mac. Those belong to the system, so DDCC asks Finder to move it and macOS authenticates you. The app itself never holds elevated privileges.
+
+SCOPE
+
+### Will it find everything?
+
+No, and it says so. Caches finds known patterns. Files finds large, long-unmodified items outside those. A folder of ten thousand small files can hide from both.
+
+SCOPE
+
+### Does it work on Intel Macs?
+
+Yes. Apple silicon and Intel, macOS 15 or later.
+
+LICENCE
+
+### Can I use it at work?
+
+Yes, royalty-free, permanently. The licence covers personal use and a company's own internal use. Only redistributing it commercially needs a separate arrangement.
+
+LICENCE
+
+### Is DDCC open source?
+
+No. DDCC is source-available under the Sustainable Use License, which is not OSI-approved. You can read every line and use it personally or inside your own company at no cost; redistributing it commercially needs a separate arrangement. If OSI-approved open source is what you need, DDCC does not qualify.
+
+ORIGIN
+
+### Why is it called DevDriveCacheClean?
+
+It began as a tool for my own Mac: clear developer caches in one click, without first reading a blog post about which folders are safe to delete. The name is the job — developer caches, drive space, cleaned. Deciding to release it publicly is what grew it into app footprints and large files as well.
+
+TRUST
+
+### Why should I believe any of this?
+
+You shouldn't have to. The source is readable, the network claim is one grep, and every total the app shows can be checked against your own free space.
+
+---
+
+# Support the project
+
+Source: https://devdrivecacheclean.com/support/
+
+# This is free, and it *always will be.*
+
+You never need to pay to use DDCC. There is no trial, licence key, or feature tier. If you want to support development or just say thanks, that is appreciated and never expected. Bug reports and cache patterns help just as much.
+
+£0 forever
+
+- No paid tier
+
+- No feature behind a wall
+
+- No expiry
+
+## The most useful things are *free.*
+
+A good bug report is worth more than a coffee, and a cache pattern DDCC does not yet recognise is worth more than either. Both belong on the issue tracker, where the answer stays public and the next person with the same folder can find it. Email support@devdrivecacheclean.com instead if you would rather not use GitHub.
+
+01
+
+### Tell me what it missed
+
+A folder eating gigabytes that DDCC did not recognise is the single most valuable thing you can send. Include the path and the tool that made it.
+
+02
+
+### Tell me when a number looked wrong
+
+If a total did not match what you actually got back, that is a defect in the one thing this app claims to do well.
+
+03
+
+### Report anything that felt unsafe
+
+A confirmation that was unclear, an action that surprised you, a row you could not understand. All of it counts.
+
+04
+
+### Tell one person
+
+There is no marketing budget here and no advertising. Word of mouth is the entire distribution plan.
+
+## And if you would like to *chip in.*
+
+Your support is appreciated. One-time donations only. There is no subscription to cancel, and the app behaves the same either way.
+
+Ko-fi
+
+The licence permits personal use and internal business use royalty-free, permanently. Commercial redistribution needs a separate conversation.
+
+---
+
+# Licence
+
+Source: https://devdrivecacheclean.com/licence/
+
+# License
+
+Copyright (c) 2026 Jonathan Rowe
+
+DevDriveCacheClean is source-available under the Sustainable Use License, version 1.0, reproduced in full below.
+
+The application incorporates no third-party components. The website uses three typefaces under the SIL Open Font License 1.1.
+
+## Sustainable Use License
+
+Version 1.0
+
+### Acceptance
+
+By using the software, you agree to all of the terms and conditions below.
+
+### Copyright License
+
+The licensor grants you a non-exclusive, royalty-free, worldwide, non-sublicensable, non-transferable license to use, copy, distribute, make available, and prepare derivative works of the software, in each case subject to the limitations below.
+
+### Limitations
+
+You may use or modify the software only for your own internal business purposes or for non-commercial or personal use. You may distribute the software or provide it to others only if you do so free of charge for non-commercial purposes. You may not alter, remove, or obscure any licensing, copyright, or other notices of the licensor in the software. Any use of the licensor's trademarks is subject to applicable law.
+
+### Patents
+
+The licensor grants you a license, under any patent claims the licensor can license, or becomes able to license, to make, have made, use, sell, offer for sale, import and have imported the software, in each case subject to the limitations and conditions in this license. This license does not cover any patent claims that you cause to be infringed by modifications or additions to the software. If you or your company make any written claim that the software infringes or contributes to infringement of any patent, your patent license for the software granted under these terms ends immediately. If your company makes such a claim, your patent license ends immediately for work on behalf of your company.
+
+### Notices
+
+You must ensure that anyone who gets a copy of any part of the software from you also gets a copy of these terms. If you modify the software, you must include in any modified copies of the software a prominent notice stating that you have modified the software.
+
+### No Other Rights
+
+These terms do not imply any licenses other than those expressly granted in these terms.
+
+### Termination
+
+If you use the software in violation of these terms, such use is not licensed, and your license will automatically terminate. If the licensor provides you with a notice of your violation, and you cease all violation of this license no later than 30 days after you receive that notice, your license will be reinstated retroactively. However, if you violate these terms after such reinstatement, any additional violation of these terms will cause your license to terminate automatically and permanently.
+
+### No Liability
+
+As far as the law allows, the software comes as is, without any warranty or condition, and the licensor will not be liable to you for any damages arising out of these terms or the use or nature of the software, under any kind of legal claim.
+
+### Definitions
+
+The "licensor" is the entity offering these terms.
+
+The "software" is the software the licensor makes available under these terms, including any portion of it.
+
+"You" refers to the individual or entity agreeing to these terms.
+
+"Your company" is any legal entity, sole proprietorship, or other kind of organization that you work for, plus all organizations that have control over, are under the control of, or are under common control with that organization. Control means ownership of substantially all the assets of an entity, or the power to direct its management and policies by vote, contract, or otherwise. Control can be direct or indirect.
+
+"Your license" is the license granted to you for the software under these terms.
+
+"Use" means anything you do with the software requiring your license.
+
+"Trademark" means trademarks, service marks, and similar rights.
+
+---
+
+# Terms of use
+
+Source: https://devdrivecacheclean.com/terms/
+
+# Terms of use
+
+These terms cover this website. The software has its own licence, and that is the document that governs what you may do with DDCC.
+
+## The software
+
+DevDriveCacheClean is made available under the Sustainable Use License, version 1.0, reproduced in full on the licence page. Downloading, installing or using the app means accepting that licence, including its acceptance and No Liability sections.
+
+DDCC deletes files that you select. It moves them to the Trash by default, so most removals can be undone, but permanent deletion is available and some caches cannot be regenerated. **The software is provided “as is”, without warranty of any kind, express or implied.** To the fullest extent permitted by law, the licensor accepts no liability for any loss or damage arising from its use, including lost data and the cost of restoring it.
+
+## This website
+
+The pages here are published for information. Every figure shown — totals, item counts, timings — comes from a scan of one particular machine, and yours will differ. Nothing on this site is a promise about what you will recover.
+
+The site links to services I do not control, including GitHub and Ko-fi. Those services have their own terms and their own privacy practices.
+
+## Acceptable use
+
+Please do not attempt to disrupt this site or the systems that serve it, or use it in a way that interferes with anyone else's use of it.
+
+## Governing law
+
+These terms are governed by the laws of the State of California, United States, without regard to its conflict-of-laws rules. If you are using this site as a consumer elsewhere, this does not remove any protection you have under the mandatory law of the country you live in.
+
+## Changes
+
+These terms may change. The version on this page is the current one, and there is no separate archive of earlier versions — the site's history is public in the repository if you need it.
+
+## Contact
+
+Email support@devdrivecacheclean.com about these terms or anything else on this site.
+
+---
+
+# Privacy
+
+Source: https://devdrivecacheclean.com/privacy/
+
+# Privacy
+
+This page is about the website. The app is a separate matter and collects nothing at all — that is covered in the documentation on privacy.
+
+## What this site records
+
+Page views and a small number of named clicks, through Umami, which runs on a server I operate. It is not Google Analytics, and no advertising company is involved.
+
+**No cookies. No local storage.** Nothing is written to your device and nothing is read back from it. You can confirm that yourself: open your browser's storage inspector on any page of this site and both will be empty.
+
+Here is the whole of what a visit leaves behind. Once for the visit: the browser, the operating system, the device type, the screen size, the language your browser asks for, and a country, region and city. Then for each page you open: its address and its title, anything following the `?` in that address, the page you followed a link from, and — on a handful of links — a fixed label such as `download-cta`. Nothing you type is recorded, because there is nothing on this site to type into.
+
+The country, region and city are read from a database file sitting on that same server. No request about you goes anywhere else to work them out.
+
+Visits are counted from a hash of your IP address, your browser's user agent and this site's identifier, combined with a rotating salt. The hash cannot be reversed, and the IP address is not stored beside it. **The salt changes once a month.** Within a calendar month the same browser therefore counts as the same visitor; once it rolls over, as a new one.
+
+## What this site does not do
+
+- There is no cookie banner, because there are no cookies to consent to.
+
+- No advertising, and no profiling.
+
+- No session recording, and no attempt to identify you.
+
+- No fonts, scripts, images or styles loaded from anyone else's servers. The typefaces are served from this site, which is why no request goes to Google when you open a page.
+
+## The one place an address does land
+
+The analytics records never hold an IP address. The web server in front of them does. Like almost every web server, it writes a plain access log — one line per request, giving the address the request came from, the time, and what was asked for. Nothing reads that log, nothing reports on it and it feeds none of the figures above, but it is a file with IP addresses in it, and you should hear that from me rather than assume otherwise.
+
+It rolls over at ten megabytes and rolled copies are discarded after ten days. On a site this quiet that is slower than it sounds: the current file has been filling since March.
+
+## Who else sees any of this
+
+Nobody. It sits on a server I run, not on an analytics company's platform, and none of it is sold, shared or passed to anyone.
+
+That undertaking is smaller than it sounds, which is rather the point. What is stored is aggregate and tied to no one, so there is nothing in it about you to sell, share or hand over in the first place.
+
+## Hosting
+
+The site is served by GitHub Pages. GitHub receives your request in the ordinary course of delivering the page, including your IP address, and handles it under its own privacy statement. That is true of any web host and is outside my control.
+
+## Your rights
+
+What is recorded is aggregate and is not linked to you, so in most cases there is nothing individual to retrieve, correct or erase. If you have a question about any of this, or want to raise a concern, use the contact route below.
+
+## Contact
+
+Email support@devdrivecacheclean.com. That reaches me directly, and nothing you send there is public.
+
+---
+
+# Security
+
+Source: https://devdrivecacheclean.com/security/
+
+# Security
+
+DDCC asks for Full Disk Access and deletes files. If you find a way to make it do something it should not, please report it privately rather than in public.
+
+## Reporting a vulnerability
+
+Use GitHub's private vulnerability reporting on the repository: open the Security tab and choose Report a vulnerability. That channel is private between you and me.
+
+If you would rather not use GitHub, email support@devdrivecacheclean.com instead, and say in the subject line that it is a security report so it is not read as an ordinary support message.
+
+**Please do not open a public issue for a security problem.** The issue tracker is the right place for bugs and questions, and the wrong place for anything that would tell other people how to exploit a machine before there is a fix.
+
+## In scope
+
+- The DDCC application, in any released version.
+
+- This website and anything served from it.
+
+## What the app does, in security terms
+
+These are the parts worth looking at, and they are the parts most likely to be wrong:
+
+- It runs locally and makes no network connections of any kind.
+
+- Full Disk Access is requested so it can read sizes and directory structure. It reads file metadata, not file contents.
+
+- Removals go to the Trash by default; permanent deletion is a separate opt-in. Only Tier 3 goes further: a selection containing one requires typing a word before either will run.
+
+- Paths are attributed to an application by declaration — a container identifier, a Homebrew zap stanza, a package receipt — and never by matching a name.
+
+- One subprocess is launched, in one situation only: `/usr/bin/osascript`, to ask Finder to move an application that belongs to the whole Mac, so that macOS can prompt you to authenticate. DDCC keeps no elevated rights.
+
+## Good-faith research
+
+If you are investigating in good faith — testing against your own machine, not accessing anyone else's data, not destroying anything, and giving a reasonable period to fix before publishing — I will not pursue any action against you, and I will credit you in the release notes if you would like that.
+
+## What to expect
+
+This is a one-person project, so there is no team on call and no guaranteed response window. Reports are read and acknowledged as soon as I see them, and anything genuinely exploitable is treated as the next thing to fix.
+
+---
+
+# Contact
+
+Source: https://devdrivecacheclean.com/contact/
+
+# Contact
+
+Email support@devdrivecacheclean.com.
+
+## Bugs, and caches DDCC does not recognise
+
+The issue tracker is the place for both. The answer stays public there, so the next person with the same folder finds it rather than asking again. A path, the tool that wrote it, and what you expected DDCC to say about it is enough to open with.
+
+## Security
+
+Report it privately. The security page gives the private channel, the subject line to use if you would rather email, and what good-faith research means here.
+
+## Privacy, terms and licensing
+
+Email is right for these. What the site records, the terms and the licence are each written out in full, so the pages themselves may answer it faster than I can.
+
+## What to expect
+
+This is a one-person project, so there is no team on call and no guaranteed response window. Mail is read and answered as soon as I see it.
+
+---
+
+# User Guide
+
+Source: https://devdrivecacheclean.com/user-guide/
+
+# User Guide
+
+## Topics
+
+- 01What DDCC does
+
+- 02Your first scan
+
+- 03Reading scan results
+
+- 04How DDCC reports totals
+
+- 05Choosing what to remove
+
+- 06Unlocking costly and destructive items
+
+- 07Deleting cache results
+
+- 08Moving files to the Trash
+
+- 09The Files view
+
+- 10The Uninstall view
+
+- 11Full Disk Access
+
+- 12Privacy
+
+## Reference
+
+- R1The three tiers
+
+- R2What DDCC can and cannot remove
+
+- R3Categories
+
+- R4The Files view controls
+
+---
+
+# Choosing what to remove
+
+Source: https://devdrivecacheclean.com/user-guide/choosing-what-to-remove/
+
+# Choosing what to remove
+
+Use the Caches toolbar to scan, filter, sort, select, and delete results.
+
+**Scan** searches the selected folder. **
+Scan Path** changes that folder; the default is your home directory. **
+Stop** cancels an active Caches scan. Results already completed by the scan may remain on screen, but you should scan again when you want a complete current result set.
+
+The search field filters the visible rows. The sort picker changes the list order: largest first, smallest first, name, or oldest first.
+
+The sidebar filters by result group. **Caches** shows everything from the last scan. Category rows show that category's total size and item count. If a row says part of the total is locked, DDCC can show that space but cannot select those items because macOS or the current permissions prevent removal.
+
+Use **Tier 1** to select all safe items currently in view. Use **
+Tier 2** to review and enable costly categories currently in view. Enabling a Tier 2 category lasts only for the current scan. Destructive items are selected only by clicking individual rows.
+
+**Deselect All** clears the whole selection, including selected rows hidden by the current search or sidebar filter.
+
+**Delete** appears after you select at least one item. It opens a confirmation sheet; it does not remove anything immediately.
+
+The Files view works differently: **Stop** discards the in-progress Files search, Files has no select-all, and selected files can only be moved to the Trash.
+
+---
+
+# Deleting cache results
+
+Source: https://devdrivecacheclean.com/user-guide/deleting-cache-results/
+
+# Deleting cache results
+
+Press **Delete** after selecting Caches results. DDCC opens a confirmation sheet before removing anything.
+
+The confirmation sheet lists selected items by tier. If your current filter is hiding selected items, those hidden items appear in a separate section so you can review everything that will be removed.
+
+By default, DDCC moves selected items to the Trash. Leave this default on when you are not sure, or when you want an easy way to put files back.
+
+You can choose **Permanently delete** in the confirmation sheet. This skips the Trash and cannot be undone. That choice is a checkbox and nothing more.
+
+Only tier 3, the destructive tier, asks for more than a checkbox. If the selection includes any destructive item, DDCC requires you to type `DELETE` before the button is enabled — whether you are moving those items to the Trash or deleting them permanently. Tiers 1 and 2 never ask for this.
+
+The Files view does not have this permanent-delete option. Files results are not classified cache results, so DDCC only moves them to the Trash.
+
+If an item cannot be removed, DDCC leaves it in the results and records the failure reason at the bottom of the window. Failed items stay selected so you can retry or inspect them. A failed item is not counted as reclaimed space.
+
+---
+
+# The Files view
+
+Source: https://devdrivecacheclean.com/user-guide/files-view/
+
+# The Files view
+
+Use Files to find large items outside the cache categories: old exports, disk images, archives, virtual machines, and app bundles.
+
+Choose a search folder, set a minimum size and a minimum age, and press **Find**. A file must pass both thresholds to appear.
+
+The age filter uses the modification date. That is when a file last changed, not when you last opened it. A document you read often but never edit may still appear as unmodified.
+
+`~/Library` is always skipped, along with every directory the Caches view already covers. If you choose a folder inside `~/Library`, Files may find nothing.
+
+Files and bundles are never selected automatically, and there is no select-all. Choose each row by hand. Press the space bar to preview the selected file without leaving DDCC.
+
+The file detail pane shows the path, size, age, and a Finder reveal action. Files with a `+` after the size are lower bounds because DDCC could not read everything inside the item.
+
+Bundles such as `.app`, `.photoslibrary`, and `.sparsebundle` are shown as one item and moved as one item.
+
+Stopping a Files search discards the in-progress result list. Run **Find** again when you want a complete list for the current filters.
+
+The individual controls are described under The Files view controls.
+
+---
+
+# Your first scan
+
+Source: https://devdrivecacheclean.com/user-guide/first-scan/
+
+# Your first scan
+
+Press **Scan**. DDCC searches your home directory by default; the folder menu beside the button changes where it looks.
+
+When the scan finishes you will see categories in the sidebar and individual items in the list. The sidebar shows totals by category. The list shows each path, size, category, tier, and modification date.
+
+If a total or row size ends with `+`, DDCC could not read everything needed for an exact number. Treat that value as at least that large, not as the full size.
+
+Nothing is selected when a scan finishes. Use **Tier 1** to select safe items in the current view. Use **
+Tier 2** to review and enable costly categories for this scan. Destructive items must be selected one at a time.
+
+Use the search field to filter results. A filter can hide selected items; if that happens, the delete confirmation still lists the hidden selection before anything is removed.
+
+The toolbar shows how many items are selected and how much space they use. When you press **Delete**, DDCC lists the selected paths and asks you to confirm. See Choosing what to remove for the toolbar, sort, and sidebar controls.
+
+Selections do not survive a new scan. Each scan starts from nothing selected, so old choices are not applied to new results.
+
+If a scan is stopped, DDCC keeps completed Caches results on screen and marks the total as incomplete. Run the scan again when you need a complete current answer.
+
+---
+
+# Full Disk Access
+
+Source: https://devdrivecacheclean.com/user-guide/full-disk-access/
+
+# Full Disk Access
+
+DDCC can scan without Full Disk Access. If macOS blocks a folder, DDCC marks affected sizes with `+` or shows a message that some folders could not be read.
+
+The banner at the top of the window means DDCC does not currently have Full Disk Access. Choose **Open Settings**, add DDCC under Privacy & Security > Full Disk Access, then quit and reopen DDCC if the banner remains.
+
+Full Disk Access mainly improves completeness. DDCC targets developer caches and user-owned files that are usually readable without it. Protected system and app data may still be unavailable or shown only for information.
+
+Grant Full Disk Access if you want the most complete scan DDCC can provide. Leave it off if you only want DDCC to inspect files available to ordinary apps.
+
+---
+
+# How DDCC reports totals
+
+Source: https://devdrivecacheclean.com/user-guide/honest-number/
+
+# How DDCC reports totals
+
+DDCC reports scan totals conservatively.
+
+Each Caches result comes from a known pattern and includes a category, tier, and size. The category tells you what kind of item it is. The tier tells you how cautious to be before selecting it.
+
+When DDCC cannot read everything inside an item, it marks the size with a `+`. That means the displayed number is a lower bound; the real size may be larger.
+
+DDCC does not claim to account for every byte on the disk. Caches reports known cache and support-data paths. Files reports large, long-unmodified files outside those paths. A folder full of small files outside both views may not appear.
+
+The Files view reports files and bundles, not rolled-up folder totals. A directory can therefore consume real space without appearing as one row.
+
+If a scan is stopped or a folder cannot be read, treat the total as incomplete.
+
+---
+
+# Privacy
+
+Source: https://devdrivecacheclean.com/user-guide/privacy/
+
+# Privacy
+
+DDCC runs locally on your Mac.
+
+It has no analytics, telemetry, account, update check, crash reporter, or cloud sync. It does not send scan results anywhere.
+
+Scanning uses file metadata such as paths, sizes, modification dates, and directory structure. DDCC does not need to read the contents of your files to classify cache results.
+
+QuickLook previews are shown by macOS from the selected local file. DDCC does not upload the file to preview it.
+
+The Full Disk Access check reads one byte from a known protected location to see whether macOS granted access.
+
+DDCC launches one subprocess in one situation only: removing an app that belongs to the whole Mac uses `/usr/bin/osascript` to ask Finder to move it, so macOS can ask you to authenticate. Nothing about your files leaves the Mac when it does.
+
+The source is available for review, including the absence of network code.
+
+---
+
+# Reading scan results
+
+Source: https://devdrivecacheclean.com/user-guide/reading-results/
+
+# Reading scan results
+
+The Caches list shows one row for each path DDCC found.
+
+The icon at the left shows whether the row can be selected now:
+
+- An empty circle means the item can be selected.
+
+- A checked circle means it is selected.
+
+- A lock means the category must be enabled before the item can be selected.
+
+- A warning triangle means the item is destructive and must be opted into one
+
+item at a time.
+
+- A minus sign means DDCC can show the size, but cannot remove the path.
+
+The **Size** column shows allocated disk space. A size ending in `+` means DDCC could not read everything inside that item, so the real size may be larger.
+
+The **Modified** column is a useful clue, not a decision by itself. Some caches change often; some large files stay unchanged for years because they are finished artifacts.
+
+Select a row to see its full path and detail actions. **Reveal in Finder** shows the item without changing it. **
+Open in Terminal** opens a Terminal window at that path.
+
+After a failed removal, DDCC leaves the failed row in the list and shows the first failure reason at the bottom of the window. The row remains selected so you can retry or inspect it.
+
+---
+
+# Categories
+
+Source: https://devdrivecacheclean.com/user-guide/reference-categories/
+
+# Categories
+
+What each Caches category contains, and what usually recreates it.
+
+## Node.js
+
+node_modules directories inside projects, reinstalled with npm, yarn or pnpm from the project's lockfile. Also node versions kept by nvm that nothing is using: the newest, the one nvm's own alias points at, and any version a running process is using are never offered. A version you do remove comes back with nvm install, so it is tier 2.
+
+## Python
+
+Virtual environments, __pycache__, and the caches left by pytest, mypy, tox and ruff, all of which live beside a project and are recreated from its requirements. The uv download cache in ~/.cache/uv is shared by every project instead, so removing it costs a re-download rather than a rebuild — which is why it is tier 2 and the rest are tier 1. Python versions installed by pyenv are listed on the same terms as node versions: the newest, the one pyenv points at, and any version in use are held back.
+
+## Rust
+
+target directories next to Cargo.toml. Rebuild them with cargo build.
+
+## Java/Kotlin
+
+build, .gradle, and target directories next to Gradle or Maven project files. Rebuild them with the project's build command.
+
+## Xcode
+
+DerivedData rebuilds on the next build. Device support and simulator runtimes can be downloaded again. Xcode Archives and simulator Devices may contain crash-symbol files, installed apps, and simulator data, so review those carefully.
+
+## Go
+
+The Go build cache recompiles from local source. The module download cache can be fetched again when a project needs it.
+
+## Docker
+
+Docker Desktop stores images and named volumes together in its data directory. Removing it can remove volume data as well as images.
+
+## Homebrew
+
+Downloaded Homebrew packages and source archives. Homebrew downloads them again when an install or upgrade needs them.
+
+## Package Caches
+
+Download caches for npm, pnpm, Cargo, Gradle, pip, Maven, NuGet, and similar tools. They can be fetched again, but removing them may slow the next build or install.
+
+## IDE & Editor
+
+The VS Code and JetBrains caches rebuild on next launch. Workspace storage in Code/User/workspaceStorage is not a cache: it holds each project's editor state — open files, undo history, per-workspace extension data — which comes back empty rather than rebuilt, so it is tier 2. Installed extensions and JetBrains application support hold settings, keymaps and licences, which is why they are tier 3.
+
+## macOS Dev Caches
+
+Xcode cache data can be recreated from the installed toolchain. Swift Package Manager cache data may need to download again.
+
+## Terraform
+
+.terraform directories next to Terraform configuration. Restore them with terraform init.
+
+## Web Frameworks
+
+Framework build output such as .next, .nuxt, and .angular. Rebuild it with the project's build or dev command.
+
+## Build Output
+
+dist directories next to package.json. Rebuild them with the project's build script.
+
+## Game Engines
+
+Export templates, derived data and store downloads kept by Godot, Unity and Unreal. A version's files are listed only when no editor of that version is installed. The engines themselves are not listed here; remove those from the Uninstall view.
+
+## App Caches
+
+Per-app cache folders under ~/Library/Caches and app container caches. HTTPStorages may include website data such as cookies, so review that category before enabling it.
+
+## Browser Data
+
+Browser caches can be downloaded again as you browse. Local storage, databases, and service workers may hold site data or sessions, so they are treated as destructive.
+
+## iOS Backups
+
+Local iPhone and iPad backups. They may be the only copy of a device's data; DDCC cannot tell whether the same device is backed up elsewhere.
+
+## Saved App State
+
+Saved application state used to reopen windows and documents after an app relaunch. Removing it resets that restore state.
+
+## Mail Downloads
+
+Mail downloads and attachments stored locally. Some accounts can download them again; local-only mail may not.
+
+## System Caches
+
+Cache data created by macOS services. User-owned caches can be rebuilt by the system. Root-owned caches are shown for information only.
+
+## Logs & Crashes
+
+Diagnostic logs and crash reports. Removing them frees space but also removes history you may want for troubleshooting.
+
+## App Deep Clean
+
+Known cache and support-data locations for specific apps. DDCC only lists paths it recognizes; nearby app data is left alone.
+
+---
+
+# The Files view controls
+
+Source: https://devdrivecacheclean.com/user-guide/reference-files/
+
+# The Files view controls
+
+The Files view searches for large, long-unmodified files outside the cache categories. It only moves selected items to the Trash.
+
+## The Files view
+
+The Files view searches for large, long-unmodified files and bundles outside DDCC's cache categories. Review each result yourself; files from this view can only be moved to the Trash.
+
+## Find
+
+Searches the selected folder for files and bundles that pass both filters. DDCC skips ~/Library and paths already covered by the Caches view.
+
+## Stop
+
+Stops the current Files search and clears its in-progress results. Run Find again when you want a complete list.
+
+## Search folder
+
+The default is your home directory. If you choose a folder inside ~/Library, the Files view may find nothing because library paths are handled by the Caches view.
+
+## Minimum size
+
+A file must meet both the size and age filters to appear. Choose Any size when you want to filter only by age.
+
+## Unmodified for
+
+Uses the modification date, not the last time you opened the file. A document you read often but never edit can still appear as unmodified.
+
+## Selecting a row
+
+Files are never selected automatically, and there is no select-all in this view. Choose each file or bundle by hand.
+
+## Deselect all
+
+Clears every selected row, including rows a filter is currently hiding.
+
+## Move to Trash
+
+Moves the selected files and bundles to the Trash, where they can be put back. The Files view does not offer permanent deletion.
+
+## Show in Finder
+
+Opens a Finder window with this file selected so you can inspect it before moving it.
+
+## Sizes marked with a plus
+
+A size with a trailing plus is a lower bound. DDCC measured what it could read, but the real size may be larger.
+
+---
+
+# What DDCC can and cannot remove
+
+Source: https://devdrivecacheclean.com/user-guide/reference-removability/
+
+# What DDCC can and cannot remove
+
+Some paths are visible because they use disk space, but DDCC cannot remove them with your current permissions.
+
+## Removable
+
+DDCC can remove this path with your current permissions.
+
+## Shown but never removed
+
+This path is shown so you can see where space is used, but DDCC cannot remove it with your current permissions. Some system paths are protected by macOS even from administrator tools.
+
+The paths this applies to:
+
+- `/Library/Caches`
+
+- `/Library/Developer/CoreSimulator/Images`
+
+- `/System/Library/Caches`
+
+---
+
+# The three tiers
+
+Source: https://devdrivecacheclean.com/user-guide/reference-tiers/
+
+# The three tiers
+
+Tiers describe the risk of removing an item. They also control how DDCC lets you select it.
+
+## Safe
+
+Usually local build output or app cache data. Removing it should only affect the project or app that created it, and it can be rebuilt from files already on your Mac.
+
+## Costly
+
+Shared cache or support data. It can come back, but rebuilding it may take time, bandwidth, or a large download used by more than one project.
+
+## Destructive
+
+May contain backups, settings, user data, or files that are hard to recreate. Review these one at a time before selecting them.
+
+---
+
+# Moving files to the Trash
+
+Source: https://devdrivecacheclean.com/user-guide/trash-not-delete/
+
+# Moving files to the Trash
+
+The Files view only moves items to the Trash. It does not offer permanent deletion.
+
+Files results are broad discoveries, not categorized cache results. A large old file might be disposable, or it might be the only copy of something important. Review each selected item before moving it.
+
+Before moving files, DDCC shows a confirmation sheet with every selected path and the total size. After the move, the files are in the macOS Trash and can be put back from Finder.
+
+If a file cannot be moved, it stays in the list, remains selected, and DDCC shows the reason at the bottom of the window.
+
+---
+
+# The Uninstall view
+
+Source: https://devdrivecacheclean.com/user-guide/uninstall-view/
+
+# The Uninstall view
+
+Use Uninstall to see what an app left behind — installed, or already gone — and remove it. Press **Sweep** to build the list. **
+Stop** cancels an active sweep; anything already found stays on screen, marked as incomplete.
+
+Each row is one app identity. Small type below the name says which evidence DDCC used to attribute anything to it — a sandbox container, a shelf such as Preferences or Caches, a group entitlement, a Homebrew declaration, an install receipt, or a native-messaging-host manifest. Nothing is guessed from a directory's name alone.
+
+Select a row to see the full breakdown. **Reclaimable** lists what DDCC can remove for this app. **
+Retained** lists what still belongs to this app but another installed product also claims — it stays until every claimant is gone, and its bytes are excluded from the reclaimable total so removing this app never overstates what came back.
+
+**Move to Trash** moves the reclaimable items; nothing is freed until the Trash is emptied. **
+Delete Permanently** skips the Trash and cannot be undone — DDCC asks you to confirm before doing it.
+
+A broken dependency pointer — a manifest or launch agent naming a file that no longer exists — is proof of deadness on its own, so it appears as its own row even though it belongs to no app, and can be removed like any other row.
+
+The search field filters the list by app name or bundle identifier, and the sort picker orders it by size, by how much is reclaimable, or by name. Apps with nothing to reclaim are not listed.
+
+Below the list, DDCC states which evidence sources were unavailable for this sweep and how many bytes it found on disk but could not attribute to any app.
+
+**Removing the app itself.** The application bundle is listed alongside its leftovers and goes in the same action. An app installed for everyone on the Mac — usually one that arrived as an installer package — belongs to the system rather than to you, and macOS will not let you move it to the Trash on your own. DDCC asks Finder to do it, so macOS prompts for Touch ID or your password and performs the move itself. An app removed that way can only go to the Trash, never be deleted permanently; the confirmation tells you so rather than skipping it quietly. The first time this happens, macOS also asks whether DDCC may control Finder.
+
+**Apps that are running.** A running app is listed with an explanation instead of a size, because a live app keeps rewriting the files being counted. The pane offers **
+Quit** and **
+Force Quit** — force quitting discards unsaved work, so it asks first. Sweep again once the app has stopped and its real footprint appears.
+
+Every source DDCC reads is a local file, and it makes no network connection. The only subprocess it launches is `/usr/bin/osascript`, and only to ask Finder to move an app you chose to remove.
+
+---
+
+# Unlocking costly and destructive items
+
+Source: https://devdrivecacheclean.com/user-guide/unlocking-tiers/
+
+# Unlocking costly and destructive items
+
+DDCC sorts Caches results into three tiers. The tier tells you how cautious to be and controls how the row can be selected.
+
+**Safe** items can be selected in bulk with the **
+Tier 1** button. These are usually local build output or app caches that can be rebuilt from files already on your Mac.
+
+**Costly** items can be selected after you enable their category for the current scan. Turning on **
+Tier 2** lists the locked categories currently in view, along with their item counts and sizes. Enabling a costly category does not persist after a new scan.
+
+**Destructive** items are never selected in bulk. Click a destructive row to review it, then opt in to that one item if you want to select it.
+
+**Shown but never removed** items use disk space but cannot be selected. These are usually root-owned or protected paths.
+
+See The three tiers for the full tier descriptions.
+
+---
+
+# What DDCC does
+
+Source: https://devdrivecacheclean.com/user-guide/what-ddcc-does/
+
+# What DDCC does
+
+DDCC has three main views.
+
+**Caches** finds known developer caches, build output, logs, browser caches, device support files, and app support data. These results are grouped into categories and tiers, so you can see what can be rebuilt, what may need a download, and what may contain data you should inspect first.
+
+**Files** searches for large, long-unmodified files and bundles outside the cache categories. This is useful for old exports, disk images, archives, and virtual machines. Files results are chosen one at a time and can only be moved to the Trash.
+
+**Uninstall** lists every app identity on the machine — installed, or already gone — with the footprint DDCC can attribute to it from evidence: sandbox containers, shelves, entitlements, Homebrew declarations, and receipts. See The Uninstall view.
+
+Caches and Files avoid reporting the same space twice: cache paths stay in Caches, and large files outside those paths show up in Files. Uninstall is a different kind of list — one row per app rather than one row per path — and can legitimately show some of the same bytes Caches already does: emptying an app's cache and removing the app entirely are different actions on the same data. DDCC never adds an Uninstall total to a Caches total, so that overlap is never counted twice in one number.
+
+DDCC reports allocated disk space it can identify. It does not claim to account for every byte on the disk. Small files outside the cache categories, cloud-only files, purgeable APFS space, snapshots, and folders macOS refuses to read may not appear in any view.
+
+DDCC does not clean memory, remove malware, update apps, scan cloud storage, or delete files automatically. It focuses on local disk space.
+
+---

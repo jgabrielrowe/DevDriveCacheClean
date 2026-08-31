@@ -1,0 +1,38 @@
+<main>
+<div class="wrap">
+  <div class="legal">
+    {{crumb}}
+    <article>
+      <h1>Security</h1>
+      <p class="standfirst">DDCC asks for Full Disk Access and deletes files. If you find a way to make it do something it should not, please report it privately rather than in public.</p>
+
+      <h2>Reporting a vulnerability</h2>
+      <p>Use GitHub's private vulnerability reporting on the repository: open the <a href="{{repo}}/security/advisories/new">Security tab and choose Report a vulnerability</a>. That channel is private between you and me.</p>
+      <p>If you would rather not use GitHub, email <a href="mailto:{{email}}" data-umami-event="contact-support">{{email}}</a> instead, and say in the subject line that it is a security report so it is not read as an ordinary support message.</p>
+      <p><strong>Please do not open a public issue for a security problem.</strong> The issue tracker is the right place for bugs and questions, and the wrong place for anything that would tell other people how to exploit a machine before there is a fix.</p>
+
+      <h2>In scope</h2>
+      <ul>
+      <li>The DDCC application, in any released version.</li>
+      <li>This website and anything served from it.</li>
+      </ul>
+
+      <h2>What the app does, in security terms</h2>
+      <p>These are the parts worth looking at, and they are the parts most likely to be wrong:</p>
+      <ul>
+      <li>It runs locally and makes no network connections of any kind.</li>
+      <li>Full Disk Access is requested so it can read sizes and directory structure. It reads file metadata, not file contents.</li>
+      <li>Removals go to the Trash by default; permanent deletion is a separate opt-in. Only Tier 3 goes further: a selection containing one requires typing a word before either will run.</li>
+      <li>Paths are attributed to an application by declaration — a container identifier, a Homebrew zap stanza, a package receipt — and never by matching a name.</li>
+      <li>One subprocess is launched, in one situation only: <code>/usr/bin/osascript</code>, to ask Finder to move an application that belongs to the whole Mac, so that macOS can prompt you to authenticate. DDCC keeps no elevated rights.</li>
+      </ul>
+
+      <h2>Good-faith research</h2>
+      <p>If you are investigating in good faith — testing against your own machine, not accessing anyone else's data, not destroying anything, and giving a reasonable period to fix before publishing — I will not pursue any action against you, and I will credit you in the release notes if you would like that.</p>
+
+      <h2>What to expect</h2>
+      <p>This is a one-person project, so there is no team on call and no guaranteed response window. Reports are read and acknowledged as soon as I see them, and anything genuinely exploitable is treated as the next thing to fix.</p>
+    </article>
+  </div>
+</div>
+</main>

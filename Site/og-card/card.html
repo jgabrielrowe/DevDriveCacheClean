@@ -1,0 +1,62 @@
+<!doctype html>
+<!--
+  The source of Site/assets/img/og-default.png, the image every page hands to a
+  social scraper through `og:image`.
+
+  Kept as markup rather than as a PNG alone because the plate quotes three
+  figures from the front page. When those move, the card is wrong in a place
+  nobody looks — a scraper's cache, not a page anyone opens. Regenerate:
+
+    cd Site && python3 -m http.server 8124
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+      --window-size=1200,630 --screenshot=/tmp/og@2x.png \
+      http://127.0.0.1:8124/og-card/card.html
+
+  Then downscale to 1200x630 and quantize to 256 colours; the paper grain makes
+  a full-colour PNG about five times larger for no visible gain at card size.
+
+  Fonts and the icon are read from ../assets, so this stays one copy of each.
+-->
+<html><head><meta charset="utf-8"><title>DDCC — social card</title><style>
+@font-face{font-family:"Instrument Serif";src:url("../assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");font-weight:400}
+@font-face{font-family:"Instrument Serif";src:url("../assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");font-weight:400;font-style:italic}
+@font-face{font-family:"Instrument Sans";src:url("../assets/fonts/InstrumentSans-Regular.woff2") format("woff2");font-weight:400}
+@font-face{font-family:"Instrument Sans";src:url("../assets/fonts/InstrumentSans-Medium.woff2") format("woff2");font-weight:500}
+@font-face{font-family:"DDCC Mono";src:url("../assets/fonts/IBMPlexMono-Regular.woff2") format("woff2");font-weight:400}
+@font-face{font-family:"DDCC Mono";src:url("../assets/fonts/IBMPlexMono-Medium.woff2") format("woff2");font-weight:500}
+/* The site's own tokens. Copied rather than linked because site.css carries a
+   whole page's worth of rules this needs none of. */
+:root{--paper:#F6F3EC;--ink:#111A2C;--ink-40:rgba(17,26,44,.44);--ink-60:rgba(17,26,44,.64);
+--rule:rgba(17,26,44,.14);--rule-strong:rgba(17,26,44,.26);--blue:#00246C;--amber:#B4530E}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1200px;height:630px;background:var(--paper);color:var(--ink);
+font-family:"Instrument Sans",sans-serif;position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E")}
+.frame{position:absolute;inset:56px 64px;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:14px;padding-bottom:26px;border-bottom:1px solid var(--rule-strong)}
+.top img{width:38px;height:38px;border-radius:8px}
+.top .name{font-family:"DDCC Mono",monospace;font-weight:500;font-size:19px;letter-spacing:.16em}
+.top .host{margin-left:auto;font-family:"DDCC Mono",monospace;font-size:14px;letter-spacing:.1em;color:var(--ink-40)}
+h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:74px;line-height:1.02;
+letter-spacing:-.012em;margin-top:44px;max-width:15em}
+h1 em{font-style:italic;color:var(--blue)}
+p{font-size:22px;line-height:1.45;color:var(--ink-60);max-width:27em;margin-top:24px}
+.plate{margin-top:auto;display:flex;align-items:flex-end;border-top:1px solid var(--rule);padding-top:24px}
+.cell{padding-right:44px;margin-right:44px;border-right:1px solid var(--rule)}
+.cell:last-child{border-right:0;margin-right:0;padding-right:0}
+.k{font-family:"DDCC Mono",monospace;font-size:12px;letter-spacing:.18em;color:var(--ink-40);display:block;margin-bottom:9px}
+.v{font-family:"DDCC Mono",monospace;font-weight:500;font-size:31px;letter-spacing:-.01em}
+</style></head><body>
+<div class="frame">
+  <div class="top"><img src="../assets/img/icon-256.png" alt=""><span class="name">DDCC</span><span class="host">devdrivecacheclean.com</span></div>
+  <h1>Every cleaner shows you a number.<br>This one shows you <em>everything.</em></h1>
+  <p>Free macOS disk cleanup that names every path, what created it, and what removing it costs.</p>
+  <div class="plate">
+    <div class="cell"><span class="k">DEVELOPER CACHES</span><span class="v">11.65 GB</span></div>
+    <div class="cell"><span class="k">APP FOOTPRINTS</span><span class="v">46.15 GB</span></div>
+    <div class="cell"><span class="k">RETAINED, NOT OFFERED</span><span class="v">2.24 GB</span></div>
+  </div>
+</div>
+</body></html>

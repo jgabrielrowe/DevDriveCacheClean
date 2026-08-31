@@ -1,0 +1,59 @@
+name: CI
+
+# The suite has only ever run on the machine that wrote it. The point of this
+# file is a clean checkout on a machine nobody configured reaching the same
+# verdict.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# What a test run needs, and what the repository already grants by default.
+# Stated anyway, so that widening it later has to be a visible edit to this file
+# rather than a setting somebody changes in a browser.
+permissions:
+  contents: read
+
+# macOS minutes are the expensive kind. A second push to a branch makes the
+# first run's answer irrelevant, so it is cancelled rather than left to finish.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # macOS 15 because Package.swift declares .macOS(.v15). An older image has
+    # no SDK that can build this at all, so the failure would look like a source
+    # error rather than a runner choice.
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      # Printed, not pinned. The toolchain comes from the runner image, so when
+      # a build breaks the week an image updates, this line is what says so
+      # instead of the failure reading as a regression in the source.
+      - name: Toolchain
+        run: swift --version
+
+      - name: Test
+        run: swift test
+
+      # docs/ is committed and Pages serves it straight from the branch, so it
+      # can fall behind Sources/SiteGen or Site/ with nothing to notice.
+      # --check compares what the generator would emit against what docs/ holds
+      # and fails on any difference, which catches both a hand-edited page and
+      # a generator change nobody rebuilt.
+      - name: The published site matches its generator
+        run: swift run SiteBuilder --check
+
+      # A check the test suite structurally cannot make: it reads Info.plist,
+      # the built help index and the anchor catalogue and compares them against
+      # each other, which needs an assembled bundle to exist.
+      #
+      # No identity is set here, so this signs ad-hoc -- which is also what a
+      # fresh clone does, making this the closest thing to a contributor's
+      # first build.
+      - name: The app bundle assembles
+        run: Scripts/make-app.sh

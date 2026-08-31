@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>DevDriveCacheClean</string>
+    <key>CFBundleHelpBookFolder</key>
+    <string>DDCC.help</string>
+    <key>CFBundleHelpBookName</key>
+    <string>DDCC Help</string>
+    <key>CFBundleDisplayName</key>
+    <string>DDCC</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundleIdentifier</key>
+    <string>__BUNDLE_ID__</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>DevDriveCacheClean</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>__VERSION__</string>
+    <key>CFBundleVersion</key>
+    <string>__BUILD__</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>15.0</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2026 Jonathan Rowe. Source-available under SUL-1.0.</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>DevDriveCacheClean asks Finder to move apps installed for all users to the Trash, so macOS can authenticate the move. Without this, those apps can only be removed by hand.</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+</dict>
+</plist>

@@ -1,0 +1,101 @@
+<main>
+<div class="wrap">
+  <div class="hero">
+    {{crumb}}
+    <div class="hero-grid">
+      <div>
+        <h1>The large files that need <em>your review.</em></h1>
+        <p class="lede">Caches and app leftovers have rules behind them. Large files are different: the disk image you mounted once, the 700 MB of test fixtures in a project you abandoned, the download you meant to open in 2021. DDCC lists them by size and by how long they have sat untouched, then leaves the decision to you.</p>
+        <div class="actions">
+          <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">6.75<span class="unit">GB</span></div>
+        <ul>
+          <li>27 items · 14.4s</li>
+          <li>Trash only</li>
+          <li>You review every row</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <figure class="plate plate--wide">
+    <div class="plate-head">
+      <span class="fignum">FIG. 01</span>
+      <span class="figcap">Files that are large, long-unmodified, and outside every cache category</span>
+    </div>
+    <div class="plate-frame plate-frame--left">
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="{{root}}assets/screenshots/files-selected.webp 1280w, {{root}}assets/screenshots/files-selected@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="{{root}}assets/screenshots/files-selected@2x.png" width="2560" height="1400" fetchpriority="high" decoding="async"
+             alt="The Files view listing large files with their paths and ages, three selected, and a Move Selected to Trash control.">
+        </picture>
+      </div>
+      <div class="anno anno--l" style="--y:20%"><b>Path and age, per row</b>Where it is and how long since it changed, so you can decide whether you still want it.</div>
+      <div class="anno anno--l" style="--y:74%"><b>Selection is yours</b>Rows start unselected because the file may still matter.</div>
+    </div>
+  </figure>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>"Unmodified" is not <em>"unused."</em></h2>
+    <p class="section-lede">DDCC sorts by modification date because that is the date macOS records reliably. A reference PDF you open every month but never edit can look four years old here. The row labels that caveat before you move anything.</p>
+
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">CONSTRAINT</span>
+        <h3>Trash only, by design</h3>
+        <p>This view only moves files to the Trash. Permanent deletion is unavailable because these files were selected by size and age, not by a cleanup rule.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">CONSTRAINT</span>
+        <h3>Files and bundles, not folders</h3>
+        <p>A directory of ten thousand small files will not appear as one row. Real space can hide from this view, so the app reports only what it can list.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">CONSTRAINT</span>
+        <h3>It skips what Caches already explains</h3>
+        <p>Items already covered by a cache pattern are excluded here, so the same bytes are not reported twice under two different names.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">CONSTRAINT</span>
+        <h3>Your documents are protected</h3>
+        <p>Shallow, high-blast-radius folders are refused outright by DDCC's safety guard, whatever the filters say.</p>
+      </div>
+    </div>
+
+    <div class="pull"><p>This view is a review list, not an automatic cleanup rule.</p></div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Filter by size, by age, and by <em>where you point it.</em></h2>
+    <p class="section-lede">Choose a search root: your home folder, a single project, or an external drive. Set a minimum size and a minimum age, and the list narrows to things worth a decision.</p>
+    <figure class="plate">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">One file selected, with the caveat printed beside it</span>
+      </div>
+      <div class="shot">
+        <picture>
+          <source type="image/webp" srcset="{{root}}assets/screenshots/files-detail.webp 1280w, {{root}}assets/screenshots/files-detail@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="{{root}}assets/screenshots/files-detail@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+             alt="A file selected in the Files view, showing size, age, full path, and a note that age uses the modification date rather than the last time the file was opened.">
+        </picture>
+      </div>
+    </figure>
+
+    <div class="actions" style="margin-top:52px">
+      <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+      <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+      <a class="btn btn-ghost" href="{{root}}the-honest-number/">Why the total is what it is →</a>
+    </div>
+  </div>
+</section>
+</main>
