@@ -22,7 +22,18 @@ import Foundation
 /// RECORDS that it verified nothing rather than passing quietly — the
 /// failure mode this test exists to avoid is exactly the design's own
 /// original draft, which only asserted "did not crash."
-@Test func applicationGroupsMatchTheKnownAffinityEntitlement() throws {
+///
+/// A hosted runner is the one machine where that recording says nothing
+/// useful: nobody installs Affinity on a fresh image, so the test would be
+/// red on every run forever, and a red that no commit can turn green is a
+/// red everyone learns to scroll past. It is skipped there instead, which
+/// states the same fact without spending the signal. `GITHUB_ACTIONS`
+/// rather than `CI`: the claim is about an image nothing is installed on,
+/// not about automation generally — a self-hosted runner on a real Mac
+/// should still run this.
+@Test(.disabled(if: ProcessInfo.processInfo.environment["GITHUB_ACTIONS"] != nil,
+                "no Affinity apps on a hosted runner"))
+func applicationGroupsMatchTheKnownAffinityEntitlement() throws {
     let expected: Set<String> = ["6LVTQB9699.com.seriflabs", "6LVTQB9699.com.seriflabs.beta"]
     let candidates = [
         "/Applications/Affinity Designer 2.app",
