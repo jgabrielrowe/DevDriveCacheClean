@@ -42,6 +42,12 @@ public enum Site {
     /// reader can open.
     public static let repository = "https://github.com/jgabrielrowe/DevDriveCacheClean"
 
+    /// IndexNow. Not a secret: the protocol authenticates a submission by
+    /// having the same key readable at the site root, so publishing it is the
+    /// mechanism rather than a leak. `SiteWriter` emits the key file from this
+    /// constant, so the file and the submissions cannot name different keys.
+    public static let indexNowKey = "7b84be6850094eb686d711ea755086f2"
+
     /// The current disk image, at an address that survives every release.
     /// `release.yml` uploads the asset as `DDCC.dmg` with no version in the
     /// name so this URL never has to change. GitHub serves it as an

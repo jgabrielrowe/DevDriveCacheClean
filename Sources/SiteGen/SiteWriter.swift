@@ -83,6 +83,12 @@ public struct SiteWriter {
         // Jekyll over output that is already HTML.
         out["CNAME"] = Data("devdrivecacheclean.com\n".utf8)
         out[".nojekyll"] = Data()
+        // IndexNow proves ownership by serving the key back at a URL under the
+        // host being submitted. Written with no trailing newline: the file is
+        // compared against the key itself, and a search engine that does not
+        // trim would read a stray byte as the wrong key and refuse the whole
+        // submission with a 403.
+        out["\(Site.indexNowKey).txt"] = Data(Site.indexNowKey.utf8)
         return out
     }
 
