@@ -41,6 +41,8 @@ public struct Shell: Sendable {
             "crumb": crumbHTML(page),
             "email": Site.supportEmail,
             "repo": Site.repository,
+            "dmg": Site.releaseDMG,
+            "donate": Site.donationURL,
             "developer": escape(Site.developer),
             "footerApp": footerColumnHTML(heading: "The app", root: root),
             "footerWhy": footerColumnHTML(heading: "Why DDCC", root: root),

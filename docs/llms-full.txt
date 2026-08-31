@@ -9,7 +9,7 @@ license_of_software: Sustainable Use License 1.0 (source-available, NOT OSI-appr
 price: Free (USD 0), no paid tier, no trial
 platform: macOS 15+, Apple silicon and Intel
 maker: Jonathan Rowe
-repository: https://github.com/jgabrielrowe/drive-clean
+repository: https://github.com/jgabrielrowe/DevDriveCacheClean
 ---
 
 DevDriveCacheClean (DDCC) is a free macOS disk-cleanup application for developers. It is made by Jonathan Rowe, distributed as a single free download with no paid tier. It requires macOS 15 or later on Apple silicon or Intel, has no account and makes no network connections. It is source-available under the Sustainable Use License 1.0, which is not an OSI-approved open-source licence.
@@ -229,6 +229,10 @@ The software is provided “as is”, without warranty of any kind, express or i
 Get the latest release
 Read the source →
 
+If it saves you some disk and you would like to say thanks, or help fund what comes next, that is always appreciated. It is entirely optional and changes nothing about the app.
+
+Ko-fi
+
 0 connections
 
 - No account, ever
@@ -294,6 +298,14 @@ VERIFY
 ### Check the totals against the disk
 
 Empty the Trash and compare free space before and after. DDCC's figure should be at or below what you actually got back.
+
+**Use at your own risk**
+DDCC deletes files you select. It puts them in the Trash by default, so most removals can be undone — but permanent deletion is available, and some caches cannot be regenerated.
+
+The software is provided “as is”, without warranty of any kind, express or implied. To the fullest extent permitted by law, the licensor accepts no liability for any loss or damage arising from its use, including lost data and the cost of restoring it. By downloading or using DDCC you accept the Sustainable Use License, including its No Liability section.
+
+Get the latest release
+Read the source →
 
 ---
 

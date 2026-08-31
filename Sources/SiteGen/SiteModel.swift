@@ -37,7 +37,16 @@ public enum Site {
     /// application's `sameAs` cannot drift apart.
     public static let donationURL = "https://ko-fi.com/RareBit"
 
-    public static let repository = "https://github.com/jgabrielrowe/drive-clean"
+    /// The public repository. Not the working repo: releases are cut here,
+    /// because this is where the workflows live, and it is the only one a
+    /// reader can open.
+    public static let repository = "https://github.com/jgabrielrowe/DevDriveCacheClean"
+
+    /// The current disk image, at an address that survives every release.
+    /// `release.yml` uploads the asset as `DDCC.dmg` with no version in the
+    /// name so this URL never has to change. GitHub serves it as an
+    /// attachment, so following it downloads rather than navigates.
+    public static let releaseDMG = "\(repository)/releases/latest/download/DDCC.dmg"
 
     /// Slug prefix for the user guide. Page slugs, the masthead entry and the current-
     /// page rule are all built from it.
