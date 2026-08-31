@@ -23,10 +23,14 @@ concurrency:
 
 jobs:
   test:
-    # macOS 15 because Package.swift declares .macOS(.v15). An older image has
-    # no SDK that can build this at all, so the failure would look like a source
-    # error rather than a runner choice.
-    runs-on: macos-15
+    # macOS 26 for Swift 6.3.3, which is the toolchain this is developed and
+    # released against. Package.swift declares .macOS(.v15), so an older image
+    # is ruled out on SDK grounds regardless -- but the reason this is not the
+    # oldest image that compiles is the universal build. Swift 6.1.2 on the
+    # macos-15 image cannot build it: every target reports "Some of the Swift
+    # language versions used in target 'X' settings are supported. (given: [6],
+    # supported: [])" and the app step dies before it links.
+    runs-on: macos-26
 
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0

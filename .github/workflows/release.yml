@@ -12,7 +12,10 @@ on:
 
 jobs:
   release:
-    runs-on: macos-15
+    # macOS 26 for Swift 6.3.3. The universal build in Scripts/make-app.sh does
+    # not compile on the macos-15 image's 6.1.2, and a disk image has to come
+    # off the same toolchain the app is developed against.
+    runs-on: macos-26
 
     # Scoped to this job rather than declared at the top of the file or granted
     # in the repository settings, where it would apply to every workflow that
