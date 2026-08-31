@@ -1,0 +1,52 @@
+# DevDriveCacheClean (DDCC)
+
+> Free macOS disk cleanup for developers that reports what it found, what it could not read, what each removal costs, and what its safety guard left in place.
+
+DDCC never asks the volume how much space is free. Every figure it reports is a sum of files it can name and print a path for, which is why its total is usually smaller than other cleaners' and why every byte in it can be checked individually. Purgeable space, local snapshots and cloud placeholders are not counted, because macOS already treats them as available. Content reachable by a hard link from outside an item is not counted either, because removing the item would not free it.
+
+Paths are attributed to an application only when something on the machine declares the relationship — a sandbox container, a signed entitlement, a Homebrew zap stanza, an installer receipt. Resemblance between a folder name and an app name is never treated as evidence.
+
+Free to use, with no account, no telemetry and no network connection. Source-available under the Sustainable Use License.
+
+## The app (4 pages)
+
+- [Download](https://devdrivecacheclean.com/download/): Free for Apple silicon and Intel on macOS 15 or later. No account, no trial, no paid tier, and four ways to verify the app does what it says.
+- [Developer caches](https://devdrivecacheclean.com/caches/): Find Xcode derived data, node_modules, Docker layers and inactive toolchain versions, with each row naming the tool that made it and what deleting it costs.
+- [Uninstall](https://devdrivecacheclean.com/uninstall/): Dragging an app to the Trash leaves containers, preferences, caches and launch agents behind. DDCC finds them, proves ownership, and removes them together.
+- [Large & forgotten files](https://devdrivecacheclean.com/large-files/): List big, long-unmodified files and bundles by size and age, review each one yourself, and move selected items to the Trash.
+
+## Why DDCC (5 pages)
+
+- [The honest number](https://devdrivecacheclean.com/the-honest-number/): Three tools give three answers because they count differently. DDCC adds up files it can name, counts a shared byte once, and states what it could not read.
+- [How it decides](https://devdrivecacheclean.com/how-it-decides/): Tiers measure recovery cost, paths are attributed by declared evidence, and destructive actions are Trash-first and confirmed.
+- [User Guide](https://devdrivecacheclean.com/user-guide/): Every page of DDCC's built-in Help, published in full: how a scan works, how totals are reported, and reference tables for categories, tiers, and refusals.
+- [Questions](https://devdrivecacheclean.com/faq/): Is it free, does it connect to the internet, why is its number smaller than other cleaners', and could it delete something you needed.
+- [Support the project](https://devdrivecacheclean.com/support/): DDCC is free and always will be. The most useful ways to help cost nothing; Ko-fi is there if you would like to chip in.
+
+## Legal (5 pages)
+
+- [Licence](https://devdrivecacheclean.com/licence/): Source-available under the Sustainable Use License: personal and internal business use are royalty-free; commercial redistribution needs an arrangement.
+- [Terms of use](https://devdrivecacheclean.com/terms/): The terms covering devdrivecacheclean.com. The software itself is governed by the Sustainable Use License, which is reproduced in full on the licence page.
+- [Privacy](https://devdrivecacheclean.com/privacy/): This site sets no cookies, writes nothing to your device and loads nothing from a third party. Visits are counted by a self-hosted, cookieless analytics server.
+- [Security](https://devdrivecacheclean.com/security/): How to report a vulnerability in DDCC privately, what is in scope, and what the app does that is worth attention in a security audit.
+- [Contact](https://devdrivecacheclean.com/contact/): The support address for DevDriveCacheClean: where bug reports, security findings and licensing questions go. No form, nothing you send is public.
+
+## User Guide (17 pages)
+
+- [User Guide](https://devdrivecacheclean.com/user-guide/): Every page of DDCC's built-in Help, published in full: how a scan works, how totals are reported, and reference tables for categories, tiers, and refusals.
+- [Choosing what to remove](https://devdrivecacheclean.com/user-guide/choosing-what-to-remove/): Use the Caches toolbar to scan, filter, sort, select, and delete results.
+- [Deleting cache results](https://devdrivecacheclean.com/user-guide/deleting-cache-results/): Press Delete after selecting Caches results. DDCC opens a confirmation sheet before removing anything.
+- [The Files view](https://devdrivecacheclean.com/user-guide/files-view/): Use Files to find large items outside the cache categories: old exports, disk images, archives, virtual machines, and app bundles.
+- [Your first scan](https://devdrivecacheclean.com/user-guide/first-scan/): Press Scan. DDCC searches your home directory by default; the folder menu beside the button changes where it looks.
+- [Full Disk Access](https://devdrivecacheclean.com/user-guide/full-disk-access/): DDCC can scan without Full Disk Access. If macOS blocks a folder, DDCC marks affected sizes with + or shows a message that some folders could not be read.
+- [How DDCC reports totals](https://devdrivecacheclean.com/user-guide/honest-number/): DDCC reports scan totals conservatively.
+- [Privacy](https://devdrivecacheclean.com/user-guide/privacy/): DDCC runs locally on your Mac.
+- [Reading scan results](https://devdrivecacheclean.com/user-guide/reading-results/): The Caches list shows one row for each path DDCC found.
+- [Categories](https://devdrivecacheclean.com/user-guide/reference-categories/): What each Caches category contains, and what usually recreates it.
+- [The Files view controls](https://devdrivecacheclean.com/user-guide/reference-files/): The Files view searches for large, long-unmodified files outside the cache categories. It only moves selected items to the Trash.
+- [What DDCC can and cannot remove](https://devdrivecacheclean.com/user-guide/reference-removability/): Some paths are visible because they use disk space, but DDCC cannot remove them with your current permissions.
+- [The three tiers](https://devdrivecacheclean.com/user-guide/reference-tiers/): Tiers describe the risk of removing an item. They also control how DDCC lets you select it.
+- [Moving files to the Trash](https://devdrivecacheclean.com/user-guide/trash-not-delete/): The Files view only moves items to the Trash. It does not offer permanent deletion.
+- [The Uninstall view](https://devdrivecacheclean.com/user-guide/uninstall-view/): Use Uninstall to see what an app left behind — installed, or already gone — and remove it. Press Sweep to build the list.
+- [Unlocking costly and destructive items](https://devdrivecacheclean.com/user-guide/unlocking-tiers/): DDCC sorts Caches results into three tiers. The tier tells you how cautious to be and controls how the row can be selected.
+- [What DDCC does](https://devdrivecacheclean.com/user-guide/what-ddcc-does/): DDCC has three main views.

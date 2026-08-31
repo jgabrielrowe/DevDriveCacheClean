@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devdrivecacheclean.com/sitemap.xml
+
+# Plain-text renderings of this site, for agents that would rather
+# not parse the markup. llms.txt is the index; llms-full.txt is
+# every page in full.
+# https://devdrivecacheclean.com/llms.txt
+# https://devdrivecacheclean.com/llms-full.txt

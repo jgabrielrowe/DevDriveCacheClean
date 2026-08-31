@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Warms a connection the deferred script would otherwise make cold. -->
+<link rel="preconnect" href="https://analytics.hmcollector.com" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.hmcollector.com">
+<!-- Umami, self-hosted and cookieless. -->
+<script defer src="https://analytics.hmcollector.com/script.js" data-website-id="5566adc1-038a-4f04-a799-3883d1bad385"></script>
+<title>DDCC — frequently asked questions</title>
+<meta name="description" content="Is it free, does it connect to the internet, why is its number smaller than other cleaners', and could it delete something you needed.">
+<link rel="canonical" href="https://devdrivecacheclean.com/faq/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DevDriveCacheClean">
+<meta property="og:title" content="DDCC — frequently asked questions">
+<meta property="og:description" content="Is it free, does it connect to the internet, why is its number smaller than other cleaners', and could it delete something you needed.">
+<meta property="og:url" content="https://devdrivecacheclean.com/faq/">
+<meta property="og:image" content="https://devdrivecacheclean.com/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DevDriveCacheClean: every cleaner shows you a number, this one shows you everything.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/icon-256.png">
+<link rel="preload" href="../assets/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes, permanently. No paid tier, no trial, no licence key, nothing held back. The scan and the removal are the same free program."},"name":"Is it really free?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"DDCC is built without account sign-in, telemetry or network features. The only program it launches is Finder, and only to finish a removal you chose. You can verify that by reading the source or by watching it with Little Snitch."},"name":"Does it connect to the internet?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"No. Nothing of DDCC's runs when the app is closed: no launch agent, no daemon, no login item, no background helper. Check it yourself before and after use — nothing of DDCC's appears in ~/Library/LaunchAgents or /Library/LaunchDaemons, and the app bundle contains no helper to install."},"name":"Does it install a launch agent or daemon?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Because they count different things: whether to include purgeable space macOS already treats as available, whether bytes reachable under two names count once or twice, and whether a folder that could not be read counts as zero. DDCC counts files it can name, counts a shared byte once, and says what it could not read."},"name":"Why do Mac cleaners disagree about free space?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Because it excludes space macOS already manages. Purgeable storage, local snapshots and cloud placeholders are not counted as removable DDCC findings."},"name":"Why is your number smaller than the others?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"At least. Some folder could not be read, so the figure is a floor rather than a total. The app says how many and why."},"name":"What does the plus sign mean?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Removals go to the Trash by default and can be put back. Permanent deletion is a separate, opt-in checkbox. Only Tier 3, the destructive one, asks for more than that: selecting a Tier 3 item makes you type DELETE first, whether you are trashing it or not. Anything costly to regenerate stays locked until you unlock it."},"name":"Could it delete something I needed?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"A path is attributed when something declares the relationship: a container, an entitlement, a Homebrew stanza, or an installer receipt. Matching folder names to app names is not used."},"name":"Does it guess which files belong to an app?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"No. It works without, and tells you which totals are undercounts as a result. That is your call to make with the numbers in front of you."},"name":"Do I have to give it Full Disk Access?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"You removed an app installed for everyone on the Mac. Those belong to the system, so DDCC asks Finder to move it and macOS authenticates you. The app itself never holds elevated privileges."},"name":"Why did macOS ask for my password?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"No, and it says so. Caches finds known patterns. Files finds large, long-unmodified items outside those. A folder of ten thousand small files can hide from both."},"name":"Will it find everything?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Apple silicon and Intel, macOS 15 or later."},"name":"Does it work on Intel Macs?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes, royalty-free, permanently. The licence covers personal use and a company's own internal use. Only redistributing it commercially needs a separate arrangement."},"name":"Can I use it at work?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"No. DDCC is source-available under the Sustainable Use License, which is not OSI-approved. You can read every line and use it personally or inside your own company at no cost; redistributing it commercially needs a separate arrangement. If OSI-approved open source is what you need, DDCC does not qualify."},"name":"Is DDCC open source?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It began as a tool for my own Mac: clear developer caches in one click, without first reading a blog post about which folders are safe to delete. The name is the job — developer caches, drive space, cleaned. Deciding to release it publicly is what grew it into app footprints and large files as well."},"name":"Why is it called DevDriveCacheClean?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"You shouldn't have to. The source is readable, the network claim is one grep, and every total the app shows can be checked against your own free space."},"name":"Why should I believe any of this?"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://devdrivecacheclean.com/","name":"DDCC","position":1},{"@type":"ListItem","item":"https://devdrivecacheclean.com/faq/","name":"Questions","position":2}]}
+</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="../assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
+    <nav>
+      <a href="../caches/" style="--i:0">Caches</a>
+      <a href="../uninstall/" style="--i:1">Uninstall</a>
+      <a href="../large-files/" style="--i:2">Files</a>
+      <a href="../the-honest-number/" style="--i:3">The Number</a>
+      <a href="../user-guide/" style="--i:4">User Guide</a>
+      <a href="../faq/" style="--i:5" aria-current="page">FAQ</a>
+      <a href="../download/" style="--i:6">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <nav class="eyebrow crumbs" aria-label="Breadcrumb"><a href="../">DDCC</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Questions</span></nav>
+    <h1>Frequently Asked Questions</h1>
+  </div>
+</div>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="sr-only">Questions</h2>
+    <div class="two-col">
+      <div class="claim"><span class="tag">MONEY</span><h3>Is it really free?</h3><p>Yes, permanently. No paid tier, no trial, no licence key, nothing held back. The scan and the removal are the same free program.</p></div>
+      <div class="claim"><span class="tag">PRIVACY</span><h3>Does it connect to the internet?</h3><p>DDCC is built without account sign-in, telemetry or network features. The only program it launches is Finder, and only to finish a removal you chose. You can verify that by reading the source or by watching it with Little Snitch.</p></div>
+      <div class="claim"><span class="tag">PRIVACY</span><h3>Does it install a launch agent or daemon?</h3><p>No. Nothing of DDCC's runs when the app is closed: no launch agent, no daemon, no login item, no background helper. Check it yourself before and after use — nothing of DDCC's appears in ~/Library/LaunchAgents or /Library/LaunchDaemons, and the app bundle contains no helper to install.</p></div>
+      <div class="claim"><span class="tag">TOTALS</span><h3>Why do Mac cleaners disagree about free space?</h3><p>Because they count different things: whether to include purgeable space macOS already treats as available, whether bytes reachable under two names count once or twice, and whether a folder that could not be read counts as zero. DDCC counts files it can name, counts a shared byte once, and says what it could not read.</p></div>
+      <div class="claim"><span class="tag">TOTALS</span><h3>Why is your number smaller than the others?</h3><p>Because it excludes space macOS already manages. Purgeable storage, local snapshots and cloud placeholders are not counted as removable DDCC findings.</p></div>
+      <div class="claim"><span class="tag">TOTALS</span><h3>What does the plus sign mean?</h3><p>At least. Some folder could not be read, so the figure is a floor rather than a total. The app says how many and why.</p></div>
+      <div class="claim"><span class="tag">SAFETY</span><h3>Could it delete something I needed?</h3><p>Removals go to the Trash by default and can be put back. Permanent deletion is a separate, opt-in checkbox. Only Tier 3, the destructive one, asks for more than that: selecting a Tier 3 item makes you type DELETE first, whether you are trashing it or not. Anything costly to regenerate stays locked until you unlock it.</p></div>
+      <div class="claim"><span class="tag">SAFETY</span><h3>Does it guess which files belong to an app?</h3><p>A path is attributed when something declares the relationship: a container, an entitlement, a Homebrew stanza, or an installer receipt. Matching folder names to app names is not used.</p></div>
+      <div class="claim"><span class="tag">PERMISSIONS</span><h3>Do I have to give it Full Disk Access?</h3><p>No. It works without, and tells you which totals are undercounts as a result. That is your call to make with the numbers in front of you.</p></div>
+      <div class="claim"><span class="tag">PERMISSIONS</span><h3>Why did macOS ask for my password?</h3><p>You removed an app installed for everyone on the Mac. Those belong to the system, so DDCC asks Finder to move it and macOS authenticates you. The app itself never holds elevated privileges.</p></div>
+      <div class="claim"><span class="tag">SCOPE</span><h3>Will it find everything?</h3><p>No, and it says so. Caches finds known patterns. Files finds large, long-unmodified items outside those. A folder of ten thousand small files can hide from both.</p></div>
+      <div class="claim"><span class="tag">SCOPE</span><h3>Does it work on Intel Macs?</h3><p>Yes. Apple silicon and Intel, macOS 15 or later.</p></div>
+      <div class="claim"><span class="tag">LICENCE</span><h3>Can I use it at work?</h3><p>Yes, royalty-free, permanently. The licence covers personal use and a company's own internal use. Only redistributing it commercially needs a separate arrangement.</p></div>
+      <div class="claim"><span class="tag">LICENCE</span><h3>Is DDCC open source?</h3><p>No. DDCC is source-available under the Sustainable Use License, which is not OSI-approved. You can read every line and use it personally or inside your own company at no cost; redistributing it commercially needs a separate arrangement. If OSI-approved open source is what you need, DDCC does not qualify.</p></div>
+      <div class="claim"><span class="tag">ORIGIN</span><h3>Why is it called DevDriveCacheClean?</h3><p>It began as a tool for my own Mac: clear developer caches in one click, without first reading a blog post about which folders are safe to delete. The name is the job — developer caches, drive space, cleaned. Deciding to release it publicly is what grew it into app footprints and large files as well.</p></div>
+      <div class="claim"><span class="tag">TRUST</span><h3>Why should I believe any of this?</h3><p>You shouldn't have to. The source is readable, the network claim is one grep, and every total the app shows can be checked against your own free space.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:16px"><img src="../assets/img/icon-256.png" alt="" width="26" height="26" loading="lazy" decoding="async"><span style="color:var(--ink)">DDCC</span></div>
+        <p style="max-width:26em;color:var(--ink-60);font-size:15px">DevDriveCacheClean is free, and always will be. You never need to pay to use it. If you'd like to support development, that's appreciated, but never required.</p>
+      </div>
+      <div>
+        <h2>THE APP</h2>
+        <ul><li><a href="../download/">Download</a></li><li><a href="../caches/">Caches</a></li><li><a href="../uninstall/">Uninstall</a></li><li><a href="../large-files/">Large files</a></li></ul>
+      </div>
+      <div>
+        <h2>WHY DDCC</h2>
+        <ul><li><a href="../the-honest-number/">The honest number</a></li><li><a href="../how-it-decides/">How it decides</a></li><li><a href="../user-guide/">User Guide</a></li><li><a href="../faq/">FAQ</a></li><li><a href="../support/">Support the project</a></li></ul>
+      </div>
+      <div>
+        <h2>SYSTEM REQUIREMENTS</h2>
+        <ul class="foot-spec">
+          <li>macOS 15 or later</li>
+          <li>Apple silicon and Intel</li>
+          <li>Under 10 MB installed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Jonathan Rowe</span>
+      <div class="colophon-legal">
+        <a href="../licence/">Licence</a>
+        <a href="../terms/">Terms</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../security/">Security</a>
+        <a href="../contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Prefetch on hover. Never prerender: it executes the page, recording a
+     pageview for a document nobody opened. -->
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/assets/*" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
+
+</body>
+</html>

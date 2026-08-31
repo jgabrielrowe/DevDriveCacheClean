@@ -1,0 +1,14 @@
+# Keeps the SHA-pinned actions current.
+#
+# The workflows pin every action to a commit rather than a tag: `@v4` is a
+# moving reference, and the release job decrypts a Developer ID identity into a
+# keychain, so a tag repointed under it would be a signing-key compromise. A
+# pin that is never updated is its own hazard, which is what this fixes.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "Update"

@@ -1,0 +1,132 @@
+<main>
+<div class="wrap">
+  <div class="hero">
+    {{crumb}}
+    <div class="hero-grid">
+      <div>
+        <h1>You should not have to trust a program that <em>deletes your files.</em></h1>
+        <p class="lede">DDCC is built to be checkable. Every path is attributed by something on your Mac that declares the relationship. Every removal is tiered by what it costs you to be wrong. Destructive actions are Trash-first, opt-in, and confirmed. The source is there to read.</p>
+        <div class="actions">
+          <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">3<span class="unit">tiers</span></div>
+        <ul>
+          <li>Tier 1 selected by default</li>
+          <li>Tier 2 unlocked per scan</li>
+          <li>Tier 3 needs the word typed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Tiers measure blast radius, not <em>size.</em></h2>
+    <p class="section-lede">Size is only one part of the decision. The tier comes from the recovery cost if removing the item turns out to be a mistake. When an item could sit in two tiers, it goes in the more cautious one.</p>
+
+    <table class="spec">
+      <thead><tr><th>Tier</th><th>What it means</th><th>How it behaves</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Safe</td><td>Regenerated automatically, at no cost but time</td><td>Selected by default</td></tr>
+        <tr><td>2 · Costly</td><td>Comes back, but costs a download or a long rebuild</td><td>Locked; unlocked per scan, priced first</td></tr>
+        <tr><td>3 · Destructive</td><td>Holds state that does not come back</td><td class="amber">Locked; the only tier that requires typing DELETE</td></tr>
+      </tbody>
+    </table>
+
+    <figure class="plate plate--wide" style="margin-top:64px">
+      <div class="plate-head">
+        <span class="fignum">FIG. 01</span>
+        <span class="figcap">The confirmation grouped by tier, with Trash as the default</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="{{root}}assets/screenshots/caches-delete-confirmation.avif 1280w, {{root}}assets/screenshots/caches-delete-confirmation@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="{{root}}assets/screenshots/caches-delete-confirmation.webp 1280w, {{root}}assets/screenshots/caches-delete-confirmation@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="{{root}}assets/screenshots/caches-delete-confirmation@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+               alt="A confirmation sheet reading Delete 3 items, this will free 4.48 GB, listing each path under a Safe heading, with an unchecked Permanently delete option.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:34%"><b>Every path, listed</b>The actual items, grouped by how much it costs you to be wrong about them.</div>
+        <div class="anno anno--r" style="--y:56%"><b>Permanent is unchecked</b>The Trash is the default and the reversible option is the easy one.</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Attribution is <em>evidence, not resemblance.</em></h2>
+    <p class="section-lede">Folder names can resemble app names without belonging to them. DDCC attributes a path when something declares the relationship, and the row says which declaration.</p>
+
+    <table class="spec">
+      <thead><tr><th>Evidence</th><th>Who declares it</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td>Sandbox container</td><td>macOS, by bundle identifier</td><td>Declared</td></tr>
+        <tr><td>Application group</td><td>The app's signed entitlements</td><td>Declared</td></tr>
+        <tr><td>Homebrew zap stanza</td><td>The cask author</td><td>Declared</td></tr>
+        <tr><td>Installer receipt</td><td>The installer that wrote the files</td><td>Declared</td></tr>
+        <tr><td>Broken dependency pointer</td><td>A manifest naming a file that is gone</td><td class="amber">Provable</td></tr>
+        <tr><td>A similarly named folder</td><td>Nobody</td><td class="amber">Not used</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>What DDCC's safety guard <em>leaves alone.</em></h2>
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Apple-owned paths</h3>
+        <p>Apple's namespace is declined by name before any other rule runs.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Shallow, high-value folders</h3>
+        <p>Your home directory and its document folders are protected by depth rules that no filter setting can override.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Paths outside allowed roots</h3>
+        <p>Paths an app genuinely owns but which sit outside the folders DDCC may remove from are listed and left alone.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Root-owned files, without you</h3>
+        <p>Removing an app installed for everyone goes through Finder, so macOS asks you for Touch ID. DDCC uses that system prompt instead of holding privileges itself.</p>
+      </div>
+    </div>
+
+    <figure class="plate plate--wide" style="margin-top:72px">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">The privileged step performed by macOS</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="{{root}}assets/screenshots/uninstall-authentication.avif 1280w, {{root}}assets/screenshots/uninstall-authentication@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="{{root}}assets/screenshots/uninstall-authentication.webp 1280w, {{root}}assets/screenshots/uninstall-authentication@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="{{root}}assets/screenshots/uninstall-authentication@2x.png" width="2560" height="1508" loading="lazy" decoding="async"
+                 alt="macOS asking for Touch ID or a password because Finder wants to move Microsoft Word to the Trash.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:34%"><b>Finder performs the move</b>Your authentication authorizes Finder, and DDCC keeps no elevated rights.</div>
+      </div>
+    </figure>
+
+    <div class="pull"><p>No account. No telemetry. No network connection of any kind. The only program DDCC launches is Finder, and only to complete a removal you chose.</p></div>
+
+    <div class="actions" style="margin-top:52px">
+      <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+      <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+    </div>
+  </div>
+</section>
+</main>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Warms a connection the deferred script would otherwise make cold. -->
+<link rel="preconnect" href="https://analytics.hmcollector.com" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.hmcollector.com">
+<!-- Umami, self-hosted and cookieless. -->
+<script defer src="https://analytics.hmcollector.com/script.js" data-website-id="5566adc1-038a-4f04-a799-3883d1bad385"></script>
+<title>DDCC — a Mac cleaner that shows its working</title>
+<meta name="description" content="Free macOS disk cleanup that reports what it found, what it could not read, what each removal costs, and what DDCC's safety guard left in place.">
+<link rel="canonical" href="https://devdrivecacheclean.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DevDriveCacheClean">
+<meta property="og:title" content="DDCC — a Mac cleaner that shows its working">
+<meta property="og:description" content="Free macOS disk cleanup that reports what it found, what it could not read, what each removal costs, and what DDCC's safety guard left in place.">
+<meta property="og:url" content="https://devdrivecacheclean.com/">
+<meta property="og:image" content="https://devdrivecacheclean.com/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DevDriveCacheClean: every cleaner shows you a number, this one shows you everything.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/icon-256.png">
+<link rel="preload" href="assets/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@id":"https://devdrivecacheclean.com/#app","@type":"SoftwareApplication","alternateName":"DDCC","applicationCategory":"UtilitiesApplication","author":{"@id":"https://devdrivecacheclean.com/#developer"},"creator":{"@id":"https://devdrivecacheclean.com/#developer"},"description":"DevDriveCacheClean (DDCC) is a free macOS disk-cleanup application for developers. It is made by Jonathan Rowe, distributed as a single free download with no paid tier. It requires macOS 15 or later on Apple silicon or Intel, has no account and makes no network connections. It is source-available under the Sustainable Use License 1.0, which is not an OSI-approved open-source licence.","downloadUrl":"https://devdrivecacheclean.com/download/","isAccessibleForFree":true,"license":"https://devdrivecacheclean.com/licence/","name":"DevDriveCacheClean","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"operatingSystem":"macOS 15 or later","processorRequirements":"Apple silicon or Intel","sameAs":["https://github.com/jgabrielrowe/drive-clean","https://ko-fi.com/RareBit"],"url":"https://devdrivecacheclean.com/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@id":"https://devdrivecacheclean.com/#website","@type":"WebSite","alternateName":"DDCC","name":"DevDriveCacheClean","publisher":{"@id":"https://devdrivecacheclean.com/#developer"},"url":"https://devdrivecacheclean.com/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@id":"https://devdrivecacheclean.com/#developer","@type":"Person","name":"Jonathan Rowe","sameAs":["https://github.com/jgabrielrowe"],"url":"https://devdrivecacheclean.com/"}
+</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
+    <nav>
+      <a href="caches/" style="--i:0">Caches</a>
+      <a href="uninstall/" style="--i:1">Uninstall</a>
+      <a href="large-files/" style="--i:2">Files</a>
+      <a href="the-honest-number/" style="--i:3">The Number</a>
+      <a href="user-guide/" style="--i:4">User Guide</a>
+      <a href="faq/" style="--i:5">FAQ</a>
+      <a href="download/" style="--i:6">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Disk cleanup for macOS</div>
+    <div class="hero-grid">
+      <div>
+        <h1>Every cleaner shows you a number.<br>This one shows you <em>everything.</em></h1>
+        <p class="lede">DDCC shows the paths it found, what created them, and what deleting each one costs. It also shows unreadable folders, partial sizes, and paths DDCC's safety guard left in place. The number is the start of the review, not the whole answer.</p>
+        <div class="actions">
+          <a class="btn" href="download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+
+      <div class="readout readout--terms">
+        <div class="n price" role="img" aria-label="Zero, in every currency"><span style="--i:0">$0.00</span><span style="--i:1">€0,00</span><span style="--i:2">£0.00</span><span style="--i:3">¥0</span><span style="--i:4">₹0.00</span><span style="--i:5">CHF 0.00</span><span style="--i:6">₩0</span><span style="--i:7">zł 0,00</span><span style="--i:8">₽0,00</span><span style="--i:9">kr 0,00</span><span style="--i:10">₺0,00</span><span style="--i:11">Kč 0,00</span><span style="--i:12">₫0</span></div>
+        <ul>
+          <li>every feature, no tier, no trial</li>
+          <li>no account, no telemetry, no network</li>
+          <li>the source is available to read</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIG 01 -->
+  <figure class="plate plate--wide">
+    <div class="plate-head">
+      <span class="fignum">FIG. 01</span>
+      <span class="figcap">Caches — one machine, after a full scan</span>
+    </div>
+    <div class="plate-frame plate-frame--left">
+      <div class="shot">
+        <picture>
+          <source type="image/avif" srcset="assets/screenshots/caches-results.avif 1280w, assets/screenshots/caches-results@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <source type="image/webp" srcset="assets/screenshots/caches-results.webp 1280w, assets/screenshots/caches-results@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="assets/screenshots/caches-results@2x.png" width="2560" height="1400" fetchpriority="high" decoding="async"
+             alt="DDCC listing developer caches, each row naming the tool that created it, with a status line reading 48.72 GB plus, 10 folders could not be read.">
+        </picture>
+      </div>
+      <div class="anno anno--l" style="--y:3%"><b>Tier 2 stays locked</b>Costly items are opt-in, per scan, with the cost stated first.</div>
+      <div class="anno anno--l" style="--y:88%"><b>The total is a floor</b>Ten folders in this scan could not be read. The count differs per machine.</div>
+      <div class="anno anno--l" style="--y:33%"><b>Every row is attributed</b>The tool that made it, and what deleting it costs you.</div>
+    </div>
+  </figure>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>The total comes with <em>the accounting.</em></h2>
+    <p class="section-lede">Different cleaners can report different numbers for the same disk. Much of the gap comes from purgeable space, which macOS already counts as available and reclaims on its own. DDCC reports the space it can remove directly and labels the gaps it could not measure.</p>
+
+    <div class="two-col">
+      <div class="claim">
+        <h3>Purgeable space is excluded</h3>
+        <p>macOS already counts it as available and reclaims it on its own. Adding it to the total would bill you for space you never lost.</p>
+      </div>
+      <div class="claim">
+        <h3>Every path names its source</h3>
+        <p>A Homebrew zap stanza, a package receipt, a container identifier. Attribution is by declaration, never by matching a name and hoping.</p>
+      </div>
+      <div class="claim">
+        <h3>What it could not read is stated</h3>
+        <p>Unreadable folders and sizes it could only measure in part are reported beside the total. That is what the plus on the figure means.</p>
+      </div>
+      <div class="claim">
+        <h3>Refusals appear with their reason</h3>
+        <p>Paths inside an allowed folder that DDCC's safety guard rejected are listed, instead of quietly vanishing from the total.</p>
+      </div>
+    </div>
+
+    <div class="pull"><p>Deleting a build cache costs one slow rebuild. Deleting a Simulator runtime costs a six-gigabyte download. DDCC keeps those costs visible before you select anything.</p></div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Three focused views, with <em>clear limits.</em></h2>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="k">01 / CACHES</span>
+        <h3>Developer &amp; System Caches</h3>
+        <p>Xcode, node_modules, Docker, Go, Rust, Python, Homebrew, and inactive toolchain versions. And what macOS and your apps leave behind: system and app caches, browser data, iOS backups, and logs.</p>
+        <div class="metric">11.65 GB <span>Node.js · 84 items</span></div>
+      </div>
+      <div class="pillar">
+        <span class="k">02 / UNINSTALL</span>
+        <h3>App footprints</h3>
+        <p>Every installed app, and every app already gone, with the evidence that attributed each path to it. Shared data is retained until the last claimant leaves.</p>
+        <div class="metric">46.15 GB <span>reclaimable · 2.24 GB retained</span></div>
+      </div>
+      <div class="pillar">
+        <span class="k">03 / FILES</span>
+        <h3>Large &amp; forgotten</h3>
+        <p>Big, long-unmodified files and bundles outside the cache rules. You review each one, and this view can only move things to the Trash.</p>
+        <div class="metric">6.75 GB <span>27 items · 14.4s</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>The interesting part is the <em>retained</em> column.</h2>
+    <p class="section-lede">Removing an app is only part of the job. Shared containers can belong to several apps at once, so DDCC separates bytes it can remove now from bytes claimed by another installed app.</p>
+
+    <figure class="plate plate--wide">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">Uninstall: Affinity Photo 2, including retained shared data</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="assets/screenshots/uninstall-app-footprint.avif 1280w, assets/screenshots/uninstall-app-footprint@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="assets/screenshots/uninstall-app-footprint.webp 1280w, assets/screenshots/uninstall-app-footprint@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="assets/screenshots/uninstall-app-footprint@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+                 alt="The uninstall pane for Affinity Photo 2, showing 2.96 GB reclaimable, 1.84 GB retained by two sibling apps, and a section headed Outside DevDriveCacheClean's Reach.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:26%"><b>Every path, sourced</b>The application itself, a Homebrew cask, the Preferences shelf. Each line names its source.</div>
+        <div class="anno anno--r" style="--y:44%"><b>Retained, and by whom</b>1.84 GB kept because Designer and Publisher still claim it.</div>
+        <div class="anno anno--r" style="--y:64%"><b>Outside its reach</b>Paths this app owns that DDCC is not allowed to remove are still listed.</div>
+      </div>
+    </figure>
+
+    <table class="spec">
+      <thead><tr><th>Evidence</th><th>What it proves</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td>Sandbox container</td><td>The app's own directory, by bundle identifier</td><td>Declared</td></tr>
+        <tr><td>Homebrew zap stanza</td><td>Paths the cask author says belong to it</td><td>Declared</td></tr>
+        <tr><td>Package receipt</td><td>Files the installer recorded writing</td><td>Declared</td></tr>
+        <tr><td>Application group</td><td>A container shared between named apps</td><td>Declared</td></tr>
+        <tr><td>Broken pointer</td><td>A manifest naming a program that no longer exists</td><td class="amber">Provable</td></tr>
+        <tr><td>Similar name</td><td>Nothing. DDCC does not use this.</td><td class="amber">Not used</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Old is a guess, and <em>it says so.</em></h2>
+    <p class="section-lede">Big files and bundles that no cache rule covers, each with its path and how long since it changed. Age is the only signal available here and it is a weak one, so DDCC hands you the list rather than a recommendation.</p>
+
+    <figure class="plate plate--wide">
+      <div class="plate-head">
+        <span class="fignum">FIG. 03</span>
+        <span class="figcap">Files — large, long-unmodified, and outside every cache rule</span>
+      </div>
+      <div class="plate-frame plate-frame--left">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="assets/screenshots/files-selected.avif 1280w, assets/screenshots/files-selected@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="assets/screenshots/files-selected.webp 1280w, assets/screenshots/files-selected@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="assets/screenshots/files-selected@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+               alt="The Files view listing large files with their paths and ages, three selected, and a Move Selected to Trash control.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:20%"><b>Nothing starts selected</b>A file can be old and still matter, so every row waits for you.</div>
+        <div class="anno anno--l" style="--y:74%"><b>Trash only, by design</b>These were chosen by size and age, not by a cleanup rule, so permanent deletion is not offered.</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Removal starts with <em>the cost.</em></h2>
+    <p class="section-lede">Confirmation sheets explain what each removal costs before anything moves. Only Tier 3 asks for more: selecting one of those items requires typing DELETE before the button will work.</p>
+    <figure class="plate">
+      <div class="plate-head">
+        <span class="fignum">FIG. 04</span>
+        <span class="figcap">Confirmation grouped by blast radius, with the Trash as the default</span>
+      </div>
+      <div class="shot">
+        <picture>
+          <source type="image/avif" srcset="assets/screenshots/caches-delete-confirmation.avif 1280w, assets/screenshots/caches-delete-confirmation@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <source type="image/webp" srcset="assets/screenshots/caches-delete-confirmation.webp 1280w, assets/screenshots/caches-delete-confirmation@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="assets/screenshots/caches-delete-confirmation@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+             alt="A confirmation sheet reading Delete 3 items, this will free 4.48 GB, listing each path under a Safe heading with a checkbox for permanently delete.">
+        </picture>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h2>Free to use, and <em>staying that way.</em></h2>
+        <p class="section-lede">There is no paid tier, no trial and no licence key. The licence covers your own use and a company's own internal use, royalty-free and permanently — only redistributing DDCC commercially needs a separate arrangement. If you want to support the work, that is appreciated and never expected.</p>
+        <div class="actions" style="margin-top:40px">
+          <a class="btn" href="download/" data-umami-event="download-cta">Download for macOS</a>
+          <a class="btn btn-ghost" href="support/">Support the project →</a>
+        </div>
+      </div>
+      <div class="readout readout--price">
+        <div class="n price" role="img" aria-label="Zero, in every currency"><span style="--i:0">$0.00</span><span style="--i:1">€0,00</span><span style="--i:2">£0.00</span><span style="--i:3">¥0</span><span style="--i:4">₹0.00</span><span style="--i:5">CHF 0.00</span><span style="--i:6">₩0</span><span style="--i:7">zł 0,00</span><span style="--i:8">₽0,00</span><span style="--i:9">kr 0,00</span><span style="--i:10">₺0,00</span><span style="--i:11">Kč 0,00</span><span style="--i:12">₫0</span></div>
+        <ul>
+          <li>no account, no sign-in, no expiry</li>
+          <li>no network connections or trackers</li>
+          <li>no upsell prompts, no bundled extras</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:16px"><img src="assets/img/icon-256.png" alt="" width="26" height="26" loading="lazy" decoding="async"><span style="color:var(--ink)">DDCC</span></div>
+        <p style="max-width:26em;color:var(--ink-60);font-size:15px">DevDriveCacheClean is free, and always will be. You never need to pay to use it. If you'd like to support development, that's appreciated, but never required.</p>
+      </div>
+      <div>
+        <h2>THE APP</h2>
+        <ul><li><a href="download/">Download</a></li><li><a href="caches/">Caches</a></li><li><a href="uninstall/">Uninstall</a></li><li><a href="large-files/">Large files</a></li></ul>
+      </div>
+      <div>
+        <h2>WHY DDCC</h2>
+        <ul><li><a href="the-honest-number/">The honest number</a></li><li><a href="how-it-decides/">How it decides</a></li><li><a href="user-guide/">User Guide</a></li><li><a href="faq/">FAQ</a></li><li><a href="support/">Support the project</a></li></ul>
+      </div>
+      <div>
+        <h2>SYSTEM REQUIREMENTS</h2>
+        <ul class="foot-spec">
+          <li>macOS 15 or later</li>
+          <li>Apple silicon and Intel</li>
+          <li>Under 10 MB installed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Jonathan Rowe</span>
+      <div class="colophon-legal">
+        <a href="licence/">Licence</a>
+        <a href="terms/">Terms</a>
+        <a href="privacy/">Privacy</a>
+        <a href="security/">Security</a>
+        <a href="contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Prefetch on hover. Never prerender: it executes the page, recording a
+     pageview for a document nobody opened. -->
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/assets/*" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
+
+</body>
+</html>

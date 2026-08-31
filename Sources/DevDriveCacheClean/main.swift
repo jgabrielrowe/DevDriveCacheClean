@@ -1,0 +1,3 @@
+import DDCCUI
+
+DDCCApp.main()

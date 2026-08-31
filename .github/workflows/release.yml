@@ -1,0 +1,167 @@
+name: Release
+
+# Tag-driven, so cutting a release is one git command and there is no button
+# that can be pressed against the wrong commit. A manual run builds and keeps
+# the disk image as a workflow artifact but publishes nothing, which is what you
+# want when the question is "does the release path still work" rather than
+# "ship this".
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: macos-15
+
+    # Scoped to this job rather than declared at the top of the file or granted
+    # in the repository settings, where it would apply to every workflow that
+    # ever runs here. The repository default is deliberately read; this is the
+    # narrowest place the write can sit and still reach the publish step.
+    permissions:
+      contents: write
+
+    env:
+      # Both are read by Scripts/notarize.sh. The private key is not here: it
+      # has to exist as a file on disk, so a step below writes it out.
+      DDCC_NOTARY_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+      DDCC_NOTARY_ISSUER: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # make-app.sh derives CFBundleVersion from the commit count, and the
+          # default shallow fetch would make that 1 for every release forever.
+          # A build number that never advances is one macOS uses to decide an
+          # update is not an update.
+          fetch-depth: 0
+
+      # A v1.0.1 tag that builds a 1.0.0 bundle produces a disk image whose name
+      # and contents disagree, and nothing downstream would catch it: the tag
+      # names the release, the plist names the app, and no step compares them.
+      - name: The tag and the bundle version agree
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -euo pipefail
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          APP_VERSION="$(awk -F'"' '/^VERSION=/ {print $2; exit}' Scripts/make-app.sh)"
+          if [ "$TAG_VERSION" != "$APP_VERSION" ]; then
+            echo "error: tag $GITHUB_REF_NAME does not match VERSION=$APP_VERSION in Scripts/make-app.sh" >&2
+            exit 1
+          fi
+          echo "$GITHUB_REF_NAME builds $APP_VERSION"
+
+      - name: Import the Developer ID certificate
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN="$RUNNER_TEMP/ddcc-build.keychain-db"
+          CERT="$RUNNER_TEMP/certificate.p12"
+
+          printf '%s' "$BUILD_CERTIFICATE_BASE64" | base64 --decode > "$CERT"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          # A keychain that relocks partway through takes the build down at the
+          # codesign call, which reports a missing identity rather than a
+          # locked keychain. The timeout outlasts a universal build and a
+          # notarization wait.
+          security set-keychain-settings -lut 3600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+
+          security import "$CERT" -k "$KEYCHAIN" -P "$P12_PASSWORD" -T /usr/bin/codesign
+          # Without this, codesign asks for permission to use the private key
+          # and waits for someone to click. A runner has nobody to click, so
+          # the job hangs until it times out.
+          security set-key-partition-list \
+            -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN" >/dev/null
+
+          # find-identity searches the search list, not every keychain on the
+          # machine, so a keychain that exists but is not listed is invisible
+          # to the check make-app.sh makes. The unquoted substitution is
+          # deliberate: the existing entries have to arrive as separate words.
+          # shellcheck disable=SC2046
+          security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | tr -d '"')
+
+          rm -f "$CERT"
+
+          # Read back out of the keychain rather than written here as a string.
+          # The certificate's common name already exists in exactly one place,
+          # inside the .p12; a second copy in this file would be free to
+          # disagree with it after a certificate renewal.
+          IDENTITY="$(security find-identity -v -p codesigning "$KEYCHAIN" \
+            | awk -F'"' '/Developer ID Application/ {print $2; exit}')"
+          if [ -z "$IDENTITY" ]; then
+            echo "error: the imported certificate holds no Developer ID Application identity" >&2
+            exit 1
+          fi
+          echo "DDCC_SIGNING_IDENTITY=$IDENTITY" >> "$GITHUB_ENV"
+
+      - name: Provide the notarization key
+        env:
+          APPSTORE_API_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          KEY="$RUNNER_TEMP/notary-key.p8"
+          # notarytool reads the key from disk, so the secret has to become a
+          # file. Written under RUNNER_TEMP rather than the workspace so it
+          # cannot be picked up by anything that archives the checkout.
+          printf '%s' "$APPSTORE_API_PRIVATE_KEY" > "$KEY"
+          chmod 600 "$KEY"
+          echo "DDCC_NOTARY_KEY=$KEY" >> "$GITHUB_ENV"
+
+      # Universal build, hardened runtime, submission, staple. Several minutes,
+      # most of it spent waiting on Apple.
+      - name: Build, notarize and staple the app
+        run: Scripts/make-app.sh --release
+
+      - name: Package the disk image
+        run: Scripts/make-dmg.sh
+
+      # Kept whether or not this run publishes. A manual run exists precisely to
+      # produce something inspectable, and on a tagged run this is what survives
+      # if the publish step is the thing that fails.
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: DDCC-dmg
+          path: DDCC.dmg
+          if-no-files-found: error
+
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # The asset name carries no version, so
+          # releases/latest/download/DDCC.dmg stays a permanent address and the
+          # download page needs no edit when a version ships.
+          SHA="$(shasum -a 256 DDCC.dmg | cut -d' ' -f1)"
+          # Written to a file rather than passed inline. The body carries a
+          # fenced block, and quoting backticks through a shell string inside a
+          # YAML scalar is three layers of escaping deep -- a heredoc has none.
+          NOTES="$RUNNER_TEMP/notes.md"
+          cat > "$NOTES" <<NOTES_BODY
+          Signed with a Developer ID, notarized by Apple and stapled, so the
+          first launch works with no network.
+
+          \`\`\`
+          shasum -a 256 DDCC.dmg
+          $SHA
+          \`\`\`
+          NOTES_BODY
+          gh release create "$GITHUB_REF_NAME" DDCC.dmg \
+            --title "DDCC ${GITHUB_REF_NAME#v}" \
+            --generate-notes \
+            --notes-file "$NOTES"
+
+      # Runners are ephemeral, so this changes nothing about who can reach the
+      # key. It is here so that a future change to a self-hosted runner does not
+      # silently leave a Developer ID sitting in a keychain.
+      - name: Remove the signing material
+        if: always()
+        run: |
+          security delete-keychain "$RUNNER_TEMP/ddcc-build.keychain-db" 2>/dev/null || true
+          rm -f "$RUNNER_TEMP/notary-key.p8" "$RUNNER_TEMP/certificate.p12"

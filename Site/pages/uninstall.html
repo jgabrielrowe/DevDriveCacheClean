@@ -1,0 +1,196 @@
+<style>
+/* page-only: the ledger that opens the argument */
+.ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:46px}
+.ledger div{background:var(--paper);padding:24px 24px 26px}
+.ledger .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-40);display:block;margin-bottom:12px}
+.ledger .v{font-family:var(--mono);font-size:30px;letter-spacing:-.02em;line-height:1}
+.ledger .v small{font-size:.46em;color:var(--ink-60);margin-left:.3em;letter-spacing:0}
+.ledger p{font-size:14px;color:var(--ink-60);margin-top:12px;line-height:1.45}
+.ledger .amber{color:var(--amber)}
+@media (max-width:820px){.ledger{grid-template-columns:1fr}}
+</style>
+<!--/head-->
+<main>
+<div class="wrap">
+  <div class="hero">
+    {{crumb}}
+    <div class="hero-grid">
+      <div>
+        <h1>Dragging an app to the Trash removes <em>the app.</em></h1>
+        <p class="lede">The app bundle is only one part of an app's footprint. Containers, preferences, caches, login items, and launch agents can remain after the bundle is gone. DDCC finds those paths, shows the evidence tying them to the app, and removes the selected footprint together.</p>
+        <div class="actions">
+          <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">46.15<span class="unit">GB</span></div>
+        <ul>
+          <li>67 apps listed</li>
+          <li>2.24 GB retained, not offered</li>
+          <li>10 dead artifacts found</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <figure class="plate plate--wide">
+    <div class="plate-head">
+      <span class="fignum">FIG. 01</span>
+      <span class="figcap">One app's footprint, with the evidence for every path</span>
+    </div>
+    <div class="plate-frame">
+      <div class="shot">
+        <picture>
+          <source type="image/avif" srcset="{{root}}assets/screenshots/uninstall-app-footprint.avif 1280w, {{root}}assets/screenshots/uninstall-app-footprint@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <source type="image/webp" srcset="{{root}}assets/screenshots/uninstall-app-footprint.webp 1280w, {{root}}assets/screenshots/uninstall-app-footprint@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+          <img src="{{root}}assets/screenshots/uninstall-app-footprint@2x.png" width="2560" height="1400" fetchpriority="high" decoding="async"
+             alt="Affinity Photo 2 selected in DDCC: 2.96 GB reclaimable, 1.84 GB retained by two sibling apps, and a section headed Outside DevDriveCacheClean's Reach.">
+        </picture>
+      </div>
+      <div class="anno anno--l" style="--y:24%"><b>Where it came from</b>A Homebrew cask, the Preferences shelf, a shared group container. Each row names its source.</div>
+      <div class="anno anno--r" style="--y:43%"><b>Retained, and by whom</b>1.84 GB left alone because Designer and Publisher still claim it.</div>
+      <div class="anno anno--r" style="--y:64%"><b>Outside its reach</b>Paths this app owns that DDCC may not remove are still listed.</div>
+    </div>
+  </figure>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>The hard part isn't finding files. It's knowing <em>whose they are.</em></h2>
+    <p class="section-lede">A folder name can look related to an app without belonging to it. DDCC attributes a path when something on your Mac declares the relationship, and it says which declaration on every row.</p>
+
+    <table class="spec">
+      <thead><tr><th>What it reads</th><th>Who wrote it</th><th>What it proves</th></tr></thead>
+      <tbody>
+        <tr><td>Sandbox container</td><td>macOS</td><td>The directory this bundle identifier owns</td></tr>
+        <tr><td>Group entitlement</td><td>The app, signed</td><td>A container it shares with named siblings</td></tr>
+        <tr><td>Homebrew zap stanza</td><td>The cask author</td><td>Paths the packager says to remove</td></tr>
+        <tr><td>Installer receipt</td><td>The installer</td><td>Files actually written at install time</td></tr>
+        <tr><td>Native messaging manifest</td><td>The browser</td><td>The executable a browser extension launches</td></tr>
+        <tr><td class="amber">A folder with a similar name</td><td class="amber">Nobody</td><td class="amber">Not used</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pull"><p>The row needs evidence before DDCC treats it as part of an app footprint.</p></div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Shared data changes <em>the reclaimable total.</em></h2>
+    <p class="section-lede">Affinity Photo, Designer and Publisher share 1.84 GB. Counting it toward each app would overstate the total; removing it with the first app could affect the other two. DDCC lists shared bytes, attributes them to every claimant, and holds them back until the last claimant is gone.</p>
+
+    <div class="ledger">
+      <div>
+        <span class="k">OFFERED</span>
+        <div class="v">2.96<small>GB</small></div>
+        <p>Reclaimable now. Nothing else on this Mac claims any of it.</p>
+      </div>
+      <div>
+        <span class="k">HELD BACK</span>
+        <div class="v amber">1.84<small>GB</small></div>
+        <p>Real, and this app's, but Designer and Publisher claim it too. Excluded from the total above.</p>
+      </div>
+      <div>
+        <span class="k">OUTSIDE ITS REACH</span>
+        <div class="v amber">1<small>path</small></div>
+        <p>Owned by the app, outside the folders DDCC may remove from. Never measured, still shown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Apps installed for everyone need <em>macOS to say yes.</em></h2>
+    <p class="section-lede">Word, Excel and anything else that arrived as an installer package belongs to the system rather than to your user account. DDCC asks Finder to move it, and macOS asks you to authorize the move.</p>
+
+    <figure class="plate plate--wide">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">Removing Microsoft Word with Finder authorization</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="{{root}}assets/screenshots/uninstall-authentication.avif 1280w, {{root}}assets/screenshots/uninstall-authentication@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="{{root}}assets/screenshots/uninstall-authentication.webp 1280w, {{root}}assets/screenshots/uninstall-authentication@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="{{root}}assets/screenshots/uninstall-authentication@2x.png" width="2560" height="1508" loading="lazy" decoding="async"
+               alt="macOS asking for Touch ID or a password: Finder wants to move Microsoft Word to the Trash, over the DDCC uninstall list.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:34%"><b>Finder does the move</b>DDCC asks Finder, macOS prompts you, and Finder moves the app.</div>
+      </div>
+    </figure>
+
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">CONSEQUENCE</span>
+        <h3>Trash only, and it says so first</h3>
+        <p>An app removed this way goes to the Trash. The confirmation explains why permanent deletion is unavailable for that move.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">CONSEQUENCE</span>
+        <h3>One extra prompt, once</h3>
+        <p>The first time, macOS also asks whether DDCC may control Finder. That's the system asking, not the app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>It also finds what's left of apps <em>you already deleted.</em></h2>
+    <p class="section-lede">A launch agent can name a program that no longer exists. DDCC follows that pointer, shows the missing target, and lists the artifact in its own section.</p>
+
+    <figure class="plate plate--wide">
+      <div class="plate-head">
+        <span class="fignum">FIG. 03</span>
+        <span class="figcap">Dead artifacts, and the running apps DDCC declines to measure</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="{{root}}assets/screenshots/uninstall-dead-artifacts.avif 1280w, {{root}}assets/screenshots/uninstall-dead-artifacts@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="{{root}}assets/screenshots/uninstall-dead-artifacts.webp 1280w, {{root}}assets/screenshots/uninstall-dead-artifacts@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="{{root}}assets/screenshots/uninstall-dead-artifacts@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+               alt="A DEAD ARTIFACTS section listing launch agents and manifests that point at files which no longer exist, below running apps marked as unmeasurable.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:22%"><b>Running apps are skipped</b>A live app rewrites the files being counted, so DDCC reports that status.</div>
+        <div class="anno anno--l" style="--y:60%"><b>Each one names its target</b>The path it points at, and the fact that nothing is there any more.</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Removal uses the Trash <em>by default.</em></h2>
+    <div class="two-col">
+      <div class="claim">
+        <h3>Move to Trash is the default</h3>
+        <p>Space is freed when you empty the Trash, and anything DDCC moved can be put back from the Finder like any other file.</p>
+      </div>
+      <div class="claim">
+        <h3>Permanent deletion is opt-in</h3>
+        <p>A separate control, a separate confirmation, and the list of exactly what goes — grouped by how much it costs you to be wrong.</p>
+      </div>
+      <div class="claim">
+        <h3>Apple's own apps are refused</h3>
+        <p>Anything in Apple's namespace is declined outright, even if you ask for it by name.</p>
+      </div>
+      <div class="claim">
+        <h3>Nothing leaves your Mac</h3>
+        <p>No account, no telemetry, no network connection. The only program it launches is Finder, and only to perform a move you asked for.</p>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top:52px">
+      <a class="btn" href="{{root}}download/" data-umami-event="download-cta">Download for macOS</a>
+      <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+    </div>
+  </div>
+</section>
+</main>

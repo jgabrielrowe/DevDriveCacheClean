@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Warms a connection the deferred script would otherwise make cold. -->
+<link rel="preconnect" href="https://analytics.hmcollector.com" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.hmcollector.com">
+<!-- Umami, self-hosted and cookieless. -->
+<script defer src="https://analytics.hmcollector.com/script.js" data-website-id="5566adc1-038a-4f04-a799-3883d1bad385"></script>
+<title>How DDCC decides what is safe to remove</title>
+<meta name="description" content="Tiers measure recovery cost, paths are attributed by declared evidence, and destructive actions are Trash-first and confirmed.">
+<link rel="canonical" href="https://devdrivecacheclean.com/how-it-decides/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DevDriveCacheClean">
+<meta property="og:title" content="How DDCC decides what is safe to remove">
+<meta property="og:description" content="Tiers measure recovery cost, paths are attributed by declared evidence, and destructive actions are Trash-first and confirmed.">
+<meta property="og:url" content="https://devdrivecacheclean.com/how-it-decides/">
+<meta property="og:image" content="https://devdrivecacheclean.com/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DevDriveCacheClean: every cleaner shows you a number, this one shows you everything.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/icon-256.png">
+<link rel="preload" href="../assets/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://devdrivecacheclean.com/","name":"DDCC","position":1},{"@type":"ListItem","item":"https://devdrivecacheclean.com/how-it-decides/","name":"How it decides","position":2}]}
+</script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="../assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
+    <nav>
+      <a href="../caches/" style="--i:0">Caches</a>
+      <a href="../uninstall/" style="--i:1">Uninstall</a>
+      <a href="../large-files/" style="--i:2">Files</a>
+      <a href="../the-honest-number/" style="--i:3">The Number</a>
+      <a href="../user-guide/" style="--i:4">User Guide</a>
+      <a href="../faq/" style="--i:5">FAQ</a>
+      <a href="../download/" style="--i:6">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <nav class="eyebrow crumbs" aria-label="Breadcrumb"><a href="../">DDCC</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">How it decides</span></nav>
+    <div class="hero-grid">
+      <div>
+        <h1>You should not have to trust a program that <em>deletes your files.</em></h1>
+        <p class="lede">DDCC is built to be checkable. Every path is attributed by something on your Mac that declares the relationship. Every removal is tiered by what it costs you to be wrong. Destructive actions are Trash-first, opt-in, and confirmed. The source is there to read.</p>
+        <div class="actions">
+          <a class="btn" href="../download/" data-umami-event="download-cta">Download for macOS</a>
+          <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="n">3<span class="unit">tiers</span></div>
+        <ul>
+          <li>Tier 1 selected by default</li>
+          <li>Tier 2 unlocked per scan</li>
+          <li>Tier 3 needs the word typed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Tiers measure blast radius, not <em>size.</em></h2>
+    <p class="section-lede">Size is only one part of the decision. The tier comes from the recovery cost if removing the item turns out to be a mistake. When an item could sit in two tiers, it goes in the more cautious one.</p>
+
+    <table class="spec">
+      <thead><tr><th>Tier</th><th>What it means</th><th>How it behaves</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Safe</td><td>Regenerated automatically, at no cost but time</td><td>Selected by default</td></tr>
+        <tr><td>2 · Costly</td><td>Comes back, but costs a download or a long rebuild</td><td>Locked; unlocked per scan, priced first</td></tr>
+        <tr><td>3 · Destructive</td><td>Holds state that does not come back</td><td class="amber">Locked; the only tier that requires typing DELETE</td></tr>
+      </tbody>
+    </table>
+
+    <figure class="plate plate--wide" style="margin-top:64px">
+      <div class="plate-head">
+        <span class="fignum">FIG. 01</span>
+        <span class="figcap">The confirmation grouped by tier, with Trash as the default</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="../assets/screenshots/caches-delete-confirmation.avif 1280w, ../assets/screenshots/caches-delete-confirmation@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="../assets/screenshots/caches-delete-confirmation.webp 1280w, ../assets/screenshots/caches-delete-confirmation@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="../assets/screenshots/caches-delete-confirmation@2x.png" width="2560" height="1400" loading="lazy" decoding="async"
+               alt="A confirmation sheet reading Delete 3 items, this will free 4.48 GB, listing each path under a Safe heading, with an unchecked Permanently delete option.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:34%"><b>Every path, listed</b>The actual items, grouped by how much it costs you to be wrong about them.</div>
+        <div class="anno anno--r" style="--y:56%"><b>Permanent is unchecked</b>The Trash is the default and the reversible option is the easy one.</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>Attribution is <em>evidence, not resemblance.</em></h2>
+    <p class="section-lede">Folder names can resemble app names without belonging to them. DDCC attributes a path when something declares the relationship, and the row says which declaration.</p>
+
+    <table class="spec">
+      <thead><tr><th>Evidence</th><th>Who declares it</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td>Sandbox container</td><td>macOS, by bundle identifier</td><td>Declared</td></tr>
+        <tr><td>Application group</td><td>The app's signed entitlements</td><td>Declared</td></tr>
+        <tr><td>Homebrew zap stanza</td><td>The cask author</td><td>Declared</td></tr>
+        <tr><td>Installer receipt</td><td>The installer that wrote the files</td><td>Declared</td></tr>
+        <tr><td>Broken dependency pointer</td><td>A manifest naming a file that is gone</td><td class="amber">Provable</td></tr>
+        <tr><td>A similarly named folder</td><td>Nobody</td><td class="amber">Not used</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap">
+    <h2>What DDCC's safety guard <em>leaves alone.</em></h2>
+    <div class="two-col">
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Apple-owned paths</h3>
+        <p>Apple's namespace is declined by name before any other rule runs.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Shallow, high-value folders</h3>
+        <p>Your home directory and its document folders are protected by depth rules that no filter setting can override.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Paths outside allowed roots</h3>
+        <p>Paths an app genuinely owns but which sit outside the folders DDCC may remove from are listed and left alone.</p>
+      </div>
+      <div class="claim">
+        <span class="tag">REFUSED</span>
+        <h3>Root-owned files, without you</h3>
+        <p>Removing an app installed for everyone goes through Finder, so macOS asks you for Touch ID. DDCC uses that system prompt instead of holding privileges itself.</p>
+      </div>
+    </div>
+
+    <figure class="plate plate--wide" style="margin-top:72px">
+      <div class="plate-head">
+        <span class="fignum">FIG. 02</span>
+        <span class="figcap">The privileged step performed by macOS</span>
+      </div>
+      <div class="plate-frame">
+        <div class="shot">
+          <picture>
+            <source type="image/avif" srcset="../assets/screenshots/uninstall-authentication.avif 1280w, ../assets/screenshots/uninstall-authentication@2x.avif 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <source type="image/webp" srcset="../assets/screenshots/uninstall-authentication.webp 1280w, ../assets/screenshots/uninstall-authentication@2x.webp 2560w" sizes="(max-width: 1200px) 100vw, 960px">
+            <img src="../assets/screenshots/uninstall-authentication@2x.png" width="2560" height="1508" loading="lazy" decoding="async"
+                 alt="macOS asking for Touch ID or a password because Finder wants to move Microsoft Word to the Trash.">
+          </picture>
+        </div>
+        <div class="anno anno--l" style="--y:34%"><b>Finder performs the move</b>Your authentication authorizes Finder, and DDCC keeps no elevated rights.</div>
+      </div>
+    </figure>
+
+    <div class="pull"><p>No account. No telemetry. No network connection of any kind. The only program DDCC launches is Finder, and only to complete a removal you chose.</p></div>
+
+    <div class="actions" style="margin-top:52px">
+      <a class="btn" href="../download/" data-umami-event="download-cta">Download for macOS</a>
+      <span class="note">Free · Apple silicon &amp; Intel · macOS 15+</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="wordmark" style="margin-bottom:16px"><img src="../assets/img/icon-256.png" alt="" width="26" height="26" loading="lazy" decoding="async"><span style="color:var(--ink)">DDCC</span></div>
+        <p style="max-width:26em;color:var(--ink-60);font-size:15px">DevDriveCacheClean is free, and always will be. You never need to pay to use it. If you'd like to support development, that's appreciated, but never required.</p>
+      </div>
+      <div>
+        <h2>THE APP</h2>
+        <ul><li><a href="../download/">Download</a></li><li><a href="../caches/">Caches</a></li><li><a href="../uninstall/">Uninstall</a></li><li><a href="../large-files/">Large files</a></li></ul>
+      </div>
+      <div>
+        <h2>WHY DDCC</h2>
+        <ul><li><a href="../the-honest-number/">The honest number</a></li><li><a href="../how-it-decides/">How it decides</a></li><li><a href="../user-guide/">User Guide</a></li><li><a href="../faq/">FAQ</a></li><li><a href="../support/">Support the project</a></li></ul>
+      </div>
+      <div>
+        <h2>SYSTEM REQUIREMENTS</h2>
+        <ul class="foot-spec">
+          <li>macOS 15 or later</li>
+          <li>Apple silicon and Intel</li>
+          <li>Under 10 MB installed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Jonathan Rowe</span>
+      <div class="colophon-legal">
+        <a href="../licence/">Licence</a>
+        <a href="../terms/">Terms</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../security/">Security</a>
+        <a href="../contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Prefetch on hover. Never prerender: it executes the page, recording a
+     pageview for a document nobody opened. -->
+<script type="speculationrules">
+{
+  "prefetch": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/assets/*" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
+
+</body>
+</html>
