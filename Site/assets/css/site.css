@@ -318,6 +318,15 @@ h2 em{font-style:italic;color:var(--blue)}
 .pillar p{font-size:15px;color:var(--ink-60);margin-bottom:20px}
 .pillar .metric{font-family:var(--mono);font-size:13px;margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink)}
 .pillar .metric span{color:var(--ink-40)}
+/* The metric rule sits on top of its text, so a column whose line wraps pushes
+   its rule up a line and the three stop being level. That happens only between
+   the width the pillars stop stacking and the width the measure stops growing:
+   below 901px there is one column and above 1180px .wrap is capped, so nothing
+   wraps. Reserving the two lines there keeps the rules level. border-box, so
+   this includes the padding-top. */
+@media (min-width:901px) and (max-width:1180px){
+  .pillar .metric{min-height:calc(2 * 1.55em + 14px)}
+}
 
 /* specimen table */
 .spec{width:100%;border-collapse:collapse;margin-top:44px;font-family:var(--mono);font-size:13.5px}
@@ -445,7 +454,13 @@ code{font-family:var(--mono);font-size:.88em;background:var(--paper-2);border:1p
 .pagenav b{font-weight:500;font-size:15.5px}
 .pagenav .next{text-align:right}
 
-@media (max-width:1180px){
+/* 1320px is .shell's own max-width, not a guess: below it the three columns
+   are being squeezed rather than laid out, and the rail is the one that has to
+   go. Hiding it at 1180 instead meant a window one pixel wider than that
+   breakpoint paid 210px plus a gap out of a grid that had not finished
+   growing, and the reading column fell from about 830px to about 530px. The
+   page read worse the wider it got. */
+@media (max-width:1320px){
   .shell{grid-template-columns:230px minmax(0,1fr);gap:40px}
   .contents{display:none}
 }
