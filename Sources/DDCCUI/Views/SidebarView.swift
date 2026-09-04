@@ -57,69 +57,66 @@ struct SidebarView: View {
         viewModel.categorySummary.filter { !$0.category.isDeveloper }
     }
 
+    /// Formatted here because, unlike Files and Uninstall, the caches view
+    /// model exposes raw byte counts rather than sidebar strings.
+    ///
+    /// Nil before the first scan: a row reading "Zero KB" claims a measured
+    /// nothing where the truth is that nothing has been measured.
+    private var cachesTotalText: String? {
+        guard !viewModel.results.isEmpty else { return nil }
+        return ByteCountFormatter.string(fromByteCount: viewModel.totalSize, countStyle: .file)
+    }
+
+    private var cachesLockedText: String? {
+        guard viewModel.lockedSize > 0 else { return nil }
+        let size = ByteCountFormatter.string(fromByteCount: viewModel.lockedSize, countStyle: .file)
+        return "\(size) locked"
+    }
+
     var body: some View {
         List(selection: selection) {
-            // One unheaded group. Three rows that name themselves need no
-            // fourth noun above them, and a header repeating its only row's
-            // name says nothing. Ordered as the Actions menu orders them and
-            // as the app launches, so the primary mode is not listed last.
-            Section {
-                Label {
-                    HStack {
-                        // Was the literal "All", which said nothing about what
-                        // it held once the Files view existed alongside it.
-                        // Taken from AppMode rather than restated, so this row
-                        // and the window title cannot drift apart.
-                        Text(AppMode.caches.title)
-                        Spacer()
-                        if !viewModel.results.isEmpty {
-                            VStack(alignment: .trailing) {
-                                Text(ByteCountFormatter.string(fromByteCount: viewModel.totalSize, countStyle: .file))
-                                    .font(.caption)
-                                if viewModel.lockedSize > 0 {
-                                    Text("\(ByteCountFormatter.string(fromByteCount: viewModel.lockedSize, countStyle: .file)) locked")
-                                        .font(.caption2)
-                                        .foregroundStyle(.tertiary)
-                                }
-                            }
-                            .foregroundStyle(.secondary)
-                        }
-                    }
-                } icon: {
-                    Image(systemName: "tray.full")
-                }
-                .tag(SidebarSelection.all)
-                .contentShape(Rectangle())
-                .help("Every cache found by the last scan, across all categories.")
+            // These three rows are the List's own children rather than a
+            // Section. An unheaded Section still emits a header into the
+            // accessibility tree, so VoiceOver counted four rows where three
+            // are drawn and reported Caches as the second -- a row nothing
+            // renders, and every position after it off by one.
+            //
+            // Ordered as the Actions menu orders them and as the app launches,
+            // so the primary mode is not listed last.
+            ModeRowContent(
+                icon: "tray.full",
+                // Was the literal "All", which said nothing about what it
+                // held once the Files view existed alongside it. Taken from
+                // AppMode rather than restated, so this row and the window
+                // title cannot drift apart.
+                title: AppMode.caches.title,
+                primary: cachesTotalText,
+                secondary: cachesLockedText)
+            .tag(SidebarSelection.all)
+            .contentShape(Rectangle())
+            .help("Every cache found by the last scan, across all categories.")
 
-                Label {
-                    ModeRowContent(
-                        title: AppMode.files.title,
-                        primary: finderViewModel.sidebarTotalText,
-                        secondary: finderViewModel.sidebarUnreadableText)
-                } icon: {
-                    Image(systemName: AppMode.files.icon)
-                }
-                .tag(SidebarSelection.mode(AppMode.files))
-                .contentShape(Rectangle())
-                .help(FinderHelpTopic.mode.helpText.short)
+            ModeRowContent(
+                icon: AppMode.files.icon,
+                title: AppMode.files.title,
+                primary: finderViewModel.sidebarTotalText,
+                secondary: finderViewModel.sidebarUnreadableText)
+            .tag(SidebarSelection.mode(AppMode.files))
+            .contentShape(Rectangle())
+            .help(FinderHelpTopic.mode.helpText.short)
 
-                Label {
-                    // Both figures labelled. An unlabelled number beside
-                    // "Uninstall" reads as "what I get back", and the retained
-                    // figure is the one most likely to be read as a bug, so it
-                    // never sits silently inside the figure above it.
-                    ModeRowContent(
-                        title: AppMode.uninstall.title,
-                        primary: uninstallViewModel.sidebarReclaimableText.map { "\($0) reclaimable" },
-                        secondary: uninstallViewModel.sidebarRetainedText.map { "\($0) retained" })
-                } icon: {
-                    Image(systemName: AppMode.uninstall.icon)
-                }
-                .tag(SidebarSelection.mode(AppMode.uninstall))
-                .contentShape(Rectangle())
-                .help("What every installed app — and every app already gone — left behind.")
-            }
+            // Both figures labelled. An unlabelled number beside "Uninstall"
+            // reads as "what I get back", and the retained figure is the one
+            // most likely to be read as a bug, so it never sits silently
+            // inside the figure above it.
+            ModeRowContent(
+                icon: AppMode.uninstall.icon,
+                title: AppMode.uninstall.title,
+                primary: uninstallViewModel.sidebarReclaimableText.map { "\($0) reclaimable" },
+                secondary: uninstallViewModel.sidebarRetainedText.map { "\($0) retained" })
+            .tag(SidebarSelection.mode(AppMode.uninstall))
+            .contentShape(Rectangle())
+            .help("What every installed app — and every app already gone — left behind.")
 
 
             if !devCategories.isEmpty {
@@ -144,6 +141,16 @@ struct SidebarView: View {
                 }
             }
         }
+        // Applied to the list, not to each row. Every row here is a `Label`
+        // wanting the same alignment, and the three mode rows were written
+        // without it -- a per-row modifier is one a new row can be added
+        // without.
+        .labelStyle(SidebarRowLabelStyle())
+        // Replaces the inset the removed Section used to provide. A content
+        // margin rather than a spacer row, because a spacer would be one more
+        // element in the accessibility tree -- the exact fault that removing
+        // the Section fixed.
+        .contentMargins(.top, 6, for: .scrollContent)
         .navigationTitle("DevDriveCacheClean")
         // The expand animation, killed outright — measured, not guessed.
         //
@@ -188,8 +195,13 @@ struct SidebarView: View {
     }
 }
 
-/// The Files and Uninstall rows, shaped like the Caches "All" row above
-/// them: a title, then whatever the last run reported, trailing.
+/// Every row in the sidebar's top group: a glyph, a name, then whatever the
+/// last run reported, trailing.
+///
+/// The figures sit beside the `Label` rather than inside its title, which is
+/// what keeps the glyph level with the name. A `Label` centres its icon
+/// against its whole title, so a title carrying two lines of figures pushes
+/// the glyph down to the midpoint between them -- beside nothing.
 ///
 /// Both figures arrive already formatted. That is deliberate and is what
 /// keeps `EngineOverlapTests` meaningful — the sidebar is the one file
@@ -197,13 +209,19 @@ struct SidebarView: View {
 /// numbers in it has nothing to add together. See that test's own comment
 /// for the 12.1 GB it exists to stop being reported as 23 GB.
 struct ModeRowContent: View {
+    let icon: String
     let title: String
     let primary: String?
     let secondary: String?
 
     var body: some View {
         HStack {
-            Text(title)
+            Label {
+                Text(title)
+                    .sidebarModeTitle()
+            } icon: {
+                Image(systemName: icon)
+            }
             Spacer()
             if let primary {
                 VStack(alignment: .trailing) {
@@ -211,8 +229,7 @@ struct ModeRowContent: View {
                         .font(.caption)
                     if let secondary {
                         Text(secondary)
-                            .font(.caption2)
-                            .foregroundStyle(.tertiary)
+                            .rowSubtitle()
                     }
                 }
                 .foregroundStyle(.secondary)
@@ -238,6 +255,7 @@ struct SidebarSectionHeader: View {
 
     var body: some View {
         Text(group.title)
+            .sidebarSectionHeader()
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
             // No `withAnimation`. The list suppresses animation for this
@@ -250,25 +268,47 @@ struct SidebarSectionHeader: View {
     }
 }
 
+/// One glyph column for the whole sidebar, so the names start in a line.
+///
+/// SF Symbols are not one width -- Game Engines' controller is wider than
+/// Node.js' box -- and a `Label` sized to each glyph in turn starts every name
+/// in a different place, measured on screen as an 11pt ragged left edge down
+/// the sidebar. A fixed frame gives the glyphs a column and the names one
+/// left edge.
+///
+/// Vertical alignment is left to `Label`, which centres the glyph on the name
+/// correctly once the row's figures are its sibling rather than its title.
+private struct SidebarRowLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 6) {
+            configuration.icon
+                .frame(width: 20)
+            configuration.title
+        }
+    }
+}
+
 struct CategoryRow: View {
     let item: (category: CleanCategory, count: Int, totalSize: Int64, lockedSize: Int64)
 
     var body: some View {
-        Label {
-            HStack {
+        HStack {
+            // The figures are the `Label`'s sibling, not part of its title.
+            // See `ModeRowContent` for why: a two-line title takes the glyph
+            // down with it.
+            Label {
                 Text(item.category.rawValue)
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text(ByteCountFormatter.string(fromByteCount: item.totalSize, countStyle: .file))
-                        .font(.caption)
-                    Text(subtitle)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
-                }
-                .foregroundStyle(.secondary)
+            } icon: {
+                Image(systemName: item.category.icon)
             }
-        } icon: {
-            Image(systemName: item.category.icon)
+            Spacer()
+            VStack(alignment: .trailing) {
+                Text(ByteCountFormatter.string(fromByteCount: item.totalSize, countStyle: .file))
+                    .font(.caption)
+                Text(subtitle)
+                    .rowSubtitle()
+            }
+            .foregroundStyle(.secondary)
         }
         // The whole row is the hover target, not just the glyph and the
         // glyphs' text. A `Label` in a `List` row draws only where its
@@ -409,8 +449,7 @@ struct ScanStatusBar: View {
                         }
                     }
                     Text(path)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }

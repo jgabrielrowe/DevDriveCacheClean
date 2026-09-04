@@ -16,9 +16,9 @@ private var allAnchors: [String] {
 }
 
 @Test func thereIsOneAnchorPerCatalogueEntry() {
-    // 39 with Game Engines. Hardcoded on purpose: a category added without
+    // 40 with Android. Hardcoded on purpose: a category added without
     // a help entry should fail here rather than ship undocumented.
-    #expect(allAnchors.count == 39)
+    #expect(allAnchors.count == 40)
 }
 
 /// An anchor becomes an HTML `name` attribute and a lookup key for Help

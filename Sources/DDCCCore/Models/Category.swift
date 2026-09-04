@@ -7,6 +7,7 @@ public enum CleanCategory: String, CaseIterable, Identifiable, Sendable {
     case rust = "Rust"
     case javaKotlin = "Java/Kotlin"
     case xcode = "Xcode"
+    case android = "Android"
     case goLang = "Go"
     case docker = "Docker"
     case homebrew = "Homebrew"
@@ -36,6 +37,7 @@ public enum CleanCategory: String, CaseIterable, Identifiable, Sendable {
         case .rust: return "gearshape.2"
         case .javaKotlin: return "cup.and.saucer"
         case .xcode: return "hammer"
+        case .android: return "candybarphone"
         case .goLang: return "hare"
         case .docker: return "shippingbox"
         case .homebrew: return "mug"
@@ -59,7 +61,7 @@ public enum CleanCategory: String, CaseIterable, Identifiable, Sendable {
 
     public var isDeveloper: Bool {
         switch self {
-        case .nodeJS, .python, .rust, .javaKotlin, .xcode, .goLang, .docker,
+        case .nodeJS, .python, .rust, .javaKotlin, .xcode, .android, .goLang, .docker,
              .homebrew, .packageCaches, .ideData, .macDevCaches, .terraform,
              .webFrameworks, .genericBuild, .gameEngines:
             return true

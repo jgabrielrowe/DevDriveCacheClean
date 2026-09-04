@@ -109,8 +109,7 @@ struct FinderListView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(file.displayName)
                     Text(file.relativePath)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }
@@ -129,8 +128,7 @@ struct FinderListView: View {
                             .font(.caption)
                     }
                     Text(file.unmodifiedDescription)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
                 }
                 .foregroundStyle(.secondary)
             }
@@ -148,6 +146,7 @@ struct FinderListView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
+                        .accessibilityHidden(true)
                     Text(unreadableMessage)
                         .font(.caption)
                 }

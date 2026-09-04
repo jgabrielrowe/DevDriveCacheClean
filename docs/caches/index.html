@@ -32,10 +32,21 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="../" data-full="DevDriveCacheClean" aria-label="DDCC — DevDriveCacheClean"><img src="../assets/img/icon-256.png" alt="" width="38" height="38"><span style="color:var(--ink)">DDCC</span></a>
-    <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Menu">
+    <!-- The visible Menu/Close text is CSS generated content, which screen
+     readers report inconsistently, so this label is the only reliable
+     accessible name.
+     role=button rather than the native checkbox, because "checked" describes a
+     form control and this is a disclosure: with the role, the state announced
+     is collapsed/expanded and the checkbox's own checked is not read as well.
+     The checkbox is still the mechanism -- the menu is opened by CSS off
+     :checked -- so with script blocked the menu still works and only the state
+     announcement is lost. -->
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" role="button"
+           aria-expanded="false" aria-label="Navigation menu">
     <label class="nav-burger" for="nav-toggle"><span class="nav-burger-label"></span><span class="nav-rules" aria-hidden="true"><span></span><span></span><span></span></span></label>
     <nav>
       <a href="../caches/" style="--i:0" aria-current="page">Caches</a>
@@ -49,7 +60,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 <div class="wrap">
   <div class="hero">
     <nav class="eyebrow crumbs" aria-label="Breadcrumb"><a href="../">DDCC</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Developer caches</span></nav>
@@ -227,6 +238,19 @@
 
 <!-- Prefetch on hover. Never prerender: it executes the page, recording a
      pageview for a document nobody opened. -->
+<!-- Keeps aria-expanded true to :checked. The menu itself needs no script:
+     this only narrates a state CSS already carries, so a failure here costs
+     the announcement and not the navigation. -->
+<script>
+(function () {
+  var toggle = document.getElementById("nav-toggle");
+  if (!toggle) return;
+  function sync() { toggle.setAttribute("aria-expanded", toggle.checked ? "true" : "false"); }
+  toggle.addEventListener("change", sync);
+  sync();
+})();
+</script>
+
 <script type="speculationrules">
 {
   "prefetch": [{

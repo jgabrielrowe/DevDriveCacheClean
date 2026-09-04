@@ -26,10 +26,10 @@
   --ink-60:rgba(17,26,44,.64);
   --ink-40:rgba(17,26,44,.44);
   --rule:rgba(17,26,44,.14);
-  --rule-strong:rgba(17,26,44,.26);
+  --rule-strong:rgba(17,26,44,.26);--control-edge:rgba(17,26,44,.50);
   --blue:#00246C;                     /* the icon's dominant */
   --blue-soft:rgba(0,36,108,.07);
-  --amber:#B4530E;                    /* reserved: uncertainty, caveats, marks */
+  --amber:#B4530E;--amber-ink:#9A470C;                    /* reserved: uncertainty, caveats, marks */
   --amber-soft:rgba(180,83,14,.10);
   --measure:1180px;
   --masthead-h:67px;                  /* both mastheads; the sticky index keys off it */
@@ -83,14 +83,21 @@ a{color:inherit}
 
 /* ---------- the menu, narrow ---------- */
 /* No JavaScript on this site: the disclosure is a checkbox driven by its label. */
-.nav-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+/* display:none, not a clipped box: opacity and pointer-events hide a checkbox
+   without taking it out of the tab order, so at desktop width this was a
+   focusable control announced as "Menu" whose visible counterpart is
+   display:none. Not tabindex=-1 either -- below 860px this checkbox is the
+   only keyboard route into the nav, whose links are display:none until it is
+   checked. A label's `for` and the :checked sibling selectors both work on a
+   display:none input, so the menu still toggles. */
+.nav-toggle{display:none}
 .nav-burger{
   display:none;margin-left:auto;align-items:center;gap:12px;
   cursor:pointer;padding:8px 0;-webkit-tap-highlight-color:transparent;
 }
 .nav-burger-label{
   font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--ink-40);transition:color .18s;
+  text-transform:uppercase;color:var(--ink-60);transition:color .18s;
 }
 .nav-burger-label::after{content:"Menu"}
 .nav-rules{display:block;width:22px}
@@ -109,6 +116,7 @@ a{color:inherit}
 
 @media (max-width:860px){
   .masthead .wrap{flex-wrap:wrap;row-gap:0}
+  .nav-toggle{display:block;position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
   .nav-burger{display:flex}
   .masthead nav{display:none}
   .nav-toggle:checked~nav{
@@ -143,7 +151,7 @@ a{color:inherit}
 .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:58px;align-items:start}
 .eyebrow{
   font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--ink-40);display:flex;align-items:center;gap:14px;margin-bottom:26px;
+  color:var(--ink-60);display:flex;align-items:center;gap:14px;margin-bottom:26px;
 }
 .eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
 /* The breadcrumb occupies the eyebrow's slot and carries its class. */
@@ -167,7 +175,7 @@ h1 em{font-style:italic;color:var(--blue)}
 .readout::before{
   content:"SCAN READOUT";position:absolute;top:-8px;left:20px;
   background:var(--paper);padding:0 8px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink-40);
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink-60);
 }
 .readout .n{font-family:var(--mono);font-size:clamp(38px,4.4vw,50px);font-weight:500;letter-spacing:-.03em;line-height:1}
 .readout .n sup{font-size:.42em;color:var(--amber);vertical-align:super;font-weight:600}
@@ -220,12 +228,12 @@ h1 em{font-style:italic;color:var(--blue)}
   transition:.18s;
 }
 .btn:hover{background:transparent;color:var(--blue)}
-.btn-ghost{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--control-edge)}
 .btn-ghost:hover{border-color:var(--blue);background:transparent;color:var(--blue)}
 /* The requirements chip beside a call to action. Amber marks a caveat here as
    everywhere else on the site. */
 .actions .note{
-  font-family:var(--mono);font-size:12px;color:var(--ink-40);margin:0;
+  font-family:var(--mono);font-size:12px;color:var(--ink-60);margin:0;
   border-left:2px solid var(--amber);background:var(--amber-soft);padding:16px 20px;
 }
 
@@ -235,7 +243,7 @@ h1 em{font-style:italic;color:var(--blue)}
 .guide-contents{margin-top:56px;padding-bottom:104px}
 .guide-contents h2{
   font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;font-weight:500;
-  color:var(--ink-40);margin:0 0 14px;max-width:none;
+  color:var(--ink-60);margin:0 0 14px;max-width:none;
 }
 .guide-list{list-style:none}
 .guide-list li{margin-bottom:1px}
@@ -245,7 +253,7 @@ h1 em{font-style:italic;color:var(--blue)}
   padding:9px 10px;border-left:2px solid transparent;transition:.15s;
 }
 .guide-list a:hover{color:var(--blue);background:var(--blue-soft);border-left-color:var(--blue)}
-.guide-list .num{font-family:var(--mono);font-size:11px;color:var(--ink-40)}
+.guide-list .num{font-family:var(--mono);font-size:11px;color:var(--ink-60)}
 
 /* ---------- legal pages ---------- */
 /* Long-form terms at a reading measure, using the documentation's prose styles.
@@ -312,12 +320,12 @@ h2 em{font-style:italic;color:var(--blue)}
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);margin-top:56px;border:1px solid var(--rule)}
 /* A column, so the metric can be pushed to the card's floor. */
 .pillar{background:var(--paper);padding:32px 28px 36px;display:flex;flex-direction:column}
-.pillar .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-40)}
+.pillar .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-60)}
 .pillar h3{font-family:var(--serif);font-weight:400;font-size:30px;margin:12px 0 10px;letter-spacing:-.01em}
 /* margin-top:auto absorbs the slack, so the paragraph carries the minimum gap. */
 .pillar p{font-size:15px;color:var(--ink-60);margin-bottom:20px}
 .pillar .metric{font-family:var(--mono);font-size:13px;margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);color:var(--ink)}
-.pillar .metric span{color:var(--ink-40)}
+.pillar .metric span{color:var(--ink-60)}
 /* The metric rule sits on top of its text, so a column whose line wraps pushes
    its rule up a line and the three stop being level. That happens only between
    the width the pillars stop stacking and the width the measure stops growing:
@@ -332,7 +340,7 @@ h2 em{font-style:italic;color:var(--blue)}
 .spec{width:100%;border-collapse:collapse;margin-top:44px;font-family:var(--mono);font-size:13.5px}
 .spec th{
   text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-40);border-bottom:1px solid var(--rule-strong);padding:0 0 10px;
+  color:var(--ink-60);border-bottom:1px solid var(--rule-strong);padding:0 0 10px;
 }
 .spec td{padding:13px 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .spec td:last-child,.spec th:last-child{text-align:right}
@@ -349,22 +357,22 @@ footer{border-top:1px solid var(--rule-strong);padding:56px 0 72px;background:va
 /* Set as data, not navigation: the colophon's register, with no hover. */
 .foot-spec li{
   font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
-  color:var(--ink-40);line-height:1.5;margin-bottom:7px;
+  color:var(--ink-60);line-height:1.5;margin-bottom:7px;
 }
 /* Overrides the display h2 wholesale. These are labels, not headings that
    read as type; without max-width:none the 16em bound lands mid-word on
    SYSTEM REQUIREMENTS. */
-footer h2{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-40);margin-bottom:16px;font-weight:500;line-height:1.2;max-width:none}
+footer h2{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-60);margin-bottom:16px;font-weight:500;line-height:1.2;max-width:none}
 footer ul{list-style:none}
 footer li{margin-bottom:9px;font-size:15px}
 footer a{color:var(--ink-60);text-decoration:none}
 footer a:hover{color:var(--blue)}
 /* Two children, so a colophon too wide for one line breaks between the notice
    and the links instead of through them. No breakpoint: it reflows on fit. */
-.colophon{margin-top:48px;padding-top:22px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11.5px;color:var(--ink-40);display:flex;gap:12px 24px;flex-wrap:wrap}
+.colophon{margin-top:48px;padding-top:22px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11.5px;color:var(--ink-60);display:flex;gap:12px 24px;flex-wrap:wrap}
 .colophon-legal{display:flex;gap:12px 24px;flex-wrap:wrap}
 /* Underlined: in a row of plain statements an unstyled link is not findable. */
-.colophon a{color:var(--ink-40);text-decoration:none;border-bottom:1px solid var(--rule-strong);transition:.18s}
+.colophon a{color:var(--ink-60);text-decoration:none;border-bottom:1px solid var(--rule-strong);transition:.18s}
 .colophon a:hover{color:var(--blue);border-bottom-color:var(--blue)}
 
 @media (max-width:900px){
@@ -380,7 +388,7 @@ footer a:hover{color:var(--blue)}
 /* Carries the heading level a screen reader and a crawler walk, where the
    design has no room for a visible one. Clip rather than display:none, which
    would take it out of the accessibility tree along with the layout. */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:8px;top:-64px;z-index:10000;background:var(--paper);color:var(--blue);border:1px solid var(--blue);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;transition:top .16s}.skip-link:focus{top:8px}@media (prefers-reduced-motion:reduce){.skip-link{transition:none}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ============ DOCUMENTATION LAYOUT ============ */
 
@@ -390,7 +398,7 @@ footer a:hover{color:var(--blue)}
 /* ---- left index, numbered like a manual ---- */
 /* Sticks under the masthead; the offset is --masthead-h, not a literal. */
 .index{position:sticky;top:var(--masthead-h);padding:44px 0 60px;max-height:calc(100vh - var(--masthead-h));overflow-y:auto}
-.index .rail-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-40);font-weight:500;margin:0 0 14px}
+.index .rail-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-60);font-weight:500;margin:0 0 14px}
 .index .rail-label+ol{margin-bottom:34px}
 .index ol{list-style:none}
 .index li{margin-bottom:1px}
@@ -399,14 +407,14 @@ footer a:hover{color:var(--blue)}
   text-decoration:none;color:var(--ink-60);font-size:14.5px;line-height:1.35;
   padding:5px 8px 5px 10px;border-left:2px solid transparent;transition:.15s;
 }
-.index a .num{font-family:var(--mono);font-size:11px;color:var(--ink-40)}
+.index a .num{font-family:var(--mono);font-size:11px;color:var(--ink-60)}
 .index a:hover{color:var(--ink);background:var(--blue-soft)}
 .index a[aria-current]{color:var(--blue);border-left-color:var(--blue);font-weight:500;background:var(--blue-soft)}
 .index a[aria-current] .num{color:var(--blue)}
 
 /* ---- the page itself ---- */
 main article,.shell article{padding:52px 0 120px}
-.crumb{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40);display:flex;align-items:center;gap:8px;margin-bottom:22px}
+.crumb{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:center;gap:8px;margin-bottom:22px}
 .crumb .sec{color:var(--amber)}
 .crumb a{color:var(--ink-60);text-decoration:none;border-bottom:1px solid transparent;transition:.18s}
 .crumb a:hover{color:var(--blue);border-bottom-color:var(--blue)}
@@ -435,22 +443,22 @@ code{font-family:var(--mono);font-size:.88em;background:var(--paper-2);border:1p
   border-left:2px solid var(--amber);background:var(--amber-soft);
   padding:16px 20px;margin:0 0 24px;font-size:15.5px;
 }
-.callout b{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--amber);display:block;margin-bottom:7px}
+.callout b{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--amber-ink);display:block;margin-bottom:7px}
 
 /* ---- right rail ---- */
 /* Bottom padding is a gutter: the sticky rail travels to the bottom of .shell,
    where the footer's rule begins. */
 .contents{position:sticky;top:104px;padding:56px 0 60px;font-size:13.5px}
-.contents .rail-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-40);font-weight:500;margin-bottom:12px}
+.contents .rail-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--ink-60);font-weight:500;margin-bottom:12px}
 .contents ol{list-style:none;border-left:1px solid var(--rule)}
 .contents a{display:block;padding:5px 0 5px 14px;margin-left:-1px;border-left:1px solid transparent;color:var(--ink-60);text-decoration:none;line-height:1.35;transition:.15s}
 .contents a:hover{color:var(--blue);border-left-color:var(--blue)}
-.contents .meta{margin-top:26px;padding-top:16px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-40);line-height:1.7}
+.contents .meta{margin-top:26px;padding-top:16px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-60);line-height:1.7}
 
 .pagenav{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:64px;padding-top:26px;border-top:1px solid var(--rule-strong)}
 .pagenav a{text-decoration:none;padding:16px 18px;border:1px solid var(--rule);transition:.18s;display:block}
 .pagenav a:hover{border-color:var(--blue);background:var(--blue-soft)}
-.pagenav span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--ink-40);display:block;margin-bottom:5px}
+.pagenav span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--ink-60);display:block;margin-bottom:5px}
 .pagenav b{font-weight:500;font-size:15.5px}
 .pagenav .next{text-align:right}
 

@@ -208,6 +208,23 @@ extension HelpText {
                 long: "Diagnostic logs and crash reports. Removing them frees space but also "
                     + "removes history you may want for troubleshooting."
             )
+        case .android:
+            return HelpText(
+                short: "SDK platforms, sources, build tools and emulator images, per version.",
+                long: "The Android SDK keeps a copy of everything it has ever downloaded. "
+                    + "Platforms and sources are per API level, system images are per API "
+                    + "level and hardware profile at a gigabyte or more each, and build "
+                    + "tools are per version. All of them come back from the SDK Manager, "
+                    + "so they are tier 2. Build tools follow the same rule as the version "
+                    + "managers: the newest is never offered, because Gradle uses it unless "
+                    + "a project pins another. Platforms and sources are listed whole, "
+                    + "since which one is in use depends on each project's compileSdk "
+                    + "rather than on which is newest. Virtual devices are tier 3 -- an "
+                    + "emulator holds the apps installed inside it and whatever state they "
+                    + "left, and recreating the device does not bring that back. The "
+                    + "emulator itself, the platform tools and the licences are never "
+                    + "listed: they are the current toolchain, not a spare copy of it."
+            )
         case .gameEngines:
             return HelpText(
                 short: "Engine downloads and caches, including versions you no longer run.",

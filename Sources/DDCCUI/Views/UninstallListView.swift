@@ -107,6 +107,7 @@ struct UninstallListView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.orange)
+                        .accessibilityHidden(true)
                     Text("Not available: \(sources.joined(separator: "; "))")
                         .font(.caption)
                 }
@@ -173,8 +174,7 @@ private struct UninstallRowView: View {
                     Text(footprint.identity.displayName)
                     if let recovery = UninstallWording.recoveryEvidenceDescription(for: footprint.identity) {
                         Text(recovery)
-                            .font(.caption2)
-                            .foregroundStyle(.tertiary)
+                            .rowSubtitle()
                     }
                     if let refusal = footprint.refusal {
                         // A refused footprint was never
@@ -199,8 +199,7 @@ private struct UninstallRowView: View {
                         // the app owns any of it is an unexplained
                         // attribution.
                         Text(UninstallWording.evidenceStatement(for: row))
-                            .font(.caption2)
-                            .foregroundStyle(.tertiary)
+                            .rowSubtitle()
                             .lineLimit(1)
                             .truncationMode(.middle)
                     }
@@ -239,8 +238,7 @@ private struct UninstallRowView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.displayName)
                     Text(UninstallWording.evidenceStatement(for: row))
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }

@@ -93,7 +93,7 @@ public enum DocumentationPages {
           <aside class="index">
         \(index)  </aside>
 
-          <article>
+          <article id="main" role="main">
             <nav class="crumb" aria-label="Breadcrumb"><span class="sec">§ \(source.number)</span>\
         <a href="{{root}}">DDCC</a><span class="sep" aria-hidden="true">/</span>\
         <a href="{{root}}\(Site.guidePath)">User Guide</a><span class="sep" aria-hidden="true">/</span>\
@@ -141,7 +141,7 @@ public enum DocumentationPages {
                 """,
             kind: .marketing,
             body: """
-                <main>
+                <main id="main">
                 <div class="wrap">
                   <div class="hero">
                     {{crumb}}

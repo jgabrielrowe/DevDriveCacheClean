@@ -27,6 +27,7 @@ struct DeletionFailureNotice<T: Deletable>: View {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(.red)
+                        .accessibilityHidden(true)
                     Text(message)
                         .font(.caption)
                 }

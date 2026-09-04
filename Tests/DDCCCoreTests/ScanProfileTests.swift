@@ -114,6 +114,10 @@ private func destructiveIdentifier(for kind: ScanProfile.Pattern.Kind) -> String
 @Test func everyDestructiveEntryIsPinnedByTheTable() {
     let expected: Set<String> = [
         "~/Library/Developer/Xcode/Archives",
+        // The same argument as CoreSimulator/Devices, for the other platform.
+        // An AVD holds the apps installed inside the emulator and whatever
+        // state they wrote; recreating the device gives back a blank one.
+        "~/.android/avd",
         "~/Library/Developer/CoreSimulator/Devices",
         "~/Library/Containers/com.docker.docker/Data",
         "~/.vscode/extensions",

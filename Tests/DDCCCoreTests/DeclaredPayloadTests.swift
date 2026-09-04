@@ -318,3 +318,116 @@ private func noClaimants(_ env: ScanEnvironment) -> ClaimantIndex {
     let roots = DeclaredPayloadSource.shippedTable["com.epicgames.EpicGamesLauncher"] ?? []
     #expect(roots.contains("~/Library/LaunchAgents/com.epicgames.launcher.plist"))
 }
+
+// MARK: - Version-stamped directories
+
+/// An IDE names its support directories after the product AND the release --
+/// `AndroidStudio2026.1.4`, `IntelliJIdea2026.1`. An exact path rots at the
+/// next upgrade, and the parent is shared with other products, so a trailing
+/// `*` on the final component names the family without naming the parent.
+@Test func aTrailingStarMatchesEveryVersionOfOneProduct() throws {
+    try withTempDirectory { root in
+        let tree = FixtureTree(root: root)
+        _ = try tree.directory("Library/Caches/Vendor/Studio2026.1.4")
+        _ = try tree.directory("Library/Caches/Vendor/Studio2025.3")
+
+        let source = DeclaredPayloadSource(table: ["com.acme.studio": [
+            root.appending(path: "Library/Caches/Vendor/Studio").path(percentEncoded: false) + "*"
+        ]])
+        let identity = BundleIdentity(
+            bundleID: "com.acme.studio", displayName: "Studio", bundleURL: nil, isPresent: true)
+        let evidence = source.evidence(
+            for: identity, in: ScanEnvironment(libraryURL: root.appending(path: "Library")))
+        #expect(evidence.count == 2)
+    }
+}
+
+/// The hazard this mechanism exists to avoid. The parent of Android Studio's
+/// cache also holds Chrome's, and an uninstall that took the browser's cache
+/// with the IDE would be worse than the miss it was fixing.
+@Test func aTrailingStarNeverReachesASiblingWithoutThePrefix() throws {
+    try withTempDirectory { root in
+        let tree = FixtureTree(root: root)
+        _ = try tree.directory("Library/Caches/Vendor/Studio2026.1.4")
+        _ = try tree.directory("Library/Caches/Vendor/Chrome")
+
+        let source = DeclaredPayloadSource(table: ["com.acme.studio": [
+            root.appending(path: "Library/Caches/Vendor/Studio").path(percentEncoded: false) + "*"
+        ]])
+        let identity = BundleIdentity(
+            bundleID: "com.acme.studio", displayName: "Studio", bundleURL: nil, isPresent: true)
+        let evidence = source.evidence(
+            for: identity, in: ScanEnvironment(libraryURL: root.appending(path: "Library")))
+        #expect(evidence.count == 1)
+        #expect(evidence.allSatisfy { $0.path.contains("Chrome") == false })
+    }
+}
+
+/// A star with nothing in front of it is the whole parent directory spelled
+/// as a wildcard, which is exactly the declaration the table forbids. It
+/// matches nothing rather than everything -- the direction this can afford to
+/// be wrong in.
+@Test func aStarWithNoPrefixMatchesNothing() throws {
+    try withTempDirectory { root in
+        let tree = FixtureTree(root: root)
+        _ = try tree.directory("Library/Caches/Vendor/Studio2026.1.4")
+        _ = try tree.directory("Library/Caches/Vendor/Chrome")
+
+        let source = DeclaredPayloadSource(table: ["com.acme.studio": [
+            root.appending(path: "Library/Caches/Vendor").path(percentEncoded: false) + "/*"
+        ]])
+        let identity = BundleIdentity(
+            bundleID: "com.acme.studio", displayName: "Studio", bundleURL: nil, isPresent: true)
+        #expect(source.evidence(
+            for: identity,
+            in: ScanEnvironment(libraryURL: root.appending(path: "Library"))).isEmpty)
+    }
+}
+
+/// Direct children only. A prefix match that recursed would attribute every
+/// file inside a matched directory separately, and the assembler sizes a root.
+@Test func aTrailingStarDoesNotRecurse() throws {
+    try withTempDirectory { root in
+        let tree = FixtureTree(root: root)
+        _ = try tree.directory("Library/Caches/Vendor/Studio2026.1.4/caches/inner")
+
+        let source = DeclaredPayloadSource(table: ["com.acme.studio": [
+            root.appending(path: "Library/Caches/Vendor/Studio").path(percentEncoded: false) + "*"
+        ]])
+        let identity = BundleIdentity(
+            bundleID: "com.acme.studio", displayName: "Studio", bundleURL: nil, isPresent: true)
+        let evidence = source.evidence(
+            for: identity, in: ScanEnvironment(libraryURL: root.appending(path: "Library")))
+        #expect(evidence.count == 1)
+        #expect(evidence.first?.path.hasSuffix("Studio2026.1.4") == true)
+    }
+}
+
+/// Every glob in the shipped table must carry a prefix. Without this, a future
+/// entry could be narrowed to `.../Google/*` and take Chrome with it, which
+/// the forbidden-parent guard would not catch: it forbids ~/Library/Caches,
+/// not ~/Library/Caches/Google.
+@Test func everyGlobInTheShippedTableNamesAPrefix() {
+    for (bundleID, roots) in DeclaredPayloadSource.shippedTable {
+        for declared in roots where declared.hasSuffix("*") {
+            let lastComponent = String(declared.dropLast()).split(separator: "/").last ?? ""
+            #expect(
+                lastComponent.isEmpty == false,
+                "\(bundleID) declares a wildcard with no prefix: \(declared)")
+        }
+    }
+}
+
+/// The same shape again, for Android: `~/.android` holds `adbkey`, the
+/// machine's ADB identity. Declaring it would make an uninstall cost every
+/// device authorisation on the machine, which is not Studio's to spend.
+@Test func noAndroidDeclarationReachesTheADBIdentity() {
+    for (bundleID, roots) in DeclaredPayloadSource.shippedTable {
+        for declared in roots {
+            #expect(declared.contains("adbkey") == false, "\(bundleID) declares \(declared)")
+            #expect(
+                declared.hasSuffix("/.android") == false,
+                "\(bundleID) declares the whole ~/.android directory")
+        }
+    }
+}

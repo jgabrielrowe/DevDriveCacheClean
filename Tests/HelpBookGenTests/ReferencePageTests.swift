@@ -26,7 +26,7 @@ import Foundation
     // forces a decision about the new entry's copy, not an invariant.
     // A count derived from the same allCases the list is built from would
     // move on both sides at once and could never fail.
-    #expect(entries.count == 39)
+    #expect(entries.count == 40)
     for entry in entries {
         let occurrences = combined.components(separatedBy: entry).count - 1
         #expect(occurrences == 1, "expected 1 occurrence, found \(occurrences): \(entry.prefix(50))")

@@ -239,7 +239,7 @@ Ko-fi
 
 - No telemetry, ever
 
-- 4.7 MB download, 8.6 MB installed
+- 4.9 MB download, 8.8 MB installed
 
 - Source-available under SUL-1.0
 
@@ -1691,6 +1691,10 @@ build, .gradle, and target directories next to Gradle or Maven project files. Re
 ## Xcode
 
 DerivedData rebuilds on the next build. Device support and simulator runtimes can be downloaded again. Xcode Archives and simulator Devices may contain crash-symbol files, installed apps, and simulator data, so review those carefully.
+
+## Android
+
+The Android SDK keeps a copy of everything it has ever downloaded. Platforms and sources are per API level, system images are per API level and hardware profile at a gigabyte or more each, and build tools are per version. All of them come back from the SDK Manager, so they are tier 2. Build tools follow the same rule as the version managers: the newest is never offered, because Gradle uses it unless a project pins another. Platforms and sources are listed whole, since which one is in use depends on each project's compileSdk rather than on which is newest. Virtual devices are tier 3 -- an emulator holds the apps installed inside it and whatever state they left, and recreating the device does not bring that back. The emulator itself, the platform tools and the licences are never listed: they are the current toolchain, not a spare copy of it.
 
 ## Go
 

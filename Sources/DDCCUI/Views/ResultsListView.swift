@@ -116,6 +116,8 @@ struct ResultRow: View {
                         .font(.title3)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Select \(result.relativePath)")
+                .accessibilityValue(isSelected ? "Selected" : "Not selected")
                 .help("\(result.tier.label): \(result.tier.explanation)")
 
             case .needsCategoryAcknowledgement:
@@ -127,6 +129,8 @@ struct ResultRow: View {
                         .font(.title3)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Select \(result.relativePath)")
+                .accessibilityValue("Locked. \(result.category.rawValue) is not enabled for this scan")
                 .help("\(result.tier.label): \(result.tier.explanation)")
 
             case .needsItemOptIn:
@@ -138,12 +142,15 @@ struct ResultRow: View {
                         .font(.title3)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Select \(result.relativePath)")
+                .accessibilityValue("Opt in required. \(result.tier.label)")
                 .help("\(result.tier.label): \(result.tier.explanation)")
 
             case .lockedRequiresPrivileges:
                 Image(systemName: "minus.circle")
                     .foregroundStyle(.tertiary)
                     .font(.title3)
+                    .accessibilityLabel("Cannot be selected: requires privileges DevDriveCacheClean does not have")
                     .help("Requires privileges DevDriveCacheClean does not have.")
             }
 
@@ -155,6 +162,7 @@ struct ResultRow: View {
             Image(systemName: result.category.icon)
                 .foregroundStyle(.secondary)
                 .frame(width: 20)
+                .accessibilityHidden(true)
                 .help(HelpText.for(result.category).short)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -163,8 +171,7 @@ struct ResultRow: View {
                     .truncationMode(.middle)
                 HStack(spacing: 6) {
                     Text(result.category.rawValue)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
 
                     if result.sharesContentElsewhere {
                         // Not a warning and not a floor: the walk read every

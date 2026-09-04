@@ -86,8 +86,7 @@ struct ApprovalSheet: View {
             Text("\(Plural.of(rows.count, "item")) · \(ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file))")
                 .font(.callout)
             Text("Enabling applies to this scan only.")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
+                .rowSubtitle()
 
         case .item(let id):
             if let row = viewModel.results.first(where: { $0.id == id }) {
@@ -120,8 +119,7 @@ struct ApprovalSheet: View {
                 }
             }
             Text("Counts cover what is currently in view. Enabling applies to this scan only.")
-                .font(.caption)
-                .foregroundStyle(.tertiary)
+                .rowSubtitle()
         }
     }
 }

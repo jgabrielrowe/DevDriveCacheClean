@@ -166,8 +166,7 @@ struct UninstallDetailView: View {
             }
             if footprint.items.isEmpty {
                 Text("Nothing this app owns is offered for removal.")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
+                    .rowSubtitle()
             } else {
                 ForEach(footprint.items) { item in
                     itemRow(item, sizeText: ByteCountFormatter.string(fromByteCount: item.sizeBytes, countStyle: .file))
@@ -210,8 +209,7 @@ struct UninstallDetailView: View {
                     .lineLimit(1)
                     .truncationMode(.middle)
                 Text(UninstallWording.evidenceStatement(for: item))
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+                    .rowSubtitle()
                 // The one caveat that must reach the user rather than stay
                 // in the engine: a group container nothing *scanned* still
                 // claims is offered here with a size and a button, and the
@@ -250,8 +248,7 @@ struct UninstallDetailView: View {
                     .foregroundStyle(.secondary)
                 ForEach(Array(paths.enumerated()), id: \.offset) { _, disclosed in
                     Text(PathDisplay.tildeAbbreviated(disclosed.path))
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .rowSubtitle()
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }

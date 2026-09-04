@@ -12,7 +12,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 # The bundle FILENAME is what Finder, Launchpad and the Dock print under the
 # icon. CFBundleDisplayName does not override it — macOS ignores that key for
 # .app bundles so a bundle cannot claim a name its file does not have

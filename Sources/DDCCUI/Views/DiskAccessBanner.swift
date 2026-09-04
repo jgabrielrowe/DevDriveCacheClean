@@ -15,6 +15,7 @@ struct DiskAccessBanner: View {
         HStack(alignment: .top, spacing: 10) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundStyle(.orange)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("Some folders can't be read")
@@ -45,6 +46,7 @@ struct DiskAccessBanner: View {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("Dismiss this notice")
             .help("Dismiss until next launch")
         }
         .padding(.horizontal, 12)

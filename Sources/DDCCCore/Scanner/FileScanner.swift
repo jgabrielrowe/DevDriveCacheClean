@@ -46,8 +46,6 @@ public actor FileScanner {
 
     public func cancel() { isCancelled = true }
 
-    public func resetCancellation() { isCancelled = false }
-
     /// True when either the actor flag or the surrounding task was cancelled.
     private var shouldStop: Bool { isCancelled || Task.isCancelled }
 

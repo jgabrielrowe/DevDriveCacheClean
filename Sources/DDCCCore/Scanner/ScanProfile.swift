@@ -157,6 +157,56 @@ public struct ScanProfile: Sendable {
             .dir("target", marker: .sibling("pom.xml"), tier: .safe),
         ]),
 
+        // MARK: - Android
+        //
+        // Measured on a fresh Android Studio 2026.1.4 install carrying one API
+        // level: 1.8 GB under the SDK, of which 1.2 GB is the emulator binary
+        // and is not listed here at all.
+        //
+        // What is deliberately absent: `emulator`, `platform-tools` and
+        // `licenses`. None of them is versioned, all of them are the current
+        // tooling, and removing any one breaks the SDK rather than freeing a
+        // stale copy. The emulator being the single largest directory is
+        // exactly why it needs saying — size is not the test.
+        ScanProfile(category: .android, patterns: [
+            // Gradle uses the highest installed build-tools unless a project
+            // pins `buildToolsVersion`, so "keep the newest" is a real
+            // retention here and not a guess. Same mechanism as the version
+            // managers, and it fails closed the same way: if the process list
+            // cannot be read, every version is retained and none is offered.
+            .toolchainVersions(
+                under: "~/Library/Android/sdk/build-tools",
+                minSize: 10_000_000,
+                tier: .costly
+            ),
+            // Platforms and sources are per API level, and which one is in use
+            // is decided by each project's `compileSdk` -- not by which is
+            // newest. So these are enumerated rather than filtered: claiming a
+            // retention that cannot be computed would be worse than offering
+            // both and pricing them honestly. Removing one costs an SDK
+            // Manager download, which is tier 2's definition.
+            //
+            // `android-37.0` also does not parse as a version -- the leading
+            // word collapses to zero in the comparator every version manager
+            // here shares -- so the newest could not be identified even if it
+            // were the right rule.
+            .subdirs(of: "~/Library/Android/sdk/platforms", minSize: 10_000_000, tier: .costly),
+            .subdirs(of: "~/Library/Android/sdk/sources", minSize: 10_000_000, tier: .costly),
+            // Absent until the first emulator image is downloaded, then a
+            // gigabyte or more per API level and hardware profile. The biggest
+            // thing this category will ever find on a machine that emulates.
+            .subdirs(
+                of: "~/Library/Android/sdk/system-images",
+                minSize: 100_000_000,
+                tier: .costly
+            ),
+            // A virtual device holds state that exists nowhere else: the apps
+            // installed inside it, its settings, whatever a test left behind.
+            // Recreating the device does not bring any of that back, which is
+            // the definition of tier 3 rather than tier 2.
+            .subdirs(of: "~/.android/avd", minSize: 1_000_000, tier: .destructive),
+        ]),
+
         // MARK: - Xcode & Apple Dev
         ScanProfile(category: .xcode, patterns: [
             .path("~/Library/Developer/Xcode/DerivedData", tier: .safe),

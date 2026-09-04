@@ -52,6 +52,7 @@ extension CleanCategory {
         case .systemCaches: return "category-system-caches"
         case .logs: return "category-logs-crashes"
         case .appDeepClean: return "category-app-deep-clean"
+        case .android: return "category-android"
         case .gameEngines: return "category-game-engines"
         }
     }

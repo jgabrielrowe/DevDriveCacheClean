@@ -17,7 +17,7 @@ public enum LicencePage {
                 """,
             kind: .marketing,
             body: """
-                <main>
+                <main id="main">
                 <div class="wrap">
                   <div class="legal">
                     {{crumb}}

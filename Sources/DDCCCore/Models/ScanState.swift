@@ -41,13 +41,9 @@ public enum ScanState: Sendable {
         }
     }
 
-    public var isScanning: Bool {
-        if case .scanning = self { return true }
-        return false
-    }
-
-    /// True while a scan is running in *either* stage. Gate the Scan button on
-    /// this rather than `isScanning`, which covers discovery only.
+    /// True while a scan is running in *either* stage, discovery or
+    /// measurement. What the Scan button is gated on: a discovery-only test
+    /// re-enables it while the sizes are still being totalled.
     public var isActive: Bool {
         switch self {
         case .scanning, .measuring: return true
