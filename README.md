@@ -1,6 +1,6 @@
 # DevDriveCacheClean
 
-**DDCC 1.0.0** is a macOS disk cleanup tool for developers. It finds developer caches, app caches, build artifacts, large old files, and bundles; explains what each item is; and removes only what you explicitly choose.
+**DDCC** is a macOS disk cleanup tool for developers. It finds developer caches, app caches, build artifacts, large old files, and bundles; explains what each item is; and removes only what you explicitly choose.
 
 DDCC is built around practical safety rules: scan locally, show partial sizes as floors, never preselect risky items, move ordinary files to the Trash, and require extra confirmation before permanent cache deletion.
 
